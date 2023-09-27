@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // Lặp qua từng phần tử sản phẩm và thêm sự kiện click
   productList.forEach(function(product) {
     product.addEventListener('click', function(event) {
-      event.preventDefault(); // Prevent the default behavior of the link
+      event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
       var productLink = this.getAttribute('href');
-      window.location.href = './link.html';
+      var id = productLink.split('=')[1]; // Lấy giá trị của tham số "id"
+      window.location.href = './connect.php?id=' + id; // Chuyển hướng đến trang "connect.php" với tham số "id"
     });
   });
-  
 });
