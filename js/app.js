@@ -12,3 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+var images = document.querySelectorAll('.item-small');
+images.forEach(function(image) {
+  image.addEventListener('click', function(e) {
+    var url = image.getAttribute('src');
+    var mainImage = document.getElementById('product-image').setAttribute('src', url);
+  })
+})
+
+

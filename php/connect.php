@@ -40,7 +40,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping</title>
+    <title>Product</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -289,6 +289,15 @@ $conn->close();
     <h1 class="position-1">[Xin đánh giá] <?php echo $productName; ?></h1>
     <section class="select-image">
       <img id="product-image" class="image-item" src="<?php echo $productImage; ?>" alt="Ảnh sản phẩm">
+      <div class="image-small">
+                <div class="image-small-item">
+                    <img  class="item-small" src="./image/iphone-item-1.jpg" alt="ảnh 1">
+                    <img  class="item-small" src="./image/iphone-item-2.jpg" alt="ảnh 2">
+                    <img  class="item-small" src="./image/iphone-item-3.jpg" alt="ảnh 3">
+                    <img  class="item-small" src="./image/iphone-item-4.jpg" alt="ảnh 4">
+                    <img  class="item-small" src="./image/iphone-item-5.jpg" alt="ảnh 5">
+                </div>
+      </div>
     </section>
     <div class="text-content">
       <div class="text-content-item">
@@ -384,6 +393,6 @@ $conn->close();
 
 
 </div>
-
+<script src="./app.js"></script>
 
 </body>
