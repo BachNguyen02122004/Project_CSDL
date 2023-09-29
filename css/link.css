@@ -16,6 +16,7 @@
 }
 
 .select-image .image-item {
+    position: relative;
     width: 450px;
     height: 450px;
 

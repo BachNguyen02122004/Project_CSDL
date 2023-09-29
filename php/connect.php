@@ -4,7 +4,7 @@
 $servername = 'localhost';
 $username = 'root';
 $password = '123456';
-$dbname = 'os';
+$dbname = 'project';
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -44,9 +44,9 @@ $conn->close();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./base.css">
-    <link rel="stylesheet" href="./main.css">
-    <link rel="stylesheet" href="./link.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/link.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -213,7 +213,7 @@ $conn->close();
                             <span class="header__cart-notice">0</span>
                             <!-- No cart: header__cart-list--no-cart -->
                             <div class="header__cart-list">
-                                <img src="./asset/img/nocard.png" alt="No card" class="header__cart-no-cart-img">
+                                <img src="../img/nocard.png" alt="No card" class="header__cart-no-cart-img">
 
                                 <h4 class="header__cart-heading">Sản phẩm đã thêm</h4>
                                 <ul class="header__cart-group">
@@ -291,11 +291,11 @@ $conn->close();
       <img id="product-image" class="image-item" src="<?php echo $productImage; ?>" alt="Ảnh sản phẩm">
       <div class="image-small">
                 <div class="image-small-item">
-                    <img  class="item-small" src="./image/iphone-item-1.jpg" alt="ảnh 1">
-                    <img  class="item-small" src="./image/iphone-item-2.jpg" alt="ảnh 2">
-                    <img  class="item-small" src="./image/iphone-item-3.jpg" alt="ảnh 3">
-                    <img  class="item-small" src="./image/iphone-item-4.jpg" alt="ảnh 4">
-                    <img  class="item-small" src="./image/iphone-item-5.jpg" alt="ảnh 5">
+                    <img  class="item-small" src="../image/iphone-item-1.jpg" alt="ảnh 1">
+                    <img  class="item-small" src="../image/iphone-item-2.jpg" alt="ảnh 2">
+                    <img  class="item-small" src="../image/iphone-item-3.jpg" alt="ảnh 3">
+                    <img  class="item-small" src="../image/iphone-item-4.jpg" alt="ảnh 4">
+                    <img  class="item-small" src="../image/iphone-item-5.jpg" alt="ảnh 5">
                 </div>
       </div>
     </section>
@@ -337,7 +337,7 @@ $conn->close();
          <svg viewBox="0 0 108 21" height="40" width="100" class="shopee-sale-icon"><g fill="currentColor" fill-rule="evenodd"><path d="M0 16.195h3.402v-5.233h4.237V8H3.402V5.037h5.112V2.075H0zm29.784 0l-.855-2.962h-4.335l-.836 2.962H20.26l4.723-14.12h3.576l4.724 14.12zM26.791 5.294h-.04s-.31 1.54-.563 2.43l-.797 2.744h2.74l-.777-2.745c-.252-.889-.563-2.43-.563-2.43zm7.017 9.124s1.807 2.014 5.073 2.014c3.13 0 4.898-2.034 4.898-4.384 0-4.463-6.259-4.147-6.259-5.925 0-.79.778-1.106 1.477-1.106 1.672 0 3.071 1.245 3.071 1.245l1.439-2.824s-1.477-1.6-4.47-1.6c-2.76 0-4.918 1.718-4.918 4.325 0 4.345 6.258 4.285 6.258 5.964 0 .85-.758 1.126-1.457 1.126-1.75 0-3.324-1.462-3.324-1.462zm12.303 1.777h3.402v-5.53h5.054v5.53h3.401V2.075h-3.401v5.648h-5.054V2.075h-3.402zm18.64-1.678s1.692 1.915 4.763 1.915c2.877 0 4.548-1.876 4.548-4.107 0-4.483-6.492-3.871-6.492-6.36 0-.987.914-1.678 2.08-1.678 1.73 0 3.052 1.224 3.052 1.224l1.088-2.073s-1.4-1.501-4.12-1.501c-2.644 0-4.627 1.738-4.627 4.068 0 4.305 6.512 3.87 6.512 6.379 0 1.145-.952 1.698-2.002 1.698-1.944 0-3.44-1.48-3.44-1.48zm19.846 1.678l-1.166-3.594h-4.84l-1.166 3.594H74.84L79.7 2.174h2.623l4.86 14.021zM81.04 4.603h-.039s-.31 1.382-.583 2.172l-1.224 3.752h3.615l-1.224-3.752c-.253-.79-.545-2.172-.545-2.172zm7.911 11.592h8.475v-2.192H91.46V2.173H88.95zm10.477 0H108v-2.192h-6.064v-3.772h4.645V8.04h-4.645V4.366h5.753V2.174h-8.26zM14.255.808l6.142.163-3.391 5.698 3.87 1.086-8.028 12.437.642-8.42-3.613-1.025z"></path></g></svg>
          <svg height="20" viewBox="0 0 20 20" width="20" class="sale-time"><g fill="none" fill-rule="evenodd" stroke="#fff" stroke-width="1.8" transform="translate(1 1)"><circle cx="9" cy="9" r="9"></circle><path d="m11.5639648 5.05283203v4.71571528l-2.72832027 1.57129639" stroke-linecap="round" stroke-linejoin="round" transform="matrix(-1 0 0 1 20.39961 0)"></path></g></svg>
          <div>Kết thúc trong</div>
-         <img src="./img/time.jpg" alt="ảnh time">
+         <img src="../img/time.jpg" alt="ảnh time">
          
        </div>
        <div id="coin-item">
@@ -393,6 +393,6 @@ $conn->close();
 
 
 </div>
-<script src="./app.js"></script>
+<script src="../js/app.js"></script>
 
 </body>
