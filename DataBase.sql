@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `os` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `os`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: os
@@ -153,8 +151,35 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'Tai nghe Bluetooth AirPods Pro (2nd Gen) USB-C Charge Apple',NULL,990000,1,NULL,1,3),(2,'MSI Gaming GF63 Thin 11SC i5 11400H (664VN)',NULL,16490000,1,NULL,4,1),(3,'iPhone 14 Pro Max',NULL,29990000,1,NULL,1,2),(4,'OPPO Reno10 5G',NULL,9900000,1,NULL,8,2),(5,'Tai nghe Bluetooth True Wireless AVA+ Buds Life Rider GT07',NULL,440000,1,NULL,2,3),(6,'HP Gaming VICTUS 15 fa0144TX i5 12450H',NULL,27990000,1,NULL,5,1),(7,'Samsung Galaxy Z Fold5 5G',NULL,40990000,1,NULL,9,2),(8,'Lenovo Legion 5 15IAH7 i5 12500H',NULL,35490000,1,NULL,6,1),(9,'Tai nghe Bluetooth True Wireless AVA+ Buds Life Air 2',NULL,490000,1,NULL,3,3);
+INSERT INTO `product` VALUES (1,'Tai nghe Bluetooth AirPods Pro (2nd Gen) USB-C Charge Apple',NULL,990000,1,'../image/earphone1.png',1,3),(2,'MSI Gaming GF63 Thin 11SC i5 11400H (664VN)',NULL,16490000,1,'../image/laptop1.png',4,1),(3,'iPhone 14 Pro Max',NULL,29990000,1,'../image/phone1.png',1,2),(4,'OPPO Reno10 5G',NULL,9900000,1,'../image/phon2.png',8,2),(5,'Tai nghe Bluetooth True Wireless AVA+ Buds Life Rider GT07',NULL,440000,1,'../image/earphone2.png',2,3),(6,'HP Gaming VICTUS 15 fa0144TX i5 12450H',NULL,27990000,1,'../image/laptop2.png',5,1),(7,'Samsung Galaxy Z Fold5 5G',NULL,40990000,1,'../image/phone3.png',9,2),(8,'Lenovo Legion 5 15IAH7 i5 12500H',NULL,35490000,1,'../image/laptop3.png',6,1),(9,'Tai nghe Bluetooth True Wireless AVA+ Buds Life Air 2',NULL,490000,1,'../image/earphone3.png',3,3),(10,'Asus TUF Gaming F15 FX506HX i5 11400H',NULL,23990000,1,'../image/laptop4.png',7,1),(11,'Tai nghe Bluetooth True Wireless AVA+ FreeGo A20',NULL,290000,1,'../image/earphone4.png',2,3),(12,'OPPO Find N2 Flip 5G',NULL,19000000,1,'../image/phone4.png',8,2),(13,'MSI Gaming GF63 Thin 12VE i5 12450H ( 460VN)',NULL,22490000,1,'../image/laptop5.png',4,1),(14,'vivo Y36',NULL,6290000,1,'../image/phone5.png',10,2),(15,'Tai nghe Bluetooth True Wireless HAVIT TW945',NULL,450000,1,'../image/earphone5.png',2,3),(16,'Lenovo LOQ Gaming 15IRH8 i5 13420H',NULL,28990000,1,'../image/laptop6.png',6,1),(17,'Xiaomi Redmi 12C',NULL,3590000,1,'../image/phone6.png',11,2),(18,'Tai nghe Bluetooth True Wireless AVA+ FreeGo Plus PT19',NULL,390000,1,'../image/earphone6.png',2,3),(19,'MSI Gaming GF66 12UCK i7 12650 (840VN)',NULL,27490000,1,'../image/laptop7.png',4,1),(20,'iPhone 11',NULL,11990000,1,'../image/phone7.png',1,2),(21,'Tai nghe Bluetooth True Wireless AVA+ DS206',NULL,790000,1,'../image/earphone7.png',2,3),(22,'Asus Gaming TUF Dash F15 FX517ZE i5 12450H (HN045W)',NULL,24990000,1,'../image/laptop8.png',7,1),(23,'Samsung Galaxy s23 Ultra 5G',NULL,31990000,1,'../image/phone8.png',9,2),(24,'Tai nghe Bluetooth True Wireless Baseus AirNora 2',NULL,1400000,1,'../image/earphone8.png',2,3),(25,'Asus Gaming ROG Strix G17 G713RW R9 6900HX (LL178W)',NULL,57990000,1,'../image/laptop9.png',7,1),(26,'Nokia 105',NULL,820000,1,'../image/phone9.png',12,2),(27,'Tai nghe Bluetooth True Wireless vivo Air XEW25',NULL,790000,1,'../image/earphone9.png',2,3),(28,'Lenovo Gaming Legion 5 16IRH8 i7 13700H (82YA00DTVN)',NULL,44990000,1,'../image/laptop10.png',6,1),(29,'Tai nghe Bluetooth Chup Tai Kanen K6',NULL,600000,1,'../image/earphone10.png',3,3);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `product_detail`
+--
+
+DROP TABLE IF EXISTS `product_detail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `product_detail` (
+  `id` int NOT NULL,
+  `product_id` int DEFAULT NULL,
+  `chitiet_sp` text,
+  `image_phu` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_id` (`product_id`),
+  CONSTRAINT `product_detail_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product_detail`
+--
+
+LOCK TABLES `product_detail` WRITE;
+/*!40000 ALTER TABLE `product_detail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `product_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -194,4 +219,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-26 20:27:13
+-- Dump completed on 2023-09-29 22:11:13
