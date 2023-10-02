@@ -43,72 +43,58 @@ images.forEach(function (image) {
 
 
 // Lấy các phần tử cần sử dụng
-const decreaseButton = document.querySelector('.item-down-up[aria-label="Decrease"]');
-const increaseButton = document.querySelector('.item-down-up:not([aria-label="Decrease"])');
-const inputElement = document.querySelector('.text-number');
+document.addEventListener('DOMContentLoaded', function () {
+  const decreaseButton = document.querySelector('.item-down-up[aria-label="Decrease"]');
+  const increaseButton = document.querySelector('.item-down-up:not([aria-label="Decrease"])');
+  const inputElement = document.querySelector('.text-number');
 
-// Thiết lập sự kiện khi nhấn nút giảm
-decreaseButton.addEventListener('click', function () {
-  let value = parseInt(inputElement.value);
+  decreaseButton.addEventListener('click', function () {
+    let value = parseInt(inputElement.value);
 
-  if (value > 1) {
-    value--;
+    if (value > 1) {
+      value--;
+      inputElement.value = value;
+    }
+  });
+
+
+  increaseButton.addEventListener('click', function () {
+    let value = parseInt(inputElement.value);
+
+    value++;
     inputElement.value = value;
-  }
+  });
+
 });
 
 
-increaseButton.addEventListener('click', function () {
-  let value = parseInt(inputElement.value);
+document.addEventListener('DOMContentLoaded', function () {
+  //add to cart
+  var userID = 1;
+  var productID = 4;
 
-  value++;
-  inputElement.value = value;
-});
+  var addToCartButton = document.querySelectorAll('.buy');
 
-
-//add to cart
-var addToCartButton = document.querySelector('.buy-fake');
-
-addToCartButton.addEventListener('click', function (productId) {
+  addToCartButton.addEventListener('click', function () {
     var xhr = new XMLHttpRequest();
 
     xhr.open("POST", "../php/addToCart.php", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-    var data = "productId=" + productId;
+    var data = "productID=" + productID + "&userID=" + userID;
 
     xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
+      if (xhr.readyState == 4 && xhr.status == 200) {
 
-            var response = JSON.parse(xhr.responseText);
-            if (response.success) {
-                updateCartItems();
-            } else {
-                console.log(response.error);
-            }
+        var response = JSON.parse(xhr.responseText);
+        if (response.success) {
+          console.log("sending success message");
+        } else {
+          console.log(response.error);
         }
+      }
     };
 
     xhr.send(data);
+  });
 });
-
-function updateCartItems() {
-    var cartItemsDiv = document.getElementById('cart-items');
-    var cartItemsXhr = new XMLHttpRequest();
-
-    cartItemsXhr.open("GET", "../php/getCartItems.php", true);
-
-    cartItemsXhr.onreadystatechange = function () {
-        if (cartItemsXhr.readyState == 4 && cartItemsXhr.status == 200) {
-            var cartItemsResponse = JSON.parse(cartItemsXhr.responseText);
-            cartItemsDiv.innerHTML = generateCartHTML(cartItemsResponse);
-        }
-    };
-
-    cartItemsXhr.send();
-}
-
-function generateCartHTML(cartItems) {
-    // Generate HTML for displaying cart items
-    // Return the HTML string
-}
