@@ -17,16 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
       window.location.href = '../php/connect.php?id=' + id; // Chuyển hướng đến trang "connect.php" với tham số "id"
     });
   });
-
-
-  buy.forEach(function (e) {
-    e.addEventListener('click', function (event) {
-      event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
-      var productLink = this.getAttribute('href');
-      window.location.href = '../html/cart.php';
-
-    });
-  });
 });
 
 

@@ -9,3 +9,4 @@ $cartItems = getData($conn, "productInCart", "userID", $userID);
 
 echo json_encode($cartItems);
 ?>
+
