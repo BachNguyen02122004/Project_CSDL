@@ -3,10 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
   var productList = document.querySelectorAll('.product-item');
   var buy = document.querySelectorAll('.buy');
   var cart = document.querySelector('.header__cart-view');
+  
   cart.addEventListener('click', function(e){
     e.preventDefault();
     var productLink = this.getAttribute('href');
-    window.location.href = '../html/cart.html';
+    window.location.href = '../php/cart.php';
   });
   // Lặp qua từng phần tử sản phẩm và thêm sự kiện click
   productList.forEach(function(product) {
@@ -14,23 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
       event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
       var productLink = this.getAttribute('href');
       var id = productLink.split('=')[1]; // Lấy giá trị của tham số "id"
-      window.location.href = '../php/connect.php?id=' + id; // Chuyển hướng đến trang "connect.php" với tham số "id"
+      window.location.href = '../php/product.php?id=' + id; // Chuyển hướng đến trang "connect.php" với tham số "id"
     });
   });
   
-
-buy.forEach(function(e){
-  e.addEventListener('click', function(event){
-    event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
-      var productLink = this.getAttribute('href');
-      window.location.href = '../html/cart.html';
-
-  });
-});
-});
-
-
-
 var images = document.querySelectorAll('.item-small');
 images.forEach(function(image) {
   image.addEventListener('mouseover', function(e) {
@@ -40,28 +28,68 @@ images.forEach(function(image) {
   })
 })
 
-
-
 // Lấy các phần tử cần sử dụng
-const decreaseButton = document.querySelector('.item-down-up[aria-label="Decrease"]');
-const increaseButton = document.querySelector('.item-down-up:not([aria-label="Decrease"])');
-const inputElement = document.querySelector('.text-number');
+const decreaseButtons = document.querySelectorAll('.item-down-up[aria-label="Decrease"]');
+const increaseButtons = document.querySelectorAll('.item-down-up:not([aria-label="Decrease"])');
+const inputElements = document.querySelectorAll('.text-number');
 
 // Thiết lập sự kiện khi nhấn nút giảm
-decreaseButton.addEventListener('click', function() {
-  let value = parseInt(inputElement.value); 
-  
-  if (value > 1) { 
-    value--;
-    inputElement.value = value; 
-  }
+decreaseButtons.forEach(function (button, index) {
+  button.addEventListener('click', function () {
+    let value = parseInt(inputElements[index].value);
+
+    if (value > 1) {
+      value--;
+      inputElements[index].value = value;
+      console.log(value);
+    }
+  });
+});
+
+// Thiết lập sự kiện khi nhấn nút tăng
+increaseButtons.forEach(function (button, index) {
+  button.addEventListener('click', function () {
+    let value = parseInt(inputElements[index].value);
+    console.log(value);
+    value++;
+    inputElements[index].value = value;
+  });
 });
 
 
-increaseButton.addEventListener('click', function() {
-  let value = parseInt(inputElement.value); 
-  
-  value++;
-  inputElement.value = value; 
-});
+// buy.forEach(function(e){
+//   e.addEventListener('click', function(event){
+//     event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
+//       var productLink = this.getAttribute('href');
+//       var productId = this.getAttribute('id'); // Lấy ID sản phẩm từ thuộc tính data
+//       addtoCart(productId);
+//       console.log(productId);
+     
 
+//   });
+// });
+
+
+// function addtoCart(productId) {
+//   // Gửi yêu cầu AJAX hoặc fetch API để thêm sản phẩm vào cơ sở dữ liệu
+//   // Ví dụ sử dụng fetch API và PHP
+//   fetch('update_product.php', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify( productId ),
+//   })
+//     .then(response => response.json())
+//     .then(data => {
+//       // Xử lý phản hồi từ server (nếu cần)
+//       console.log(data);
+//       // Render sản phẩm đã mua trong trang giỏ hàng
+//       renderCartItem(productId);
+//     })
+//     .catch(error => {
+//       console.error('Lỗi:', error);
+//     });
+// }
+
+});
