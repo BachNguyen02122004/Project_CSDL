@@ -2,7 +2,14 @@
   height: var(--header-height);
   background-image: linear-gradient(0, #fe6433, #f53e2d);
 }
-
+.carousel-inner {
+  width: 600px;
+  position: relative;
+  overflow: hidden;
+}
+.carousel-fake {
+  width: 600px !important;
+}
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -16,7 +23,7 @@
 .navbar__list {
   list-style: none;
   padding-left: 0;
-  margin: 8px 0 0 0;
+  
   display: flex;
 }
 
