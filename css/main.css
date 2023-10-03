@@ -7,6 +7,9 @@
   position: relative;
   overflow: hidden;
 }
+.carousel-fake {
+  width: 600px !important;
+}
 .navbar {
   display: flex;
   justify-content: space-between;

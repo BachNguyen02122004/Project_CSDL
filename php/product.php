@@ -281,15 +281,14 @@ $conn->close();
 
         </header>
 
-
 <div id="page-product"> 
   <div class="nav_contain">
   </div>
   <section class="content">
-    
+    <div id="product-id"><?php echo $productId ?> </div>
     <h1 id='product-name' class="position-1">[Xin đánh giá] <?php echo $productName; ?></h1>
     <section class="select-image">
-      <img id="product-image" class="image-item"  src="<?php echo $productImage; ?>" alt="Ảnh sản phẩm" <?php echo $productId; ?>>
+      <img id="product-image" class="image-item"  src="<?php echo $productImage; ?>" alt="Ảnh sản phẩm ">
       <div class="image-small">
                 <div class="image-small-item">
                     <img  class="item-small" src="../image/iphone-item-1.jpg" alt="ảnh 1">

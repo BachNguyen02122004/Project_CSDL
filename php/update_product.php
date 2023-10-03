@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Kết nối đến cơ sở dữ liệu MySQL
 $servername = "localhost";
 $username = "root";
@@ -16,7 +17,7 @@ if ($conn->connect_error) {
 $data = json_decode(file_get_contents("php://input"));
 
 // Truy vấn chèn dữ liệu vào cơ sở dữ liệu
-$sql = "INSERT INTO cart (productID, productName, productImage) VALUES ('$data->id', '$data->name', '$data->image')";
+$sql = "INSERT INTO cart (id, productId, productName, productImage) VALUES ('$data->id', '$data->productId', '$data->name', '$data->image')";
 
 if ($conn->query($sql) === TRUE) {
     $response = "Dữ liệu đã được lưu vào cơ sở dữ liệu thành công";
