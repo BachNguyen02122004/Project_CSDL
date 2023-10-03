@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var productLink = this.getAttribute('href');
     window.location.href = '../html/cart.php';
   });
+
   // Lặp qua từng phần tử sản phẩm và thêm sự kiện click
   productList.forEach(function (product) {
     product.addEventListener('click', function (event) {
