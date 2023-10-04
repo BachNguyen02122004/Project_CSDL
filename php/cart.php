@@ -12,7 +12,7 @@ if ($mysqli->connect_error) {
     die("Kết nối cơ sở dữ liệu thất bại: " . $mysqli->connect_error);
 }
 
-// Chuẩn bị câu truy vấn để lấy dữ liệu từ bảng "car"
+
 ?>;
 
 
@@ -303,9 +303,7 @@ if ($result->num_rows > 0) {
         </div>';
         
     }
-} else {
-        echo "Không tìm thấy sản phẩm.";
-}
+} 
     
     // Đóng kết nối đến cơ sở dữ liệu
 $mysqli->close();
