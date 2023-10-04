@@ -16,8 +16,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="../js/LoadMainPage.js"></script>
     <script src="../js/app.js"></script>
-    
 
 </head>
 
@@ -263,7 +263,7 @@
                 </div>
                 
                 <!-- The slideshow/carousel -->
-                <div class="carousel-inner">
+                <div class="carousel-inner carousel-fake">
                 <div class="carousel-item active">
                     <img src="../img/banner-1.jpg" alt="Los Angeles" class="d-block" style="width:600px">
                 </div>
@@ -299,722 +299,66 @@
 
                             <ul class="category-list">
                                 <div id="new-item">
-                                    <li>
-                                        <img  class="nav-item" src="../img/mouse.jpg" alt="">
-                                        <a href="mouses.html" class="category-item__link">Chuột chính hãng</a>
-                                    </li>
-                                    <li class="category-item">
-                                        <img  class="nav-item" src="../img/laptop.png" alt="">
-                                        <a href="laptop.html" class="category-item__link">Laptop chính hãng</a>
-                                    </li>
-                                    <li class="category-item">
-                                        <img  class="nav-item" src="../img/keyboard.png" alt="">
-                                        <a href="keyboard.html" class="category-item__link">Bàn phím cơ chính hãng</a>
-                                    </li>
-                                    <li class="category-item">
-                                        <img  class="nav-item" src="../img/dong_ho.jpg" alt="">
-                                        <a href="#" class="category-item__link">Đồng hồ</a>
-                                    </li>
-                                    <li class="category-item">
-                                        <img  class="nav-item" src="../img/tainghe.png" alt="">
-                                        <a href="smartphone.html" class="category-item__link">Tai nghe chính hãng</a>
-                                    </li>
-                                    
-                                    <li class="category-item">
-                                        <img  class="nav-item" src="../img/phone.png" alt="">
-                                        <a href="#" class="category-item__link">Điện thoại mới nhất</a>
-                                    </li>
-                                    <li class="category-item">
-                                        <img  class="nav-item" src="../img/tivi.png" alt="">
-                                        <a href="#" class="category-item__link">Tivi mới nhất </a>
-                                    </li>
-                                    <li class="category-item">
-                                        <img  class="nav-item" src="../img/camera.png" alt="">
-                                        <a href="#" class="category-item__link">Máy ảnh </a>
-                                    </li>
-                                    
+                                    <a href="mouses.html" class="category-item__link">
+                                        <li class="nav-icon-item ">
+                                            <img  class="nav-item" src="../img/mouse.jpg" alt="">
+                                            <div >Chuột chính hãng</div>
+                                        </li>
+                                    </a>
+                                    <a href="laptop.html" class="category-item__link">
+                                        <li class="nav-icon-item">
+                                            <img  class="nav-item" src="../img/laptop.png" alt="">
+                                            <div>Laptop chính hãng </div>
+                                        </li>
+                                    </a>
+                                    <a href="keyboard.html" class="category-item__link">
+                                        <li class="nav-icon-item">
+                                            <img  class="nav-item" src="../img/keyboard.png" alt="">
+                                            <div>Bàn phím cơ chính hãng </div>
+                                        </li>
+
+                                    </a>
+
+                                    <a href="#" class="category-item__link">
+                                        <li class="nav-icon-item">
+                                            <img  class="nav-item" src="../img/dong_ho.jpg" alt="">
+                                            <div>Đồng hồ</div>
+                                        </li>
+                                    </a>
+
+                                    <a href="smartphone.html" class="category-item__link">
+                                        <li class="nav-icon-item">
+                                            <img  class="nav-item" src="../img/tainghe.png" alt="">
+                                            <div>Tai nghe chính hãng</div>
+                                        </li>
+                                    </a>
+                                    <a href="#" class="category-item__link">
+                                        <li class="nav-icon-item">
+                                            <img  class="nav-item" src="../img/phone.png" alt="">
+                                            <div>Điện thoại mới nhất</div>
+                                        </li>
+                                    </a>
+                                    <a href="#" class="category-item__link">
+                                        <li class="nav-icon-item">
+                                            <img  class="nav-item" src="../img/tivi.png" alt="">
+                                            <div>Tivi mới nhất </div>
+                                        </li>
+                                    </a>
+                                    <a href="#" class="category-item__link">
+                                        <li class="nav-icon-item">
+                                            <img  class="nav-item" src="../img/camera.png" alt="">
+                                            <div>Máy ảnh</div>
+                                        </li>
+                                    </a>
                                 </div>
                                 
                             </ul>
                         </nav>
                     </div>
 
-                    <div class="column-item">
-                        
-
-                           
-                        </div>
-
                         <!-- Product -->
-                        <div class="home-product">
-                            <div class="grid__row">
-                                
-                                <div class="column-1">
-                                    <a class="product-item" href="../php/connect.php?id=1">
-                                        <div class="product-item__img" style="background-image: url(https://cf.shopee.vn/file/ab4b9d60a12a3e7360abe30395d87ae0_tn)"></div>
-                                        <div class="product-item__info">
-                                            <h4 class="product-item__name">[Mã 159ELSALE hoàn 7% đơn 300K] Bàn phím cơ E-DRA EK3104 PRO CHERRY Switch - Bảo hành 2 năm</h4>
-                                            <div class="product-item__price">
-                                                <div class="product-item__price-old">đ 2.850.000</div>
-                                                <div class="product-item__price-current">đ 1.620.500</div>
-                                                <svg height="12" viewBox="0 0 20 12" width="20" class="product-item__freeship-icon"><g fill="none" fill-rule="evenodd" transform=""><rect fill="#00bfa5" fill-rule="evenodd" height="9" rx="1" width="12" x="4"></rect><rect height="8" rx="1" stroke="#00bfa5" width="11" x="4.5" y=".5"></rect><rect fill="#00bfa5" fill-rule="evenodd" height="7" rx="1" width="7" x="13" y="2"></rect><rect height="6" rx="1" stroke="#00bfa5" width="6" x="13.5" y="2.5"></rect><circle cx="8" cy="10" fill="#00bfa5" r="2"></circle><circle cx="15" cy="10" fill="#00bfa5" r="2"></circle><path d="m6.7082481 6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505 0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165 0 .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152 0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297 0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297 0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187z" fill="#fff"></path><path d="m .5 8.5h3.5v1h-3.5z" fill="#00bfa5"></path><path d="m0 10.15674h3.5v1h-3.5z" fill="#00bfa5"></path><circle cx="8" cy="10" fill="#047565" r="1"></circle><circle cx="15" cy="10" fill="#047565" r="1"></circle></g></svg>
-                                            </div>
-                                            <div class="product-item__action">
-                                                <span class="product-item__like product-link">
-                                                    <i class="product-item__like-icon-empty far fa-heart"></i>
-                                                    <i class="product-item__like-icon-fill fas fa-heart"></i>
-                                                </span>
-                                                <div class="product-item__rate">
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <span class="product-item__sold-out">Đã bán 3</span>
-                                            </div>
-                                            <div class="product-item__origin">
-                                                <span class="product-item__brand">E-dra</span>
-                                                <span class="product-item__origin-name">Việt Nam</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="product-item__sale-off">
-                                            <span class="product-item__sale-off-percent">43%</span>
-                                            <span class="product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="column-1">
-                                    <a class="product-item" href="../php/connect.php?id=2">
-                                        <div class="product-item__img" style="background-image: url(https://cf.shopee.vn/file/c8bcde117dc98f8ba37a8d3f2f7d371f_tn)"></div>
-                                        <div class="product-item__info">
-                                            <h4 class="product-item__name">Bộ Vệ Sinh Laptop</h4>
-                                            <div class="product-item__price">
-                                                <div class="product-item__price-old">đ 32.000</div>
-                                                <div class="product-item__price-current">đ 15.000</div>
-                                                <svg height="12" viewBox="0 0 20 12" width="20" class="product-item__freeship-icon"><g fill="none" fill-rule="evenodd" transform=""><rect fill="#00bfa5" fill-rule="evenodd" height="9" rx="1" width="12" x="4"></rect><rect height="8" rx="1" stroke="#00bfa5" width="11" x="4.5" y=".5"></rect><rect fill="#00bfa5" fill-rule="evenodd" height="7" rx="1" width="7" x="13" y="2"></rect><rect height="6" rx="1" stroke="#00bfa5" width="6" x="13.5" y="2.5"></rect><circle cx="8" cy="10" fill="#00bfa5" r="2"></circle><circle cx="15" cy="10" fill="#00bfa5" r="2"></circle><path d="m6.7082481 6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505 0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165 0 .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152 0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297 0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297 0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187z" fill="#fff"></path><path d="m .5 8.5h3.5v1h-3.5z" fill="#00bfa5"></path><path d="m0 10.15674h3.5v1h-3.5z" fill="#00bfa5"></path><circle cx="8" cy="10" fill="#047565" r="1"></circle><circle cx="15" cy="10" fill="#047565" r="1"></circle></g></svg>
-                                            </div>
-                                            <div class="product-item__action">
-                                                <span class="product-item__like">
-                                                    <i class="product-item__like-icon-empty far fa-heart"></i>
-                                                    <i class="product-item__like-icon-fill fas fa-heart"></i>
-                                                </span>
-                                                <div class="product-item__rate">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <span class="product-item__sold-out">Đã bán 96</span>
-                                            </div>
-                                            <div class="product-item__origin">
-                                                <span class="product-item__brand"></span>
-                                                <span class="product-item__origin-name">Việt Nam</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="product-item__sale-off">
-                                            <span class="product-item__sale-off-percent">38%</span>
-                                            <span class="product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="column-1">
-                                    <a class="product-item" href="../php/connect.php?id=3">
-                                        <div class="product-item__img" style="background-image: url(https://cf.shopee.vn/file/f9864891a8ba04e463d2dd446e745c49_tn)"></div>
-                                        <div class="product-item__info">
-                                            <h4 class="product-item__name">Bàn Phím Cơ EDRA EK387 Led Rainbow Huano Switch - Dây Cap Typ C Cực Chất - Màu Đen - Phiên Bản Mới nhất 2021 - BH 2 năm</h4>
-                                            <div class="product-item__price">
-                                                <div class="product-item__price-old">đ 999.000</div>
-                                                <div class="product-item__price-current">đ 576.000</div>
-                                                <svg height="12" viewBox="0 0 20 12" width="20" class="product-item__freeship-icon"><g fill="none" fill-rule="evenodd" transform=""><rect fill="#00bfa5" fill-rule="evenodd" height="9" rx="1" width="12" x="4"></rect><rect height="8" rx="1" stroke="#00bfa5" width="11" x="4.5" y=".5"></rect><rect fill="#00bfa5" fill-rule="evenodd" height="7" rx="1" width="7" x="13" y="2"></rect><rect height="6" rx="1" stroke="#00bfa5" width="6" x="13.5" y="2.5"></rect><circle cx="8" cy="10" fill="#00bfa5" r="2"></circle><circle cx="15" cy="10" fill="#00bfa5" r="2"></circle><path d="m6.7082481 6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505 0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165 0 .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152 0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297 0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297 0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187z" fill="#fff"></path><path d="m .5 8.5h3.5v1h-3.5z" fill="#00bfa5"></path><path d="m0 10.15674h3.5v1h-3.5z" fill="#00bfa5"></path><circle cx="8" cy="10" fill="#047565" r="1"></circle><circle cx="15" cy="10" fill="#047565" r="1"></circle></g></svg>
-                                            </div>
-                                            <div class="product-item__action">
-                                                <span class="product-item__like product-link">
-                                                    <i class="product-item__like-icon-empty far fa-heart"></i>
-                                                    <i class="product-item__like-icon-fill fas fa-heart"></i>
-                                                </span>
-                                                <div class="product-item__rate">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <span class="product-item__sold-out">Đã bán 1,7k</span>
-                                            </div>
-                                            <div class="product-item__origin">
-                                                <span class="product-item__brand">E-dra</span>
-                                                <span class="product-item__origin-name">Việt Nam</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="product-item__sale-off">
-                                            <span class="product-item__sale-off-percent">36%</span>
-                                            <span class="product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="column-1">
-                                    <a class="product-item" href="../php/connect.php?id=4">
-                                        <div class="product-item__img" style="background-image: url(https://cf.shopee.vn/file/bf86534d34318c94c568e71b4a59fb93_tn)"></div>
-                                        <div class="product-item__info">
-                                            <h4 class="product-item__name">Chuột Gaming E-DRA EM6502  - Độ bền 50 triệu lượt bấm - Chống nước - 12400 DPI - LED RGB - Bảo hành 24 tháng</h4>
-                                            <div class="product-item__price">
-                                                <div class="product-item__price-old">đ 599.000</div>
-                                                <div class="product-item__price-current">đ 380.000</div>
-                                                <svg height="12" viewBox="0 0 20 12" width="20" class="product-item__freeship-icon"><g fill="none" fill-rule="evenodd" transform=""><rect fill="#00bfa5" fill-rule="evenodd" height="9" rx="1" width="12" x="4"></rect><rect height="8" rx="1" stroke="#00bfa5" width="11" x="4.5" y=".5"></rect><rect fill="#00bfa5" fill-rule="evenodd" height="7" rx="1" width="7" x="13" y="2"></rect><rect height="6" rx="1" stroke="#00bfa5" width="6" x="13.5" y="2.5"></rect><circle cx="8" cy="10" fill="#00bfa5" r="2"></circle><circle cx="15" cy="10" fill="#00bfa5" r="2"></circle><path d="m6.7082481 6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505 0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165 0 .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152 0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297 0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297 0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187z" fill="#fff"></path><path d="m .5 8.5h3.5v1h-3.5z" fill="#00bfa5"></path><path d="m0 10.15674h3.5v1h-3.5z" fill="#00bfa5"></path><circle cx="8" cy="10" fill="#047565" r="1"></circle><circle cx="15" cy="10" fill="#047565" r="1"></circle></g></svg>
-                                            </div>
-                                            <div class="product-item__action">
-                                                <span class="product-item__like">
-                                                    <i class="product-item__like-icon-empty far fa-heart"></i>
-                                                    <i class="product-item__like-icon-fill fas fa-heart"></i>
-                                                </span>
-                                                <div class="product-item__rate">
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                </div>
-                                                <span class="product-item__sold-out">Đã bán 106</span>
-                                            </div>
-                                            <div class="product-item__origin">
-                                                <span class="product-item__brand">E-dra</span>
-                                                <span class="product-item__origin-name">Việt Nam</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="product-item__sale-off">
-                                            <span class="product-item__sale-off-percent">37%</span>
-                                            <span class="product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="column-1">
-                                    <a class="product-item" href="../php/connect.php?id=5">
-                                        <div class="product-item__img" style="background-image: url(https://cf.shopee.vn/file/4e9c6f6169d29f847c9c36e57a5a03ee_tn)"></div>
-                                        <div class="product-item__info">
-                                            <h4 class="product-item__name">Ghế E-DRA EGC223 ROCK STAR RGB Mẫu Mới Nhât Của EDRA</h4>
-                                            <div class="product-item__price">
-                                                <div class="product-item__price-old">đ 5.500.000</div>
-                                                <div class="product-item__price-current">đ 4.950.000</div>
-                                            </div>
-                                            <div class="product-item__action">
-                                                <span class="product-item__like product-link">
-                                                    <i class="product-item__like-icon-empty far fa-heart"></i>
-                                                    <i class="product-item__like-icon-fill fas fa-heart"></i>
-                                                </span>
-                                            </div>
-                                            <div class="product-item__origin">
-                                                <span class="product-item__brand">E-dra</span>
-                                                <span class="product-item__origin-name">Việt Nam</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="product-item__sale-off">
-                                            <span class="product-item__sale-off-percent">10%</span>
-                                            <span class="product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <!--  Product item row 2-->
-                                <div class="column-1">
-                                    <a class="product-item" href="../php/connect.php?id=6">
-                                        <div class="product-item__img" style="background-image: url(https://cf.shopee.vn/file/8bf1995e12237b8f06f27c0ae68f3893_tn)"></div>
-                                        <div class="product-item__info">
-                                            <h4 class="product-item__name">[Mã 159ELSALE hoàn 7% đơn 300K] Bàn phím Akko World Tour - Tokyo 3084 - AKKO SWITCH</h4>
-                                            <div class="product-item__price">
-                                                <div class="product-item__price-old">đ 1.299.000</div>
-                                                <div class="product-item__price-current">đ 1.273.020</div>
-                                                <svg height="12" viewBox="0 0 20 12" width="20" class="product-item__freeship-icon"><g fill="none" fill-rule="evenodd" transform=""><rect fill="#00bfa5" fill-rule="evenodd" height="9" rx="1" width="12" x="4"></rect><rect height="8" rx="1" stroke="#00bfa5" width="11" x="4.5" y=".5"></rect><rect fill="#00bfa5" fill-rule="evenodd" height="7" rx="1" width="7" x="13" y="2"></rect><rect height="6" rx="1" stroke="#00bfa5" width="6" x="13.5" y="2.5"></rect><circle cx="8" cy="10" fill="#00bfa5" r="2"></circle><circle cx="15" cy="10" fill="#00bfa5" r="2"></circle><path d="m6.7082481 6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505 0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165 0 .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152 0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297 0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297 0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187z" fill="#fff"></path><path d="m .5 8.5h3.5v1h-3.5z" fill="#00bfa5"></path><path d="m0 10.15674h3.5v1h-3.5z" fill="#00bfa5"></path><circle cx="8" cy="10" fill="#047565" r="1"></circle><circle cx="15" cy="10" fill="#047565" r="1"></circle></g></svg>
-                                            </div>
-                                            <div class="product-item__action">
-                                                <span class="product-item__like product-link">
-                                                    <i class="product-item__like-icon-empty far fa-heart"></i>
-                                                    <i class="product-item__like-icon-fill fas fa-heart"></i>
-                                                </span>
-                                            </div>
-                                            <div class="product-item__origin">
-                                                <span class="product-item__brand">AKKO</span>
-                                                <span class="product-item__origin-name">Việt Nam</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="product-item__sale-off">
-                                            <span class="product-item__sale-off-percent">2%</span>
-                                            <span class="product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="column-1">
-                                    <a class="product-item" href="../php/connect.php?id=6">
-                                        <div class="product-item__img" style="background-image: url(https://cf.shopee.vn/file/dd7d3b7af0d5e5106c46504231d9112f_tn)"></div>
-                                        <div class="product-item__info">
-                                            <h4 class="product-item__name">[Mã 159ELSALE hoàn 7% đơn 300K] Chuột gaming Akko LW325 Blue (Lightweight) - Cổng USB</h4>
-                                            <div class="product-item__price">
-                                                <div class="product-item__price-old">đ 599.000</div>
-                                                <div class="product-item__price-current">đ 587.020</div>
-                                                <svg height="12" viewBox="0 0 20 12" width="20" class="product-item__freeship-icon"><g fill="none" fill-rule="evenodd" transform=""><rect fill="#00bfa5" fill-rule="evenodd" height="9" rx="1" width="12" x="4"></rect><rect height="8" rx="1" stroke="#00bfa5" width="11" x="4.5" y=".5"></rect><rect fill="#00bfa5" fill-rule="evenodd" height="7" rx="1" width="7" x="13" y="2"></rect><rect height="6" rx="1" stroke="#00bfa5" width="6" x="13.5" y="2.5"></rect><circle cx="8" cy="10" fill="#00bfa5" r="2"></circle><circle cx="15" cy="10" fill="#00bfa5" r="2"></circle><path d="m6.7082481 6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505 0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165 0 .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152 0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297 0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297 0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187z" fill="#fff"></path><path d="m .5 8.5h3.5v1h-3.5z" fill="#00bfa5"></path><path d="m0 10.15674h3.5v1h-3.5z" fill="#00bfa5"></path><circle cx="8" cy="10" fill="#047565" r="1"></circle><circle cx="15" cy="10" fill="#047565" r="1"></circle></g></svg>
-                                            </div>
-                                            <div class="product-item__action">
-                                                <span class="product-item__like">
-                                                    <i class="product-item__like-icon-empty far fa-heart"></i>
-                                                    <i class="product-item__like-icon-fill fas fa-heart"></i>
-                                                </span>
-                                            </div>
-                                            <div class="product-item__origin">
-                                                <span class="product-item__brand">Akko</span>
-                                                <span class="product-item__origin-name">Việt Nam</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="product-item__sale-off">
-                                            <span class="product-item__sale-off-percent">2%</span>
-                                            <span class="product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="column-1">
-                                    <a class="product-item" href="../php/connect.php?id=7">
-                                        <div class="product-item__img" style="background-image: url(https://cf.shopee.vn/file/742d864b56ec61a27f4a107ae74e57ce_tn)"></div>
-                                        <div class="product-item__info">
-                                            <h4 class="product-item__name">Chuột Gaming Fuhlen G90 - Click bất tử - Màu đen - Chính hãng Fuhlen - Tem Ninza chống hàng giả - Bảo hành 24 tháng</h4>
-                                            <div class="product-item__price">
-                                                <div class="product-item__price-old">đ 499.000</div>
-                                                <div class="product-item__price-current">đ 390.000</div>
-                                                <svg height="12" viewBox="0 0 20 12" width="20" class="product-item__freeship-icon"><g fill="none" fill-rule="evenodd" transform=""><rect fill="#00bfa5" fill-rule="evenodd" height="9" rx="1" width="12" x="4"></rect><rect height="8" rx="1" stroke="#00bfa5" width="11" x="4.5" y=".5"></rect><rect fill="#00bfa5" fill-rule="evenodd" height="7" rx="1" width="7" x="13" y="2"></rect><rect height="6" rx="1" stroke="#00bfa5" width="6" x="13.5" y="2.5"></rect><circle cx="8" cy="10" fill="#00bfa5" r="2"></circle><circle cx="15" cy="10" fill="#00bfa5" r="2"></circle><path d="m6.7082481 6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505 0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165 0 .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152 0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297 0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297 0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187z" fill="#fff"></path><path d="m .5 8.5h3.5v1h-3.5z" fill="#00bfa5"></path><path d="m0 10.15674h3.5v1h-3.5z" fill="#00bfa5"></path><circle cx="8" cy="10" fill="#047565" r="1"></circle><circle cx="15" cy="10" fill="#047565" r="1"></circle></g></svg>
-                                            </div>
-                                            <div class="product-item__action">
-                                                <span class="product-item__like product-link">
-                                                    <i class="product-item__like-icon-empty far fa-heart"></i>
-                                                    <i class="product-item__like-icon-fill fas fa-heart"></i>
-                                                </span>
-                                                <div class="product-item__rate">
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                </div>
-                                                <span class="product-item__sold-out">Đã bán 286</span>
-                                            </div>
-                                            <div class="product-item__origin">
-                                                <span class="product-item__brand">Fuhlen</span>
-                                                <span class="product-item__origin-name">Việt Nam</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="product-item__sale-off">
-                                            <span class="product-item__sale-off-percent">22%</span>
-                                            <span class="product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="column-1">
-                                    <a class="product-item" href="../php/connect.php?id=8">
-                                        <div class="product-item__img" style="background-image: url(https://cf.shopee.vn/file/fa94b8435673fbfa4478c97009264e5a_tn)"></div>
-                                        <div class="product-item__info">
-                                            <h4 class="product-item__name">Tai nghe E-DRA 410 PRO - Đèn led RGB cực đẹp - Chân USB 7.1 - Bảo hành 24 tháng - Lỗi 1 đổi 1</h4>
-                                            <div class="product-item__price">
-                                                <div class="product-item__price-old">đ 499.000</div>
-                                                <div class="product-item__price-current">đ 365.000</div>
-                                            </div>
-                                            <div class="product-item__action">
-                                                <span class="product-item__like product-link">
-                                                    <i class="product-item__like-icon-empty far fa-heart"></i>
-                                                    <i class="product-item__like-icon-fill fas fa-heart"></i>
-                                                </span>
-                                                <div class="product-item__rate">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <span class="product-item__sold-out">Đã bán 96</span>
-                                            </div>
-                                            <div class="product-item__origin">
-                                                <span class="product-item__brand">E-dra</span>
-                                                <span class="product-item__origin-name">Việt Nam</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="product-item__sale-off">
-                                            <span class="product-item__sale-off-percent">27%</span>
-                                            <span class="product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="column-1">
-                                    <a class="product-item" href="../php/connect.php?id=9">
-                                        <div class="product-item__img" style="background-image: url(https://cf.shopee.vn/file/10e0e1be45e25fb7f980a95cba04bf80_tn)"></div>
-                                        <div class="product-item__info">
-                                            <h4 class="product-item__name">Ghế Gaming E-Dra Mars EGC202 - Ghế chơi game cao cấp - Bọc da cao cấp PU dễ dàng lau chùi sạch sẽ - Bảo hành 12 tháng</h4>
-                                            <div class="product-item__price">
-                                                <div class="product-item__price-old">đ 3.150.000</div>
-                                                <div class="product-item__price-current">đ 3.015.000</div>
-                                                <svg height="12" viewBox="0 0 20 12" width="20" class="product-item__freeship-icon"><g fill="none" fill-rule="evenodd" transform=""><rect fill="#00bfa5" fill-rule="evenodd" height="9" rx="1" width="12" x="4"></rect><rect height="8" rx="1" stroke="#00bfa5" width="11" x="4.5" y=".5"></rect><rect fill="#00bfa5" fill-rule="evenodd" height="7" rx="1" width="7" x="13" y="2"></rect><rect height="6" rx="1" stroke="#00bfa5" width="6" x="13.5" y="2.5"></rect><circle cx="8" cy="10" fill="#00bfa5" r="2"></circle><circle cx="15" cy="10" fill="#00bfa5" r="2"></circle><path d="m6.7082481 6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505 0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165 0 .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152 0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297 0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297 0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187z" fill="#fff"></path><path d="m .5 8.5h3.5v1h-3.5z" fill="#00bfa5"></path><path d="m0 10.15674h3.5v1h-3.5z" fill="#00bfa5"></path><circle cx="8" cy="10" fill="#047565" r="1"></circle><circle cx="15" cy="10" fill="#047565" r="1"></circle></g></svg>
-                                            </div>
-                                            <div class="product-item__action">
-                                                <span class="product-item__like">
-                                                    <i class="product-item__like-icon-empty far fa-heart"></i>
-                                                    <i class="product-item__like-icon-fill fas fa-heart"></i>
-                                                </span>
-                                                <div class="product-item__rate">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <span class="product-item__sold-out">Đã bán 23</span>
-                                            </div>
-                                            <div class="product-item__origin">
-                                                <span class="product-item__brand">E-dra</span>
-                                                <span class="product-item__origin-name">Việt Nam</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="product-item__sale-off">
-                                            <span class="product-item__sale-off-percent">4%</span>
-                                            <span class="product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <!--  Product item row 3-->
-                                <div class="column-1">
-                                    <a class="product-item" href="../php/connect.php?id=10">
-                                        <div class="product-item__img" style="background-image: url(https://cf.shopee.vn/file/e18a53f5a48a8ba88cdbc530fa998fc7_tn)"></div>
-                                        <div class="product-item__info">
-                                            <h4 class="product-item__name">[Mã  EDRAV200 giảm 200k]Ghế gaming E-DRA Hercules EGC203 PRO - Màu đen và trắng - Chất liệu da PU và Foam cao cấp - Bảo</h4>
-                                            <div class="product-item__price">
-                                                <div class="product-item__price-old">đ 4.999.000</div>
-                                                <div class="product-item__price-current">đ 4.150.000</div>
-                                                <svg height="12" viewBox="0 0 20 12" width="20" class="product-item__freeship-icon"><g fill="none" fill-rule="evenodd" transform=""><rect fill="#00bfa5" fill-rule="evenodd" height="9" rx="1" width="12" x="4"></rect><rect height="8" rx="1" stroke="#00bfa5" width="11" x="4.5" y=".5"></rect><rect fill="#00bfa5" fill-rule="evenodd" height="7" rx="1" width="7" x="13" y="2"></rect><rect height="6" rx="1" stroke="#00bfa5" width="6" x="13.5" y="2.5"></rect><circle cx="8" cy="10" fill="#00bfa5" r="2"></circle><circle cx="15" cy="10" fill="#00bfa5" r="2"></circle><path d="m6.7082481 6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505 0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165 0 .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152 0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297 0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297 0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187z" fill="#fff"></path><path d="m .5 8.5h3.5v1h-3.5z" fill="#00bfa5"></path><path d="m0 10.15674h3.5v1h-3.5z" fill="#00bfa5"></path><circle cx="8" cy="10" fill="#047565" r="1"></circle><circle cx="15" cy="10" fill="#047565" r="1"></circle></g></svg>
-                                            </div>
-                                            <div class="product-item__action">
-                                                <span class="product-item__like product-link">
-                                                    <i class="product-item__like-icon-empty far fa-heart"></i>
-                                                    <i class="product-item__like-icon-fill fas fa-heart"></i>
-                                                </span>
-                                                <div class="product-item__rate">
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                </div>
-                                                <span class="product-item__sold-out">Đã bán 258</span>
-                                            </div>
-                                            <div class="product-item__origin">
-                                                <span class="product-item__brand">E-dra</span>
-                                                <span class="product-item__origin-name">Việt Nam</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="product-item__sale-off">
-                                            <span class="product-item__sale-off-percent">17%</span>
-                                            <span class="product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="column-1">
-                                    <a class="product-item" href="../php/connect.php?id=11">
-                                        <div class="product-item__img" style="background-image: url(https://cf.shopee.vn/file/64f13b1685791e0c24f92b25b7cb1939_tn)"></div>
-                                        <div class="product-item__info">
-                                            <h4 class="product-item__name">Giá treo tai nghe E-Dra EHS01 - Được làm bằng kim loại nguyên khối - Nặng 1,5kg - Cam kết chính hãng</h4>
-                                            <div class="product-item__price">
-                                                <div class="product-item__price-old">đ 299.000</div>
-                                                <div class="product-item__price-current">đ 250.000</div>
-                                                <svg height="12" viewBox="0 0 20 12" width="20" class="product-item__freeship-icon"><g fill="none" fill-rule="evenodd" transform=""><rect fill="#00bfa5" fill-rule="evenodd" height="9" rx="1" width="12" x="4"></rect><rect height="8" rx="1" stroke="#00bfa5" width="11" x="4.5" y=".5"></rect><rect fill="#00bfa5" fill-rule="evenodd" height="7" rx="1" width="7" x="13" y="2"></rect><rect height="6" rx="1" stroke="#00bfa5" width="6" x="13.5" y="2.5"></rect><circle cx="8" cy="10" fill="#00bfa5" r="2"></circle><circle cx="15" cy="10" fill="#00bfa5" r="2"></circle><path d="m6.7082481 6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505 0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165 0 .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152 0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297 0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297 0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187z" fill="#fff"></path><path d="m .5 8.5h3.5v1h-3.5z" fill="#00bfa5"></path><path d="m0 10.15674h3.5v1h-3.5z" fill="#00bfa5"></path><circle cx="8" cy="10" fill="#047565" r="1"></circle><circle cx="15" cy="10" fill="#047565" r="1"></circle></g></svg>
-                                            </div>
-                                            <div class="product-item__action">
-                                                <span class="product-item__like">
-                                                    <i class="product-item__like-icon-empty far fa-heart"></i>
-                                                    <i class="product-item__like-icon-fill fas fa-heart"></i>
-                                                </span>
-                                                <div class="product-item__rate">
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                    <i class="product-item__star--gold fas fa-star"></i>
-                                                </div>
-                                                <span class="product-item__sold-out">Đã bán 7</span>
-                                            </div>
-                                            <div class="product-item__origin">
-                                                <span class="product-item__brand"></span>
-                                                <span class="product-item__origin-name">Việt Nam</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="product-item__sale-off">
-                                            <span class="product-item__sale-off-percent">16%</span>
-                                            <span class="product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="column-1">
-                                    <a class="product-item" href="../php/connect.php?id=12">
-                                        <div class="product-item__img" style="background-image: url(https://cf.shopee.vn/file/1a0e1502c6300467f3f08dff56f323fd_tn)"></div>
-                                        <div class="product-item__info">
-                                            <h4 class="product-item__name">[Mã EDRA207 giảm 260]Ghế Xoay Gaming cao cấp E-DRA Hunter EGC 206 - Chất liệu da PU dễ dàng bảo quản - Đệm đúc nguyên kh</h4>
-                                            <div class="product-item__price">
-                                                <div class="product-item__price-old">đ 6.995.000</div>
-                                                <div class="product-item__price-current">đ 4.900.000</div>
-                                                <svg height="12" viewBox="0 0 20 12" width="20" class="product-item__freeship-icon"><g fill="none" fill-rule="evenodd" transform=""><rect fill="#00bfa5" fill-rule="evenodd" height="9" rx="1" width="12" x="4"></rect><rect height="8" rx="1" stroke="#00bfa5" width="11" x="4.5" y=".5"></rect><rect fill="#00bfa5" fill-rule="evenodd" height="7" rx="1" width="7" x="13" y="2"></rect><rect height="6" rx="1" stroke="#00bfa5" width="6" x="13.5" y="2.5"></rect><circle cx="8" cy="10" fill="#00bfa5" r="2"></circle><circle cx="15" cy="10" fill="#00bfa5" r="2"></circle><path d="m6.7082481 6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505 0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165 0 .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152 0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297 0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297 0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187z" fill="#fff"></path><path d="m .5 8.5h3.5v1h-3.5z" fill="#00bfa5"></path><path d="m0 10.15674h3.5v1h-3.5z" fill="#00bfa5"></path><circle cx="8" cy="10" fill="#047565" r="1"></circle><circle cx="15" cy="10" fill="#047565" r="1"></circle></g></svg>
-                                            </div>
-                                            <div class="product-item__action">
-                                                <span class="product-item__like product-link">
-                                                    <i class="product-item__like-icon-empty far fa-heart"></i>
-                                                    <i class="product-item__like-icon-fill fas fa-heart"></i>
-                                                </span>
-                                                <div class="product-item__rate">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <span class="product-item__sold-out">Đã bán 2</span>
-                                            </div>
-                                            <div class="product-item__origin">
-                                                <span class="product-item__brand">E-dra</span>
-                                                <span class="product-item__origin-name">Việt Nam</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="product-item__sale-off">
-                                            <span class="product-item__sale-off-percent">30%</span>
-                                            <span class="product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="column-1">
-                                    <a class="product-item" href="../php/connect.php?id=13">
-                                        <div class="product-item__img" style="background-image: url(https://cf.shopee.vn/file/c64ddf57f14037d07edc37f88c364641_tn)"></div>
-                                        <div class="product-item__info">
-                                            <h4 class="product-item__name">[Mã  EDRA200 giảm 200k] Ghế Gaming E-Dra Jupiter M EGC204 V2 - Phiên bản nâng cấp mới với chân thép và lưng ghế cao - B</h4>
-                                            <div class="product-item__price">
-                                                <div class="product-item__price-old">đ 3.750.000</div>
-                                                <div class="product-item__price-current">đ 2.291.500</div>
-                                                <svg height="12" viewBox="0 0 20 12" width="20" class="product-item__freeship-icon"><g fill="none" fill-rule="evenodd" transform=""><rect fill="#00bfa5" fill-rule="evenodd" height="9" rx="1" width="12" x="4"></rect><rect height="8" rx="1" stroke="#00bfa5" width="11" x="4.5" y=".5"></rect><rect fill="#00bfa5" fill-rule="evenodd" height="7" rx="1" width="7" x="13" y="2"></rect><rect height="6" rx="1" stroke="#00bfa5" width="6" x="13.5" y="2.5"></rect><circle cx="8" cy="10" fill="#00bfa5" r="2"></circle><circle cx="15" cy="10" fill="#00bfa5" r="2"></circle><path d="m6.7082481 6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505 0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165 0 .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152 0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297 0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297 0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187z" fill="#fff"></path><path d="m .5 8.5h3.5v1h-3.5z" fill="#00bfa5"></path><path d="m0 10.15674h3.5v1h-3.5z" fill="#00bfa5"></path><circle cx="8" cy="10" fill="#047565" r="1"></circle><circle cx="15" cy="10" fill="#047565" r="1"></circle></g></svg>
-                                            </div>
-                                            <div class="product-item__action">
-                                                <span class="product-item__like">
-                                                    <i class="product-item__like-icon-empty far fa-heart"></i>
-                                                    <i class="product-item__like-icon-fill fas fa-heart"></i>
-                                                </span>
-                                                <div class="product-item__rate">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <span class="product-item__sold-out">Đã bán 213</span>
-                                            </div>
-                                            <div class="product-item__origin">
-                                                <span class="product-item__brand">E-dra</span>
-                                                <span class="product-item__origin-name">Việt Nam</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="product-item__sale-off">
-                                            <span class="product-item__sale-off-percent">39%</span>
-                                            <span class="product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="column-1">
-                                    <a class="product-item" href="../php/connect.php?id=14">
-                                        <div class="product-item__img" style="background-image: url(https://cf.shopee.vn/file/9c15395091f1ba443ff409afa8af70bc_tn)"></div>
-                                        <div class="product-item__info">
-                                            <h4 class="product-item__name">CỰC ĐỘC - Bàn Di Chuột Cỡ lớn EDRA LẠC HỒNG EMP903 dày 5mm - Bản giới hạn - EDRAshop</h4>
-                                            <div class="product-item__price">
-                                                <div class="product-item__price-old">đ 350.000</div>
-                                                <div class="product-item__price-current">đ 280.000</div>
-                                            </div>
-                                            <div class="product-item__action">
-                                                <span class="product-item__like product-link">
-                                                    <i class="product-item__like-icon-empty far fa-heart"></i>
-                                                    <i class="product-item__like-icon-fill fas fa-heart"></i>
-                                                </span>
-                                            </div>
-                                            <div class="product-item__origin">
-                                                <span class="product-item__brand">E-dra</span>
-                                                <span class="product-item__origin-name">Việt Nam</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="product-item__sale-off">
-                                            <span class="product-item__sale-off-percent">20%</span>
-                                            <span class="product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="column-1">
-                                    <a class="product-item" href="../php/connect.php?id=15">
-                                        <div class="product-item__img" style="background-image: url(https://cf.shopee.vn/file/bd9afd37cd946cbf3c7fd38dcebb045e_tn)"></div>
-                                        <div class="product-item__info">
-                                            <h4 class="product-item__name">[Mã 159ELSALE hoàn 7% đơn 300K] Chuột gaming E-Dra EM624 RGB/ 6662IC (PMW3327)/ DPI 12000 - Bảo hành 2 năm</h4>
-                                            <div class="product-item__price">
-                                                <div class="product-item__price-old">đ 450.000</div>
-                                                <div class="product-item__price-current">đ 365.000</div>
-                                                <svg height="12" viewBox="0 0 20 12" width="20" class="product-item__freeship-icon"><g fill="none" fill-rule="evenodd" transform=""><rect fill="#00bfa5" fill-rule="evenodd" height="9" rx="1" width="12" x="4"></rect><rect height="8" rx="1" stroke="#00bfa5" width="11" x="4.5" y=".5"></rect><rect fill="#00bfa5" fill-rule="evenodd" height="7" rx="1" width="7" x="13" y="2"></rect><rect height="6" rx="1" stroke="#00bfa5" width="6" x="13.5" y="2.5"></rect><circle cx="8" cy="10" fill="#00bfa5" r="2"></circle><circle cx="15" cy="10" fill="#00bfa5" r="2"></circle><path d="m6.7082481 6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505 0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165 0 .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152 0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297 0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297 0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187z" fill="#fff"></path><path d="m .5 8.5h3.5v1h-3.5z" fill="#00bfa5"></path><path d="m0 10.15674h3.5v1h-3.5z" fill="#00bfa5"></path><circle cx="8" cy="10" fill="#047565" r="1"></circle><circle cx="15" cy="10" fill="#047565" r="1"></circle></g></svg>
-                                            </div>
-                                            <div class="product-item__action">
-                                                <span class="product-item__like product-link">
-                                                    <i class="product-item__like-icon-empty far fa-heart"></i>
-                                                    <i class="product-item__like-icon-fill fas fa-heart"></i>
-                                                </span>
-                                            </div>
-                                            <div class="product-item__origin">
-                                                <span class="product-item__brand">E-dra</span>
-                                                <span class="product-item__origin-name">Việt Nam</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="product-item__sale-off">
-                                            <span class="product-item__sale-off-percent">19%</span>
-                                            <span class="product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="column-1">
-                                    <a class="product-item" href="../php/connect.php?id=16">
-                                        <div class="product-item__img" style="background-image: url(https://cf.shopee.vn/file/bef8b5c9809bbf10a969f7787e00d867_tn)"></div>
-                                        <div class="product-item__info">
-                                            <h4 class="product-item__name">[Mã 159ELSALE hoàn 7% đơn 300K] Chuột Gaming AKKO AG325 Dragon Ball Super – Goku SSG - Cổng USB</h4>
-                                            <div class="product-item__price">
-                                                <div class="product-item__price-old">đ 699.000</div>
-                                                <div class="product-item__price-current">đ 685.200</div>
-                                                <svg height="12" viewBox="0 0 20 12" width="20" class="product-item__freeship-icon"><g fill="none" fill-rule="evenodd" transform=""><rect fill="#00bfa5" fill-rule="evenodd" height="9" rx="1" width="12" x="4"></rect><rect height="8" rx="1" stroke="#00bfa5" width="11" x="4.5" y=".5"></rect><rect fill="#00bfa5" fill-rule="evenodd" height="7" rx="1" width="7" x="13" y="2"></rect><rect height="6" rx="1" stroke="#00bfa5" width="6" x="13.5" y="2.5"></rect><circle cx="8" cy="10" fill="#00bfa5" r="2"></circle><circle cx="15" cy="10" fill="#00bfa5" r="2"></circle><path d="m6.7082481 6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505 0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165 0 .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152 0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297 0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297 0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187z" fill="#fff"></path><path d="m .5 8.5h3.5v1h-3.5z" fill="#00bfa5"></path><path d="m0 10.15674h3.5v1h-3.5z" fill="#00bfa5"></path><circle cx="8" cy="10" fill="#047565" r="1"></circle><circle cx="15" cy="10" fill="#047565" r="1"></circle></g></svg>
-                                            </div>
-                                            <div class="product-item__action">
-                                                <span class="product-item__like">
-                                                    <i class="product-item__like-icon-empty far fa-heart"></i>
-                                                    <i class="product-item__like-icon-fill fas fa-heart"></i>
-                                                </span>
-                                            </div>
-                                            <div class="product-item__origin">
-                                                <span class="product-item__brand"></span>
-                                                <span class="product-item__origin-name">Việt Nam</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="product-item__sale-off">
-                                            <span class="product-item__sale-off-percent">2%</span>
-                                            <span class="product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="column-1">
-                                    <a class="product-item" href="../php/connect.php?id=17">
-                                        <div class="product-item__img" style="background-image: url(https://cf.shopee.vn/file/9067ef49419897b8d24ab91d025ecdd6_tn)"></div>
-                                        <div class="product-item__info">
-                                            <h4 class="product-item__name">[Mã 159ELSALE hoàn 7% đơn 300K] Bàn phím cơ AKKO 3068 SP Ocean Star (Cherry Switch) - cổng USB</h4>
-                                            <div class="product-item__price">
-                                                <div class="product-item__price-old">đ 1.499.000</div>
-                                                <div class="product-item__price-current">đ 1.469.200</div>
-                                                <svg height="12" viewBox="0 0 20 12" width="20" class="product-item__freeship-icon"><g fill="none" fill-rule="evenodd" transform=""><rect fill="#00bfa5" fill-rule="evenodd" height="9" rx="1" width="12" x="4"></rect><rect height="8" rx="1" stroke="#00bfa5" width="11" x="4.5" y=".5"></rect><rect fill="#00bfa5" fill-rule="evenodd" height="7" rx="1" width="7" x="13" y="2"></rect><rect height="6" rx="1" stroke="#00bfa5" width="6" x="13.5" y="2.5"></rect><circle cx="8" cy="10" fill="#00bfa5" r="2"></circle><circle cx="15" cy="10" fill="#00bfa5" r="2"></circle><path d="m6.7082481 6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505 0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165 0 .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152 0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297 0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297 0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187z" fill="#fff"></path><path d="m .5 8.5h3.5v1h-3.5z" fill="#00bfa5"></path><path d="m0 10.15674h3.5v1h-3.5z" fill="#00bfa5"></path><circle cx="8" cy="10" fill="#047565" r="1"></circle><circle cx="15" cy="10" fill="#047565" r="1"></circle></g></svg>
-                                            </div>
-                                            <div class="product-item__action">
-                                                <span class="product-item__like product-link">
-                                                    <i class="product-item__like-icon-empty far fa-heart"></i>
-                                                    <i class="product-item__like-icon-fill fas fa-heart"></i>
-                                                </span>
-                                            </div>
-                                            <div class="product-item__origin">
-                                                <span class="product-item__brand">Akko</span>
-                                                <span class="product-item__origin-name">Việt Nam</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="product-item__sale-off">
-                                            <span class="product-item__sale-off-percent">2%</span>
-                                            <span class="product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="column-1">
-                                    <a class="product-item" href="../php/connect.php?id=18">
-                                        <div class="product-item__img" style="background-image: url(https://cf.shopee.vn/file/19edde5617119b619b8ba3344285f91f_tn)"></div>
-                                        <div class="product-item__info">
-                                            <h4 class="product-item__name">[Mã 159ELSALE hoàn 7% đơn 300K] Bàn phím cơ AKKO 3061S Neon RGB Bluetooth 5.0 (Gateron switch)</h4>
-                                            <div class="product-item__price">
-                                                <div class="product-item__price-old">đ 1.699.000</div>
-                                                <div class="product-item__price-current">đ 1.655.020</div>
-                                                <svg height="12" viewBox="0 0 20 12" width="20" class="product-item__freeship-icon"><g fill="none" fill-rule="evenodd" transform=""><rect fill="#00bfa5" fill-rule="evenodd" height="9" rx="1" width="12" x="4"></rect><rect height="8" rx="1" stroke="#00bfa5" width="11" x="4.5" y=".5"></rect><rect fill="#00bfa5" fill-rule="evenodd" height="7" rx="1" width="7" x="13" y="2"></rect><rect height="6" rx="1" stroke="#00bfa5" width="6" x="13.5" y="2.5"></rect><circle cx="8" cy="10" fill="#00bfa5" r="2"></circle><circle cx="15" cy="10" fill="#00bfa5" r="2"></circle><path d="m6.7082481 6.7999878h-.7082481v-4.2275391h2.8488017v.5976563h-2.1405536v1.2978515h1.9603297v.5800782h-1.9603297zm2.6762505 0v-3.1904297h.6544972v.4892578h.0505892c.0980164-.3134765.4774351-.5419922.9264138-.5419922.0980165 0 .2276512.0087891.3003731.0263672v.6210938c-.053751-.0175782-.2624312-.038086-.3762568-.038086-.5122152 0-.8758247.3017578-.8758247.75v1.8837891zm3.608988-2.7158203c-.5027297 0-.8536919.328125-.8916338.8261719h1.7390022c-.0158092-.5009766-.3446386-.8261719-.8473684-.8261719zm.8442065 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187zm2.6224996-1.8544922c-.5027297 0-.853692.328125-.8916339.8261719h1.7390022c-.0158091-.5009766-.3446386-.8261719-.8473683-.8261719zm.8442064 1.8544922h.6544972c-.1549293.571289-.7050863.9228515-1.49238.9228515-.9864885 0-1.5903965-.6269531-1.5903965-1.6464843 0-1.0195313.6165553-1.6669922 1.5872347-1.6669922.9580321 0 1.5366455.6064453 1.5366455 1.6083984v.2197266h-2.4314412v.0351562c.0221328.5595703.373095.9140625.9169284.9140625.4110369 0 .6924391-.1376953.8189119-.3867187z" fill="#fff"></path><path d="m .5 8.5h3.5v1h-3.5z" fill="#00bfa5"></path><path d="m0 10.15674h3.5v1h-3.5z" fill="#00bfa5"></path><circle cx="8" cy="10" fill="#047565" r="1"></circle><circle cx="15" cy="10" fill="#047565" r="1"></circle></g></svg>
-                                            </div>
-                                            <div class="product-item__action">
-                                                <span class="product-item__like">
-                                                    <i class="product-item__like-icon-empty far fa-heart"></i>
-                                                    <i class="product-item__like-icon-fill fas fa-heart"></i>
-                                                </span>
-                                            </div>
-                                            <div class="product-item__origin">
-                                                <span class="product-item__brand">Akko</span>
-                                                <span class="product-item__origin-name">Việt Nam</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="product-item__sale-off">
-                                            <span class="product-item__sale-off-percent">2%</span>
-                                            <span class="product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="column-1">
-                                    <a class="product-item" href="../php/connect.php?id=19">
-                                        <div class="product-item__img" style="background-image: url(https://cf.shopee.vn/file/f6182e117509e7c6270a0ef7b1d75302_tn)"></div>
-                                        <div class="product-item__info">
-                                            <h4 class="product-item__name">[Mã 159ELSALE hoàn 7% đơn 300K] Bàn phím cơ AKKO 3108 SP Ocean Star (Cherry switch) - Cổng USB</h4>
-                                            <div class="product-item__price">
-                                                <div class="product-item__price-old">đ 1.899.000</div>
-                                                <div class="product-item__price-current">đ 1.861.020</div>
-                                            </div>
-                                            <div class="product-item__action">
-                                                <span class="product-item__like product-link">
-                                                    <i class="product-item__like-icon-empty far fa-heart"></i>
-                                                    <i class="product-item__like-icon-fill fas fa-heart"></i>
-                                                </span>
-                                            </div>
-                                            <div class="product-item__origin">
-                                                <span class="product-item__brand">E-dra</span>
-                                                <span class="product-item__origin-name">Việt Nam</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="product-item__sale-off">
-                                            <span class="product-item__sale-off-percent">2%</span>
-                                            <span class="product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
+                        <div class=" home-product">
+                            <div class="grid__row" id="main_page"></div>
                         </div>
 
                         <ul class="pagination home-product--pagination">

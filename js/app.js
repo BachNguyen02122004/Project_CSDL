@@ -66,26 +66,4 @@ buy.forEach(function(e){
 });
 
 
-// function addtoCart(productId) {
-//   // Gửi yêu cầu AJAX hoặc fetch API để thêm sản phẩm vào cơ sở dữ liệu
-//   // Ví dụ sử dụng fetch API và PHP
-//   fetch('update_product.php', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({ productId: productId }),
-//   })
-//     .then(response => response.json())
-//     .then(data => {
-//       // Xử lý phản hồi từ server (nếu cần)
-//       console.log(data);
-//       // Render sản phẩm đã mua trong trang giỏ hàng
-//       renderCartItem(productId);
-//     })
-//     .catch(error => {
-//       console.error('Lỗi:', error);
-//     });
-// }
-
 });

@@ -23,13 +23,13 @@ function handleCreate() {
             image  : image
         }
         addtoCart(formProduct);
+        
     }
 }
 
 
 function addtoCart(productId, callback) {
-    // Gửi yêu cầu AJAX hoặc fetch API để thêm sản phẩm vào cơ sở dữ liệu
-    // Ví dụ sử dụng fetch API và PHP
+    
     fetch('http://localhost/website/php/update_product.php', {
       method: 'POST',
       headers: {
@@ -41,7 +41,7 @@ function addtoCart(productId, callback) {
       .then(data => {
         // Xử lý phản hồi từ server (nếu cần)
         console.log(data);
-        // Render sản phẩm đã mua trong trang giỏ hàng
+        window.location.href = '../php/cart.php';
       })
       .then(callback)
 
