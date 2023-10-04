@@ -8,6 +8,7 @@
     <title>Shopping</title>
     <script src="../js/app.js"></script>
     <script src="../js/onload.js"></script>
+    <script src="../js/headerLoad.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/main.css">
@@ -28,7 +29,7 @@
     
     <div id="main">
 
-        <?php include 'header.php'; ?>
+        <div id="header-placeholder"></div>
 
         <div class="contain">
             <div class="contain-text">

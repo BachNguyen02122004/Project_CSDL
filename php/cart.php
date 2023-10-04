@@ -2,7 +2,7 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "123456";
+$password = getenv('mySQLPass');
 $dbname = "project";
 
 $mysqli = new mysqli($servername, $username, $password, $dbname);

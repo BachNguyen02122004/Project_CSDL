@@ -30,7 +30,7 @@ function handleCreate() {
 
 function addtoCart(productId, callback) {
     
-    fetch('http://localhost/website/php/update_product.php', {
+    fetch('../php/update_product.php', {
       method: 'POST',
       headers: {
               'Content-Type': 'application/json',
@@ -38,12 +38,14 @@ function addtoCart(productId, callback) {
       body: JSON.stringify( productId ),
     })
       .then(response => response.json())
+      
+      .then(callback)
       .then(data => {
         // Xử lý phản hồi từ server (nếu cần)
         console.log(data);
-        window.location.href = '../php/cart.php';
+        window.location.href = "../php/cart.php";
       })
-      .then(callback)
+      
 
       .catch(error => {
         console.error('Lỗi:', error);

@@ -57,13 +57,13 @@ increaseButtons.forEach(function (button, index) {
 });
 
 
-buy.forEach(function(e){
-  e.addEventListener('click', function(event){
-    event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
-      var productLink = this.getAttribute('href');
-      window.location.href = '../php/cart.php'; 
-  });
-});
+// buy.forEach(function(e){
+//   e.addEventListener('click', function(event){
+//     event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
+//       var productLink = this.getAttribute('href');
+//       window.location.href = '../php/cart.php'; 
+//   });
+// });
 
 
 });

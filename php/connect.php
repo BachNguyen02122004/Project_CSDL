@@ -3,7 +3,7 @@
 // Kết nối đến cơ sở dữ liệu MySQL
 $servername = 'localhost';
 $username = 'root';
-$password = '123456';
+$password = getenv('mySQLPass');
 $dbname = 'project';
 
 $conn = new mysqli($servername, $username, $password, $dbname);

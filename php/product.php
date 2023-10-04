@@ -3,7 +3,7 @@
 // Kết nối đến cơ sở dữ liệu MySQL
 $servername = 'localhost';
 $username = 'root';
-$password = '123456';
+$password = getenv('mySQLPass');
 $dbname = 'project';
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -17,18 +17,36 @@ if ($conn->connect_error) {
 $productId = $_GET['id'];
 
 // Truy vấn dữ liệu sản phẩm từ cơ sở dữ liệu
-$sql = "SELECT * FROM product WHERE ID = '$productId'";
-$result = $conn->query($sql);
+$sql1 = "SELECT *, product.name AS name1, brand.name AS name2, brand.ID AS brandID FROM ((product INNER JOIN brand ON product.BRAND_ID = brand.ID) INNER JOIN danhmuc_sp ON product.DANHMUCSP_ID = danhmuc_sp.DANHMUCSP_ID) WHERE product.ID = '$productId'";
 
-if ($result->num_rows > 0) {
+$result1 = $conn->query($sql1);
+
+if ($result1->num_rows > 0) {
     // Lấy thông tin sản phẩm từ kết quả truy vấn
-    $row = $result->fetch_assoc();
-    $productName = $row['name'];
+    $row = $result1->fetch_assoc();
+    $productName = $row['name1'];
+    $brandName = $row['name2'];
     $productImage = $row['IMAGE'];
     $productDescription = $row['MIEUTA_SP'];
+    $GIA_SP = number_format($row['GIA_SP'], 0, ',', '.');
+    $GIA_SP_update = number_format($row['GIA_SP']*0.94, 0, ',', '.');
+
+
 } else {
     echo "Không tìm thấy sản phẩm.";
 }
+
+// $sql2 = "SELECT * FROM productImage WHERE ID = '$productId'";
+// $result2 = $conn->query($sql2);
+
+// if ($result->num_rows > 0) {
+//     // Lấy thông tin sản phẩm từ kết quả truy vấn
+//     foreach ($result2 as $row) {
+
+//     }
+// } else {
+//     echo "Không tìm thấy sản phẩm.";
+// }
 
 // Đóng kết nối đến cơ sở dữ liệu
 $conn->close();
@@ -52,7 +70,8 @@ $conn->close();
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
+    <script src="../js/app.js"></script>
+    <script src="../js/scrift.js"></script>
 </head>
 
 <body>
@@ -301,7 +320,7 @@ $conn->close();
     </section>
     <div class="text-content">
       <div class="text-content-item">
-        <span id="product-name" class="text-1">[XIN ĐÁNH GIÁ] <?php echo $productName; ?></span>
+        <span id="product-name" class="text-1"><?php echo $productName; ?></span>
         <div id="decorate-item">
           <div class="item-left">
             <div class="decorate-item-1">
@@ -342,9 +361,9 @@ $conn->close();
        </div>
        <div id="coin-item">
            <div class="coin-item">
-               <span class="old-coins">₫2.500.000</span>
+               <span class="old-coins"><?php echo "đ ". $GIA_SP ?></span>
                <div id="new">
-                   <div class="new-coins">₫1.500.00</div>
+                   <div class="new-coins"><?php echo "đ ". $GIA_SP_update ?></div>
                    <div class="sale" >40% giảm </div>
                </div>
            </div>
@@ -397,7 +416,6 @@ $conn->close();
 
 
 </div>
-<script src="../js/app.js"></script>
-<script src="../js/scrift.js"></script>
+
 
 </body>
