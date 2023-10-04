@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `os` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `os`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: os
@@ -186,6 +184,33 @@ INSERT INTO `product_detail` VALUES (1,4,NULL,'../image/phone2.1.png'),(2,4,NULL
 UNLOCK TABLES;
 
 --
+-- Table structure for table `product_img`
+--
+
+DROP TABLE IF EXISTS `product_img`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `product_img` (
+  `productID` int DEFAULT NULL,
+  `product_imgIMAGE` varchar(100) DEFAULT NULL,
+  `product_imgID` int NOT NULL,
+  PRIMARY KEY (`product_imgID`),
+  KEY `productID` (`productID`),
+  CONSTRAINT `product_img_ibfk_1` FOREIGN KEY (`productID`) REFERENCES `product` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product_img`
+--
+
+LOCK TABLES `product_img` WRITE;
+/*!40000 ALTER TABLE `product_img` DISABLE KEYS */;
+INSERT INTO `product_img` VALUES (3,'../image/phone1.1.png',1),(3,'../image/phone1.2.png',2),(3,'../image/phone1.3.png',3),(3,'../image/phone1.4.png',4),(3,'../image/phone1.5.png',5),(4,'../image/phone2.1.png',6),(4,'../image/phone2.2.png',7),(4,'../image/phone2.3.png',8),(4,'../image/phone2.4.png',9),(4,'../image/phone2.5.png',10),(7,'../image/phone3.1.png',11),(7,'../image/phone3.2.png',12),(7,'../image/phone3.3.png',13),(7,'../image/phone3.4.png',14),(7,'../image/phone3.5.png',15),(12,'../image/phone4.1.png',16),(12,'../image/phone4.2.png',17),(12,'../image/phone4.3.png',18),(12,'../image/phone4.4.png',19),(12,'../image/phone4.5.png',20),(14,'../image/phone5.1.png',21),(14,'../image/phone5.2.png',22),(14,'../image/phone5.3.png',23),(14,'../image/phone5.4.png',24),(14,'../image/phone5.5.png',25),(17,'../image/phone6.1.png',26),(17,'../image/phone6.2.png',27),(17,'../image/phone6.3.png',28),(17,'../image/phone6.4.png',29),(17,'../image/phone6.5.png',30),(20,'../image/phone7.1.png',31),(20,'../image/phone7.2.png',32),(20,'../image/phone7.3.png',33),(20,'../image/phone7.4.png',34),(20,'../image/phone7.5.png',35),(23,'../image/phone8.1.png',36),(23,'../image/phone8.2.png',37),(23,'../image/phone8.3.png',38),(23,'../image/phone8.4.png',39),(23,'../image/phone8.5.png',40),(26,'../image/phone9.1.png',41),(26,'../image/phone9.2.png',42),(26,'../image/phone9.3.png',43),(26,'../image/phone9.4.png',44),(26,'../image/phone9.5.png',45);
+/*!40000 ALTER TABLE `product_img` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `user`
 --
 
@@ -222,4 +247,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-03 23:11:46
+-- Dump completed on 2023-10-04 22:23:52
