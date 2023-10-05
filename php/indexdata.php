@@ -1,10 +1,10 @@
 
 <?php
 
-$servername = 'localhost';
-$username = 'root';
+$servername = "localhost";
+$username = "root";
 $password = getenv('mySQLPass');
-$dbname = 'project';
+$dbname = "project";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -21,8 +21,8 @@ $end = $start + 19;
 $query = "SELECT * FROM product WHERE ID BETWEEN $start AND $end";
 $results = mysqli_query($conn, $query);
 
-// Start the body string
 $body = '<div class="grid__row" style="display:flex;">';
+
 
 if ($results && mysqli_num_rows($results) > 0) {
 
@@ -32,6 +32,11 @@ if ($results && mysqli_num_rows($results) > 0) {
         $GIA_SP_update = number_format($row['GIA_SP']*0.94, 0, ',', '.');
 
         // Append the product item HTML to the body string
+        
+
+
+
+
         $body .= '<div class="column-1">';
         $body .= '    <a class="product-item" href="../php/product.php?id=' .$row['ID'] . '">';
         $body .= '        <div class="product-item__img" style="background-image: url(' . $row['IMAGE'].')"></div>';
@@ -76,6 +81,7 @@ if ($results && mysqli_num_rows($results) > 0) {
         $body .= '        </div>';
         $body .= '     </a>';
         $body .= '</div>';
+
     }
 }
 
@@ -83,5 +89,6 @@ if ($results && mysqli_num_rows($results) > 0) {
 $body .= '</div>';
 
 echo $body;
+
 // echo json_encode($productValue);
 ?>

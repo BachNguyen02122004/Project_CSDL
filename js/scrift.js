@@ -1,6 +1,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     handleCreate();
+    // handleCreateProduct();
     addtoCart();
 });
 
@@ -27,10 +28,32 @@ function handleCreate() {
     }
 }
 
+// function handleCreateProduct() {
+//   var creatBtn = document.querySelector('.buy-fake-item');
+
+//   creatBtn.onclick = function() {
+//       var productId = document.querySelector('#product-id').innerHTML;
+//       var name = document.querySelector('#product-name').innerHTML;
+//       var image = document.getElementById('product-image').src;
+//       console.log(name, image, productId);
+//       var i = 0;
+//       var formProduct = {
+//           id : i++,
+//           productId : productId, 
+//           name : name, 
+//           image  : image
+//       }
+//       addtoCart(formProduct);
+      
+//   }
+// }
+
+
+
 
 function addtoCart(productId, callback) {
     
-    fetch('../php/update_product.php', {
+    fetch('http://localhost/website/php/update_product.php', {
       method: 'POST',
       headers: {
               'Content-Type': 'application/json',
@@ -41,11 +64,10 @@ function addtoCart(productId, callback) {
       
       .then(callback)
       .then(data => {
-        // Xử lý phản hồi từ server (nếu cần)
+        
         console.log(data);
-        window.location.href = "../php/cart.php";
+        window.location.href = '../php/cart.php';
       })
-      
 
       .catch(error => {
         console.error('Lỗi:', error);

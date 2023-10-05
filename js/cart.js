@@ -53,7 +53,7 @@ function handleDelete() {
 
 
   function deleteProduct(id) {
-    fetch('../php/delete_product.php', {
+    fetch('http://localhost/website/php/delete_product.php', {
       method: 'DELETE',
       body: JSON.stringify(id),
       headers: {

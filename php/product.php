@@ -1,10 +1,11 @@
 <?php
 
 // Kết nối đến cơ sở dữ liệu MySQL
-$servername = 'localhost';
-$username = 'root';
+
+$servername = "localhost";
+$username = "root";
 $password = getenv('mySQLPass');
-$dbname = 'project';
+$dbname = "project";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -30,8 +31,6 @@ if ($result1->num_rows > 0) {
     $productDescription = $row['MIEUTA_SP'];
     $GIA_SP = number_format($row['GIA_SP'], 0, ',', '.');
     $GIA_SP_update = number_format($row['GIA_SP'] * 0.94, 0, ',', '.');
-} else {
-    echo "Không tìm thấy sản phẩm.";
 }
 
 $sql2 = "SELECT * FROM product_img WHERE productID = '$productId'";
@@ -45,9 +44,7 @@ if ($result2->num_rows > 0) {
         $saveImage[$number] = $row['product_imgIMAGE'];
         $number++;
     }
-} else {
-    echo "Không tìm thấy sản phẩm.";
-}
+} 
 
 // Đóng kết nối đến cơ sở dữ liệu
 $conn->close();
