@@ -225,8 +225,8 @@ if ($mysqli->connect_error) {
                     
                 </div>
                 
-                <?php
-                $query = "SELECT * FROM cart ";
+<?php
+$query = "SELECT * FROM cart ";
 
 // Thực hiện truy vấn
 $result = $mysqli->query($query);
