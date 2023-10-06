@@ -82,7 +82,7 @@ if ($results1->num_rows > 0) {
     $header .= '                                       </div>';
     $header .= '                                  </li>';
     $header .= '                             </ul>';
-    $header .= '                            <a style="display: flex;font-size: 1.2rem;" class="header__cart-view btn btn--primary">Xem giỏ hàng</a>';
+    $header .= '                            <a style="display: flex;font-size: 1.2rem;" class="header__cart-view btn btn--primary" href="../php/cart.php">Xem giỏ hàng</a>';
     $header .= '                         </div>';
     $header .= '                      </div>';
 }

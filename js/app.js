@@ -4,11 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
   var buy = document.querySelectorAll('.buy');
   var cart = document.querySelector('.header__cart-view');
   
-  cart.addEventListener('click', function(e){
-    e.preventDefault();
-    var productLink = this.getAttribute('href');
-    window.location.href = '../php/cart.php';
-  });
   // Lặp qua từng phần tử sản phẩm và thêm sự kiện click
   productList.forEach(function(product) {
     product.addEventListener('click', function(event) {
@@ -55,6 +50,9 @@ increaseButtons.forEach(function (button, index) {
     inputElements[index].value = value;
   });
 });
+
+
+
 
 
 // buy.forEach(function(e){

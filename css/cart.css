@@ -4,7 +4,12 @@
    margin: auto;
 
 }
-
+.header-link-index {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
 .header__logo-image {
     width: 130px;
     height: 46px;

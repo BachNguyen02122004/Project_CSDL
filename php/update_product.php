@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 $data = json_decode(file_get_contents("php://input"));
 
 
-$sql = "INSERT INTO cart (id, productId, productName, productImage) VALUES ('$data->id', '$data->productId', '$data->name', '$data->image')";
+$sql = "INSERT INTO cart (id, productId, productName, productImage, quantity) VALUES ('$data->id', '$data->productId', '$data->name', '$data->image', '$data->quantity')";
 
 if ($conn->query($sql) === TRUE) {
     $response = "Dữ liệu đã được lưu vào cơ sở dữ liệu thành công";
@@ -32,4 +32,4 @@ $conn->close();
 
 
 echo json_encode($response);
-?>
+?> 
