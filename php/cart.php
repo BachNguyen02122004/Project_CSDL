@@ -219,14 +219,14 @@ if ($mysqli->connect_error) {
                     <div class="product-info-1">Sản phẩm</div>
                     
                         <div class="product-info-2">Đơn giá </div>
-                        <div class="product-info-3">Số Lướng</div>
+                        <div class="product-info-3">Số Lượng</div>
                         <div class="product-info-4">Số Tiền</div>
                         <div class="product-info-5">Thao tác</div>
                     
                 </div>
                 
-<?php
-$query = "SELECT * FROM cart ";
+                <?php
+                $query = "SELECT * FROM cart ";
 
 // Thực hiện truy vấn
 $result = $mysqli->query($query);
@@ -459,7 +459,7 @@ $mysqli->close();
                 </div>
             </div>
     </div>
-    <!-- <script src="../js/app.js"></script> -->
+    
     <script src="../js/cart.js"></script>
 </body>
 </html>

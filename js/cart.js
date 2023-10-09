@@ -1,6 +1,6 @@
 
 document.addEventListener('DOMContentLoaded', function() {
-// Lấy các phần tử cần sử dụng
+
 const decreaseButtons = document.querySelectorAll('.item-down-up[aria-label="Decrease"]');
 const increaseButtons = document.querySelectorAll('.item-down-up:not([aria-label="Decrease"])');
 const inputElements = document.querySelectorAll('.text-number');
@@ -51,9 +51,9 @@ function handleDelete() {
   });
 };
 
-
+  // xóa product id dùng call api
   function deleteProduct(id) {
-    fetch('../php/delete_product.php', {
+    fetch('http://localhost/website/php/delete_product.php', {
       method: 'DELETE',
       body: JSON.stringify(id),
       headers: {

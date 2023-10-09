@@ -53,7 +53,7 @@ $header .= '                           <i class="header__cart-icon fas fa-shoppi
 $header .= '                          <span class="header__cart-notice">' . $totalProducts . '</span>';
 $header .= '                            <!-- No cart: header__cart-list--no-cart -->';
 $header .= '                            <div class="header__cart-list">';
-$header .= '                                <img src=".../img/nocard.png" alt="No card" class="header__cart-no-cart-img">';
+
 $header .= '                               <h4 class="header__cart-heading">Sản phẩm đã thêm</h4>';
 $header .= '                                <ul class="header__cart-group">';
 $header .= '                                   <!-- Cart items -->';
@@ -79,7 +79,8 @@ for ($i = 0; $i < $number; $i++) {
 }
 
 if ($number == 0) {
-    $header.= ' <p style="text-align:center; font-size:18px"> chưa chọn sản phẩm nào. </p>';
+    $header .= '<img src="../img/nocard.png" alt="No card" class="header__cart-no-cart-img">';
+    // $header.= ' <p style="text-align:center; font-size:18px"> chưa chọn sản phẩm nào. </p>';
 }
 
 $header .= '                             </ul>';
