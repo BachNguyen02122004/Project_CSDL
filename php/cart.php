@@ -12,7 +12,11 @@ if ($mysqli->connect_error) {
     die("Kết nối cơ sở dữ liệu thất bại: " . $mysqli->connect_error);
 }
 
-
+$queryPrice = "SELECT SUM(GIA_SP*quantity*0.94) AS price FROM (cart INNER JOIN product ON cart.productID = product.ID)";
+$resultPrice = mysqli_query($mysqli, $queryPrice);
+$row = $resultPrice->fetch_assoc();
+$price = number_format($row['price'], 0, ',', '.');
+ 
 ?>;
 
 
@@ -226,10 +230,11 @@ if ($mysqli->connect_error) {
                 </div>
                 
                 <?php
-                $query = "SELECT * FROM cart ";
+                $query = "SELECT * FROM (cart INNER JOIN product ON product.ID = cart.productID)";
 
 // Thực hiện truy vấn
 $result = $mysqli->query($query);
+$productNum = $result->num_rows;
 
 // Kiểm tra kết quả truy vấn
 if ($result->num_rows > 0) {
@@ -239,7 +244,9 @@ if ($result->num_rows > 0) {
         $productImage = $row['productImage'];
         $productID = $row['productId'];
         $quantity = $row['quantity'];
-
+        $totalPrice = number_format($row['GIA_SP'] * $quantity * 0.94, 0, ',', '.');
+        $onePrice = number_format($row['GIA_SP'],0,',', '.');
+        $onePriceUpdate = number_format($row['GIA_SP'] * 0.94, 0, ',', '.');
         
                 
         echo '<div class="product-info">
@@ -280,8 +287,8 @@ if ($result->num_rows > 0) {
                 </button>
             </div>
             <div class="coins">
-                <span class="coin-item-cart coin-item-1">₫33.990.000</span>
-                <span class="coin-item-cart">₫26.790.000</span>
+                <span class="coin-item-cart coin-item-1">₫' . $onePrice .'</span>
+                <span class="coin-item-cart">₫' .$onePriceUpdate .'</span>
             </div>
             <div class="number-select">
                
@@ -293,7 +300,7 @@ if ($result->num_rows > 0) {
                 
             </div>
             <div class="number-coin">
-                <span>₫26.790.000</span>
+                <span>₫' .$totalPrice .'</span>
                 <span></span>
             </div>
             
@@ -332,15 +339,15 @@ $mysqli->close();
                         <input class="" type="checkbox" aria-checked="true" aria-disabled="false" tabindex="0" role="checkbox" aria-label="Click here to select all products">
                         <div class="check-before"></div>
                     </label>
-                    <button class="select-buy-item">Chọn tất cả(2)</button>
+                    <button class="select-buy-item">Chọn tất cả(<?php echo $productNum ?>)</button>
                     <button class="erase-item">Xóa</button>
                     <button class="save-love-item">Lưu vào mục đã thích</button>
                     <div class="fake-buy-item"></div>
 
                     <div class="item-coins">
                         <div class="box-item-coins">
-                            <div class="content-item-coins">Tổng thanh toán(0 sản phẩm):</div>
-                            <div class="real-coin">₫0</div>
+                            <div class="content-item-coins">Tổng thanh toán (<?php echo $productNum ?> sản phẩm):</div>
+                            <div class="real-coin">₫<?php echo $price ?></div>
                         </div>
                     </div>
                     <button class="buy-product-cart">

@@ -64,7 +64,7 @@ function loadCartFromLocalStorage() {
 
 
 function addtoCart(product, callback) {
-  fetch('http://localhost/website/php/update_product.php', {
+  fetch('../php/update_product.php', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
