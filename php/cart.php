@@ -258,11 +258,11 @@ if ($result->num_rows > 0) {
         <div class="box-info-item">
             <div class="box-info-item-1">
                 <a href="#" class="item-image-box">
-                    <img class="item-image" src=" '. $productImage .' " alt="Ảnh sản phẩm">
+                    <img id="product-image" class="item-image" src=" '. $productImage .' " alt="Ảnh sản phẩm">
                 </a>
                 <div class="product-item-info">
                     <div style="margin-bottom: 2px;">
-                        <a href="#">'. $productName .'</a>
+                        <a href="#" id="product-name">'. $productName .'</a>
                     </div>
                     <img class="anh_sale" src="../img/anh-sale.png" alt="ảnh sale">
                     <div class="box-sale">
@@ -287,20 +287,20 @@ if ($result->num_rows > 0) {
                 </button>
             </div>
             <div class="coins">
-                <span class="coin-item-cart coin-item-1">₫' . $onePrice .'</span>
+                <span class="coin-item-1">₫' . $onePrice .'</span>
                 <span class="coin-item-cart">₫' .$onePriceUpdate .'</span>
             </div>
             <div class="number-select">
                
                 <div class="select-number">
-                    <button aria-label="Decrease" class="item-down-up" fdprocessedid="ow0la"><svg enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0" class="shopee-svg-icon-1"><polygon points="4.5 4.5 3.5 4.5 0 4.5 0 5.5 3.5 5.5 4.5 5.5 10 5.5 10 4.5"></polygon></svg></button>
+                    <button aria-label="Decrease" class="item-down-up quantity-input" fdprocessedid="ow0la"><svg enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0" class="shopee-svg-icon-1"><polygon points="4.5 4.5 3.5 4.5 0 4.5 0 5.5 3.5 5.5 4.5 5.5 10 5.5 10 4.5"></polygon></svg></button>
                     <input class="text-number" type="text" value="' .$quantity.'" aria-valuenow="1">
-                    <button class="item-down-up"><svg enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0" class="shopee-svg-icon-1"><polygon points="10 4.5 5.5 4.5 5.5 0 4.5 0 4.5 4.5 0 4.5 0 5.5 4.5 5.5 4.5 10 5.5 10 5.5 5.5 10 5.5"></polygon></svg></button>
+                    <button class="item-down-up increase-button"><svg enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0" class="shopee-svg-icon-1"><polygon points="10 4.5 5.5 4.5 5.5 0 4.5 0 4.5 4.5 0 4.5 0 5.5 4.5 5.5 4.5 10 5.5 10 5.5 5.5 10 5.5"></polygon></svg></button>
                 </div>
                 
             </div>
             <div class="number-coin">
-                <span>₫' .$totalPrice .'</span>
+                <span class="coin-number">đ' .$totalPrice .'</span>
                 <span></span>
             </div>
             
@@ -347,7 +347,7 @@ $mysqli->close();
                     <div class="item-coins">
                         <div class="box-item-coins">
                             <div class="content-item-coins">Tổng thanh toán (<?php echo $productNum ?> sản phẩm):</div>
-                            <div class="real-coin">₫<?php echo $price ?></div>
+                            <div class="real-coin" id="total-coin>">₫<?php echo $price ?></div>
                         </div>
                     </div>
                     <button class="buy-product-cart">
