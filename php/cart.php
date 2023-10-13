@@ -12,7 +12,11 @@ if ($mysqli->connect_error) {
     die("Kết nối cơ sở dữ liệu thất bại: " . $mysqli->connect_error);
 }
 
-
+$queryPrice = "SELECT SUM(GIA_SP*quantity*0.94) AS price FROM (cart INNER JOIN product ON cart.productID = product.ID)";
+$resultPrice = mysqli_query($mysqli, $queryPrice);
+$row = $resultPrice->fetch_assoc();
+$price = number_format($row['price'], 0, ',', '.');
+ 
 ?>;
 
 
@@ -33,8 +37,9 @@ if ($mysqli->connect_error) {
     <link rel="stylesheet" href="../css/cart.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script defer src="../js/cart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 
@@ -219,17 +224,18 @@ if ($mysqli->connect_error) {
                     <div class="product-info-1">Sản phẩm</div>
                     
                         <div class="product-info-2">Đơn giá </div>
-                        <div class="product-info-3">Số Lướng</div>
+                        <div class="product-info-3">Số Lượng</div>
                         <div class="product-info-4">Số Tiền</div>
                         <div class="product-info-5">Thao tác</div>
                     
                 </div>
                 
-<?php
-$query = "SELECT * FROM cart ";
+                <?php
+                $query = "SELECT * FROM (cart INNER JOIN product ON product.ID = cart.productID)";
 
 // Thực hiện truy vấn
 $result = $mysqli->query($query);
+$productNum = $result->num_rows;
 
 // Kiểm tra kết quả truy vấn
 if ($result->num_rows > 0) {
@@ -239,7 +245,9 @@ if ($result->num_rows > 0) {
         $productImage = $row['productImage'];
         $productID = $row['productId'];
         $quantity = $row['quantity'];
-
+        $totalPrice = number_format($row['GIA_SP'] * $quantity * 0.94, 0, ',', '.');
+        $onePrice = number_format($row['GIA_SP'],0,',', '.');
+        $onePriceUpdate = number_format($row['GIA_SP'] * 0.94, 0, ',', '.');
         
                 
         echo '<div class="product-info">
@@ -251,11 +259,11 @@ if ($result->num_rows > 0) {
         <div class="box-info-item">
             <div class="box-info-item-1">
                 <a href="#" class="item-image-box">
-                    <img class="item-image" src=" '. $productImage .' " alt="Ảnh sản phẩm">
+                    <img id="product-image" class="item-image" src=" '. $productImage .' " alt="Ảnh sản phẩm">
                 </a>
                 <div class="product-item-info">
                     <div style="margin-bottom: 2px;">
-                        <a href="#">'. $productName .'</a>
+                        <a href="#" id="product-name">'. $productName .'</a>
                     </div>
                     <img class="anh_sale" src="../img/anh-sale.png" alt="ảnh sale">
                     <div class="box-sale">
@@ -280,20 +288,20 @@ if ($result->num_rows > 0) {
                 </button>
             </div>
             <div class="coins">
-                <span class="coin-item-cart coin-item-1">₫33.990.000</span>
-                <span class="coin-item-cart">₫26.790.000</span>
+                <span class="coin-item-1">₫' . $onePrice .'</span>
+                <span class="coin-item-cart">₫' .$onePriceUpdate .'</span>
             </div>
             <div class="number-select">
                
                 <div class="select-number">
-                    <button aria-label="Decrease" class="item-down-up" fdprocessedid="ow0la"><svg enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0" class="shopee-svg-icon-1"><polygon points="4.5 4.5 3.5 4.5 0 4.5 0 5.5 3.5 5.5 4.5 5.5 10 5.5 10 4.5"></polygon></svg></button>
+                    <button aria-label="Decrease" class="item-down-up quantity-input" fdprocessedid="ow0la"><svg enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0" class="shopee-svg-icon-1"><polygon points="4.5 4.5 3.5 4.5 0 4.5 0 5.5 3.5 5.5 4.5 5.5 10 5.5 10 4.5"></polygon></svg></button>
                     <input class="text-number" type="text" value="' .$quantity.'" aria-valuenow="1">
-                    <button class="item-down-up"><svg enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0" class="shopee-svg-icon-1"><polygon points="10 4.5 5.5 4.5 5.5 0 4.5 0 4.5 4.5 0 4.5 0 5.5 4.5 5.5 4.5 10 5.5 10 5.5 5.5 10 5.5"></polygon></svg></button>
+                    <button class="item-down-up increase-button"><svg enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0" class="shopee-svg-icon-1"><polygon points="10 4.5 5.5 4.5 5.5 0 4.5 0 4.5 4.5 0 4.5 0 5.5 4.5 5.5 4.5 10 5.5 10 5.5 5.5 10 5.5"></polygon></svg></button>
                 </div>
                 
             </div>
             <div class="number-coin">
-                <span>₫26.790.000</span>
+                <span class="coin-number">đ' .$totalPrice .'</span>
                 <span></span>
             </div>
             
@@ -332,15 +340,15 @@ $mysqli->close();
                         <input class="" type="checkbox" aria-checked="true" aria-disabled="false" tabindex="0" role="checkbox" aria-label="Click here to select all products">
                         <div class="check-before"></div>
                     </label>
-                    <button class="select-buy-item">Chọn tất cả(2)</button>
+                    <button class="select-buy-item">Chọn tất cả(<?php echo $productNum ?>)</button>
                     <button class="erase-item">Xóa</button>
                     <button class="save-love-item">Lưu vào mục đã thích</button>
                     <div class="fake-buy-item"></div>
 
                     <div class="item-coins">
                         <div class="box-item-coins">
-                            <div class="content-item-coins">Tổng thanh toán(0 sản phẩm):</div>
-                            <div class="real-coin">₫0</div>
+                            <div class="content-item-coins">Tổng thanh toán (<?php echo $productNum ?> sản phẩm):</div>
+                            <div class="real-coin" id="total-coin>">₫<?php echo $price ?></div>
                         </div>
                     </div>
                     <button class="buy-product-cart">
@@ -459,7 +467,5 @@ $mysqli->close();
                 </div>
             </div>
     </div>
-    <!-- <script src="../js/app.js"></script> -->
-    <script src="../js/cart.js"></script>
 </body>
 </html>
