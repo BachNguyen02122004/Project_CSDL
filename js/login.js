@@ -45,7 +45,6 @@ function checkInputValidity() {
         });
     });
 
-
   } else {
     loginButton.disabled = true;
   }
