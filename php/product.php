@@ -44,7 +44,20 @@ if ($result2->num_rows > 0) {
         $saveImage[$number] = $row['product_imgIMAGE'];
         $number++;
     }
-} 
+}
+
+$sql3 = "SELECT mau_sp.detail_of FROM (mau_sp INNER JOIN (danhmuc_sp INNER JOIN product ON product.DANHMUCSP_ID = danhmuc_sp.DANHMUCSP_ID) ON mau_sp.productline = danhmuc_sp.DANHMUCSP_ID) WHERE product.ID = '$productId';";
+$result3 = $conn->query($sql3);
+$saveType = array();
+$number1 = 1;
+if ($result3->num_rows > 0) {
+    // Lấy thông tin sản phẩm từ kết quả truy vấn
+    while ($row = $result3->fetch_assoc()) {
+        $saveType[$number1] = $row['detail_of'];
+        $number1++;
+    }
+}
+
 
 // Đóng kết nối đến cơ sở dữ liệu
 $conn->close();
@@ -66,8 +79,34 @@ $conn->close();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <script src="../js/app.js"></script>
-    <script src="../js/scrift.js"></script>
+    <script async src="../js/app.js"></script>
+    <script async src="../js/scrift.js"></script>
+
+    <style>
+        .color-1.selected {
+            background-color: #ee4d2d;
+            color: white;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const buttons = document.querySelectorAll('.color-1');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove 'selected' class from all buttons
+                    buttons.forEach(btn => {
+                        btn.classList.remove('selected');
+                    });
+
+                    // Add 'selected' class to the clicked button
+                    button.classList.add('selected');
+                });
+            });
+        });
+    </script>
+
 </head>
 
 <body>
@@ -383,10 +422,22 @@ $conn->close();
                             </div>
                             <div class="color">
                                 <div class="voucher-1">Màu sắc</div>
-                                <button class="color-1 select-color">Tím</button>
+                                <?php
+                                if (!empty($saveType)) {
+                                    foreach ($saveType as $Type) {
+                                        if ($Type == 1) echo '<button class="color-1 select-color">Đen</button>';
+                                        else if ($Type == 2) echo '<button class="color-1 select-color">Trắng</button>';
+                                        else if ($Type == 3) echo '<button class="color-1 select-color">Vàng</button>';
+                                        else if ($Type == 4) echo '<button class="color-1 select-color">Đỏ</button>';
+                                        else if ($Type == 5) echo '<button class="color-1 select-color">Nâu</button>';
+                                    }
+                                }
+                                ?>
+
+                                <!-- <button class="color-1 select-color">Tím</button>
                                 <button class="color-2 select-color">Đen</button>
                                 <button class="color-3 select-color">Trắng</button>
-                                <button class="color-4 select-color">Vàng gold</button>
+                                <button class="color-4 select-color">Vàng gold</button> -->
                             </div>
 
                         </div>
