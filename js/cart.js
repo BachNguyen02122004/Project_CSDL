@@ -97,6 +97,7 @@ function updateTotalCoin() {
 }
 
 
+//changed
 function handleDelete() {
 
   const eraseProduct = document.querySelectorAll('.erase-product');
@@ -104,9 +105,11 @@ function handleDelete() {
   eraseProduct.forEach(btn => {
     btn.addEventListener('click', () => {
       const productId = btn.closest('.product-info').querySelector('#productId').textContent;
+      const typeId = btn.closest('.product-info').querySelector('#TypeProduct').textContent;
       console.log(productId);
       const formProduct = {
-        productId: productId
+        productId: productId,
+        typeId: typeId
       };
       deleteProduct(formProduct);
 

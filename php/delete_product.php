@@ -23,17 +23,20 @@ if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
     $data = json_decode(file_get_contents("php://input"), true);
 
 
-    if (isset($data['productId'])) {
+    //changed
+    if (isset($data['productId']) && isset($data['typeId'])) {
 
         $productId = $data['productId'];
+        $typeId = $data['typeId'];
 
-        $take = "SELECT id FROM cart WHERE productId = $productId";
+        $take = "SELECT id FROM cart WHERE productId = '$productId' AND TypeProduct = '$typeId'";
         $result = mysqli_query($conn, $take);
         if($result) {
             $id = mysqli_fetch_assoc($result)['id'];
         }
 
-        $sql = "DELETE FROM cart WHERE productId = $productId";
+        //changed
+        $sql = "DELETE FROM cart WHERE productId = '$productId' AND TypeProduct = '$typeId'";
         if ($conn->query($sql) === TRUE) {
 
             $response;

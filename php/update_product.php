@@ -25,12 +25,15 @@ $newId = $maxId + 1;
 // Lấy dữ liệu từ request
 $data = json_decode(file_get_contents("php://input"));
 
-$check = "SELECT * FROM cart WHERE productId = '$data->productId'";
+//changed
+$check = "SELECT * FROM cart WHERE productId = '$data->productId' AND TypeProduct = '$data->TypeId'";
 $result = mysqli_query($conn, $check);
 
 // Thêm vào giỏ hàng
+
+//changed
 if ($result->num_rows == 0) {
-    $sql = "INSERT INTO cart (id, productId, productName, productImage, quantity) VALUES ('$newId', '$data->productId', '$data->name', '$data->image', '$data->quantity')";
+    $sql = "INSERT INTO cart (id, productId, productName, productImage, quantity, TypeProduct) VALUES ('$newId', '$data->productId', '$data->name', '$data->image', '$data->quantity', '$data->TypeId')";
 
     if ($conn->query($sql) === TRUE) {
         $response = "Dữ liệu đã được lưu vào cơ sở dữ liệu thành công";
@@ -39,7 +42,8 @@ if ($result->num_rows == 0) {
     }
 
 } else {
-    $sql = "UPDATE cart SET quantity = (quantity + $data->quantity) WHERE productId = '$data->productId'";
+    //changed
+    $sql = "UPDATE cart SET quantity = (quantity + $data->quantity) WHERE productId = '$data->productId' AND TypeProduct = '$data->TypeId'";
 
     if ($conn->query($sql) === TRUE) {
         $response = "Dữ liệu đã được lưu vào cơ sở dữ liệu thành công";
