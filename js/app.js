@@ -31,20 +31,25 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
 var images = document.querySelectorAll('.item-small');
+const mainImage = document.getElementById('product-image');
+const imageMain = mainImage.getAttribute('src');
+console.log(imageMain);
+console.log(mainImage);
 images.forEach(function (image) {
-  image.addEventListener('mouseover', function (e) {
-  images.forEach(function(image) {
   image.addEventListener('mouseover', function(e) {
     console.log(e);
     var url = image.getAttribute('src');
-    var mainImage = document.getElementById('product-image').setAttribute('src', url);
+    mainImage.setAttribute('src', url);
   })
-})
+  image.addEventListener('mouseout', function(e) {
+    mainImage.setAttribute('src', imageMain); 
   });
+
 });
-  
-  });
-  
+
+
+
+});
   
   function handleDelete() {
     

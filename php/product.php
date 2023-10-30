@@ -81,7 +81,11 @@ $conn->close();
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <style>
+        .select-item-small {
+        display: none;
+    }
         .color-1.selected {
+            display: block;
             background-color: #ee4d2d;
             color: white;
         }
@@ -89,20 +93,23 @@ $conn->close();
 
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
-            const buttons = document.querySelectorAll('.color-1');
+    const buttons = document.querySelectorAll('.color-1');
+    
 
-            buttons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Remove 'selected' class from all buttons
-                    buttons.forEach(btn => {
-                        btn.classList.remove('selected');
-                    });
-
-                    // Add 'selected' class to the clicked button
-                    button.classList.add('selected');
-                });
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove 'selected' class from all buttons
+            buttons.forEach(btn => {
+                btn.classList.remove('selected');
+                
             });
+
+            // Add 'selected' class to the clicked button
+            button.classList.add('selected');
+            
         });
+    });
+});
     </script>
 
 </head>
@@ -423,7 +430,12 @@ $conn->close();
                                 <?php
                                 if (!empty($saveType)) {
                                     foreach ($saveType as $Type) {
-                                        if ($Type == 1) echo '<button class="color-1 select-color">Đen</button>';
+                                        if ($Type == 1) echo '<button class="color-1 select-color">Đen
+                                        <div class="select-item-small">
+                                        <svg enable-background="new 0 0 12 12" viewBox="0 0 12 12" x="0" y="0" class="shopee-svg-icon icon-tick-bold"><g><path d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z"></path></g></svg>
+                                        </div>
+                                        </button>';
+                                    
                                         else if ($Type == 2) echo '<button class="color-1 select-color">Trắng</button>';
                                         else if ($Type == 3) echo '<button class="color-1 select-color">Vàng</button>';
                                         else if ($Type == 4) echo '<button class="color-1 select-color">Đỏ</button>';
@@ -431,7 +443,7 @@ $conn->close();
                                     }
                                 }
                                 ?>
-
+                                
                                 <!-- <button class="color-1 select-color">Tím</button>
                                 <button class="color-2 select-color">Đen</button>
                                 <button class="color-3 select-color">Trắng</button>

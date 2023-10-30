@@ -1,32 +1,25 @@
 const usernameInput = document.getElementById('username');
 const passwordInput = document.getElementById('password');
 const loginButton = document.getElementById('loginKey');
-
+const empty = document.querySelector(".empty-user");
 
 usernameInput.addEventListener('input', checkInputValidity);
 passwordInput.addEventListener('input', checkInputValidity);
-
-checkInputValidity();
+// check empty
+usernameInput.addEventListener('input', checkEmpty);
 
 function checkInputValidity() {
-  const usernameInput = document.getElementById('username').value;
-  const passwordInput = document.getElementById('password').value;
-  const loginButton = document.getElementById('loginKey');
+  const usernameValue = usernameInput.value;
+  const passwordValue = passwordInput.value;
 
-  if (usernameInput.trim() !== "" && passwordInput.trim() !== "") {
+  if (usernameValue.trim() !== "" && passwordValue.trim() !== "") {
     loginButton.disabled = false;
 
-    passwordInput = hashPassword(usernameInput);
+    loginButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      const url = `../php/checkLogin.php?username=${usernameValue}&password=${passwordValue}`;
 
-    const url = `../php/checkLogin.php?username=${encodeURIComponent(usernameInput)}&password=${encodeURIComponent(passwordInput)}`;
-
-    loginButton.addEventListener('click', function () {
-      fetch(url, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+      fetch(url)
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -35,26 +28,27 @@ function checkInputValidity() {
         })
         .then(data => {
           if (data.error) {
-            //document.getElementById('error-message').textContent = data.error;
+            console.error('Error:', data.error);
           } else {
-            
+            window.location.href = "../html/index.html";
           }
         })
         .catch(error => {
           console.error('There has been a problem with your fetch operation:', error);
         });
     });
-
   } else {
     loginButton.disabled = true;
   }
 }
 
-async function hashPassword(password) {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(password);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  const hashedPassword = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
-  return hashedPassword;
+function checkEmpty(){
+  const usernameValue = usernameInput.value;
+  const passwordValue = passwordInput.value;
+
+  if (usernameValue.trim() !== "" || passwordValue.trim() !== "") {
+    empty.style.display = "none";
+  } else {
+    empty.style.display = "block";
+  }
 }

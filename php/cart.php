@@ -271,7 +271,7 @@ $price = number_format($row['price'], 0, ',', '.');
 
                         echo '<div class="product-info">
         
-        <--changed-->
+        
         <div id="productId" style="display: none">' . $productID . '</div> 
         <div id="TypeProduct" style="display: none">' . $TypeProduct . '</div> 
         <label class="check-box">
@@ -307,7 +307,7 @@ $price = number_format($row['price'], 0, ',', '.');
                         <div class="before-select-item"></div>
                     </div>
                     
-                    <--changed-->
+                    
                     <div>' . $typeProductWord .'</div>
                 </button>
             </div>

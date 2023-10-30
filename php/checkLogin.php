@@ -10,29 +10,25 @@ $mysqli = new mysqli($servername, $username, $password, $dbname);
 if ($mysqli->connect_error) {
     die("Kết nối cơ sở dữ liệu thất bại: " . $mysqli->connect_error);
 }
+// ...
+$usernameInput = $mysqli->real_escape_string($_GET['username']);
+$userpasswordInput = $mysqli->real_escape_string($_GET['password']);
 
-$usernameInput = $_GET['usernameInput'];
-$userpasswordInput = $_GET['userpasswordInput'];
-
-$queryUser = "SELECT username FROM user WHERE username = '$usernameInput'";
-$queryLogin = "SELECT `password` FROM user WHERE username = '$usernameInput'"; 
+$queryUser = "SELECT username, password FROM nguoi_dung WHERE username = '$usernameInput'";
 $resultUser = $mysqli->query($queryUser);
-$resultLogin = $mysqli->query($queryLogin);
 
 if ($resultUser->num_rows === 0) {
-    $response = array('error' => 'Wrong username ' . $conn->error);
+    $response = array('error' => 'Wrong username');
     echo json_encode($response);
 } else {
-    $row = $resultLogin->fetch_assoc();
-    $storedHashedPassword = $row['password'];
+    $row = $resultUser->fetch_assoc();
+    $storedPassword = $row['password'];
 
-    if (password_verify($userpasswordInput, $storedHashedPassword)) {
-        $response = array('success' => 'Right password ');
+    if ($userpasswordInput === $storedPassword) {
+        $response = array('success' => 'Right password');
         echo json_encode($response);
     } else {
-        $response = array('error' => 'Wrong password' . $conn->error);
+        $response = array('error' => 'Wrong password');
         echo json_encode($response);
     }
 }
-
-?>
