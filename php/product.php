@@ -418,7 +418,7 @@ $conn->close();
                                 <div class="voucher info-2">Giảm ₫15k</div>
                                 <div class="voucher info-3">Giảm ₫50k</div>
                             </div>
-                            <div class="color">
+                            <div class="color" <?php echo (!empty($saveType)) ? 'style="display:block"' : 'style="display:none"'; ?>>
                                 <div class="voucher-1">Màu sắc</div>
                                 <?php
                                 if (!empty($saveType)) {
@@ -431,12 +431,8 @@ $conn->close();
                                     }
                                 }
                                 ?>
-
-                                <!-- <button class="color-1 select-color">Tím</button>
-                                <button class="color-2 select-color">Đen</button>
-                                <button class="color-3 select-color">Trắng</button>
-                                <button class="color-4 select-color">Vàng gold</button> -->
                             </div>
+
 
                         </div>
                         <div class="select-item">

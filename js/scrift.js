@@ -27,23 +27,18 @@ function handleCreate() {
       switch (type) {
         case 'Đen':
           TypeId = 1;
-          console.log(type);
           break;
         case 'Trắng':
           TypeId = 2;
-          console.log(type);
           break;
         case 'Vàng':
           TypeId = 3;
-          console.log(type);
           break;
         case 'Đỏ':
           TypeId = 4;
-          console.log(type);
           break;
         case 'Nâu':
           TypeId = 5;
-          console.log(type);
           break;
         default:
           console.log("Unknown color: " + type);

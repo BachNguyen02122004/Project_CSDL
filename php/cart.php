@@ -238,6 +238,7 @@ $price = number_format($row['price'], 0, ',', '.');
                 if ($result->num_rows > 0) {
                     // Lặp qua từng dòng dữ liệu và thay thế vào file HTML
                     while ($row = $result->fetch_assoc()) {
+                        $cartID = $row['id'];
                         $productName = $row['productName'];
                         $productImage = $row['productImage'];
                         $productID = $row['productId'];
@@ -245,15 +246,21 @@ $price = number_format($row['price'], 0, ',', '.');
                         $totalPrice = number_format($row['GIA_SP'] * $quantity * 0.94, 0, ',', '.');
                         $onePrice = number_format($row['GIA_SP'], 0, ',', '.');
                         $onePriceUpdate = number_format($row['GIA_SP'] * 0.94, 0, ',', '.');
-                        
+
                         //changed
                         $TypeProduct = $row['TypeProduct'];
                         $typeProductWord;
 
                         switch ($TypeProduct) {
                             case 1:
-                                $typeProductWord = 'Đen';
+                                $tmpQuery = "SELECT DISTINCT mau_sp.productline FROM (cart INNER JOIN product ON cart.productId = product.ID) INNER JOIN mau_sp ON mau_sp.productline = product.DANHMUCSP_ID WHERE cart.id = $cartID";
+                                $aRes = mysqli_query($mysqli, $tmpQuery);
+                                if (!$aRes) {
+                                    die("Query failed: " . mysqli_error($mysqli));
+                                }
+                                $typeProductWord = ($aRes->num_rows == 0) ? 'none' : 'Đen';
                                 break;
+
                             case 2:
                                 $typeProductWord = 'Trắng';
                                 break;
@@ -271,7 +278,7 @@ $price = number_format($row['price'], 0, ',', '.');
 
                         echo '<div class="product-info">
         
-        <--changed-->
+        
         <div id="productId" style="display: none">' . $productID . '</div> 
         <div id="TypeProduct" style="display: none">' . $TypeProduct . '</div> 
         <label class="check-box">
@@ -303,12 +310,11 @@ $price = number_format($row['price'], 0, ',', '.');
             <!-- Phân loại mặt hàng -->
             <div class="item-classification">
                 <button class="select-item">
-                    <div id="select-item">Phân loại hàng
-                        <div class="before-select-item"></div>
+                    <div id="select-item">'. ($typeProductWord == 'none' ? "" : "Phân loại hàng") .'
+                        <div class="before-select-item" '. ($typeProductWord == 'none' ? 'style="display:none"': 'style="display:block"') .'></div>
                     </div>
                     
-                    <--changed-->
-                    <div>' . $typeProductWord .'</div>
+                    <div>' . ($typeProductWord == 'none' ? "" : $typeProductWord) . '</div>
                 </button>
             </div>
             <div class="coins">
