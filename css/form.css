@@ -152,16 +152,20 @@ form {
 }
 
 /* sign in */
-.sign-in-content {
+.container { 
     max-height: 71px;
+}
+.sign-in-content {
     padding : 0px 30px 30px;
     overflow: hidden;
 }
 
 .empty-user{
+    display : none;
     color : red;
     font-size : 12px;
 }
+
 
 .sign-in-box {
     display: flex;
