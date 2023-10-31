@@ -279,6 +279,7 @@ $price = number_format($row['price'], 0, ',', '.');
                         echo '<div class="product-info">
         
         
+        
         <div id="productId" style="display: none">' . $productID . '</div> 
         <div id="TypeProduct" style="display: none">' . $TypeProduct . '</div> 
         <label class="check-box">

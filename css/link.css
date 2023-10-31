@@ -406,3 +406,12 @@
     
 }
 
+.select-item-small::before {
+    border: 14px solid transparent;
+    border-bottom: 0.9375rem solid var(--brand-primary-color,#ee4d2d);
+    content: "";
+    position: absolute;
+    right: -0.9375rem;
+    bottom: 0;
+}
+
