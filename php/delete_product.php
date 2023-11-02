@@ -14,6 +14,8 @@ if ($conn->connect_error) {
     die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
 }
 
+session_start();
+$Username = $_SESSION['username'];
 
 $data = json_decode(file_get_contents("php://input"));
 
@@ -29,14 +31,14 @@ if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
         $productId = $data['productId'];
         $typeId = $data['typeId'];
 
-        $take = "SELECT id FROM cart WHERE productId = '$productId' AND TypeProduct = '$typeId'";
+        $take = "SELECT id FROM cart WHERE productId = '$productId' AND TypeProduct = '$typeId' AND username = '$Username'";
         $result = mysqli_query($conn, $take);
         if($result) {
             $id = mysqli_fetch_assoc($result)['id'];
         }
 
         //changed
-        $sql = "DELETE FROM cart WHERE productId = '$productId' AND TypeProduct = '$typeId'";
+        $sql = "DELETE FROM cart WHERE id = '$id'";
         if ($conn->query($sql) === TRUE) {
 
             $response;

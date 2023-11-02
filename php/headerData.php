@@ -13,6 +13,9 @@ if ($conn->connect_error) {
     die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
 }
 
+session_start();
+$Username = $_SESSION['username'];
+
 //initialize
 $totalProducts = 0;
 $saveImage = array();
@@ -22,7 +25,7 @@ $Name = array();
 $quantity = array();
 $productline = array();
 
-$query1 = "SELECT COUNT(productId) as total FROM cart";
+$query1 = "SELECT COUNT(productId) as total FROM cart WHERE username = '$Username'";
 $results1 = mysqli_query($conn, $query1);
 
 if ($results1->num_rows > 0) {
@@ -30,7 +33,7 @@ if ($results1->num_rows > 0) {
     $totalProducts = $row['total'];
 }
 
-$query2 = "SELECT * FROM ((cart INNER JOIN product ON cart.productId = product.ID) INNER JOIN danhmuc_sp ON product.DANHMUCSP_ID = danhmuc_sp.DANHMUCSP_ID) ORDER BY cart.id LIMIT 3";
+$query2 = "SELECT * FROM ((cart INNER JOIN product ON cart.productId = product.ID) INNER JOIN danhmuc_sp ON product.DANHMUCSP_ID = danhmuc_sp.DANHMUCSP_ID) WHERE username = '$Username' ORDER BY cart.id LIMIT 3";
 $number = 0;
 $results2 = mysqli_query($conn, $query2);
 

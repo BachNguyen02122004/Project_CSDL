@@ -26,6 +26,8 @@ if ($resultUser->num_rows === 0) {
 
     if ($userpasswordInput === $storedPassword) {
         $response = array('success' => 'Right password');
+        session_start();
+        $_SESSION['username'] = $usernameInput;
         echo json_encode($response);
     } else {
         $response = array('error' => 'Wrong password');

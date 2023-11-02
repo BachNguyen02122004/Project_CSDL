@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 $servername = "localhost";
 $username = "root";
 $password = getenv('mySQLPass');
@@ -12,12 +10,14 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
 }
+session_start();
+$Username = $_SESSION['username']; 
 
 // Lấy giá trị id lớn nhất trong bảng cart
 $query = "SELECT MAX(id) AS max_id FROM cart";
 $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_assoc($result);
-$maxId = $row['max_id'];
+$maxId = $row['max_id']; 
 
 // Tăng giá trị id lớn nhất lên 1 để sử dụng cho sản phẩm mới
 $newId = $maxId + 1;
@@ -26,14 +26,14 @@ $newId = $maxId + 1;
 $data = json_decode(file_get_contents("php://input"));
 
 //changed
-$check = "SELECT * FROM cart WHERE productId = '$data->productId' AND TypeProduct = '$data->TypeId'";
+$check = "SELECT * FROM cart WHERE productId = '$data->productId' AND TypeProduct = '$data->TypeId' AND username = '$Username'";
 $result = mysqli_query($conn, $check);
 
 // Thêm vào giỏ hàng
 
 //changed
 if ($result->num_rows == 0) {
-    $sql = "INSERT INTO cart (id, productId, productName, productImage, quantity, TypeProduct) VALUES ('$newId', '$data->productId', '$data->name', '$data->image', '$data->quantity', '$data->TypeId')";
+    $sql = "INSERT INTO cart (id, productId, productName, productImage, quantity, TypeProduct, username) VALUES ('$newId', '$data->productId', '$data->name', '$data->image', '$data->quantity', '$data->TypeId', '$Username')";
 
     if ($conn->query($sql) === TRUE) {
         $response = "Dữ liệu đã được lưu vào cơ sở dữ liệu thành công";
@@ -43,7 +43,7 @@ if ($result->num_rows == 0) {
 
 } else {
     //changed
-    $sql = "UPDATE cart SET quantity = (quantity + $data->quantity) WHERE productId = '$data->productId' AND TypeProduct = '$data->TypeId'";
+    $sql = "UPDATE cart SET quantity = (quantity + $data->quantity) WHERE productId = '$data->productId' AND TypeProduct = '$data->TypeId' AND username = '$Username'";
 
     if ($conn->query($sql) === TRUE) {
         $response = "Dữ liệu đã được lưu vào cơ sở dữ liệu thành công";

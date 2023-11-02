@@ -12,11 +12,14 @@ if ($mysqli->connect_error) {
     die("Kết nối cơ sở dữ liệu thất bại: " . $mysqli->connect_error);
 }
 
+session_start();
+$Username = $_SESSION['username'];
+
 $id = $_GET['index'];
 $quantity = $_GET['value'];
 
 // Prepare and bind the update query
-$query = $mysqli->prepare("UPDATE cart SET quantity = ? WHERE id = ?");
+$query = $mysqli->prepare("UPDATE cart SET quantity = ? WHERE id = ? AND username = '$Username'");
 $query->bind_param("ii", $quantity, $id);
 
 // Execute the query

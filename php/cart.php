@@ -12,13 +12,14 @@ if ($mysqli->connect_error) {
     die("Kết nối cơ sở dữ liệu thất bại: " . $mysqli->connect_error);
 }
 
-$queryPrice = "SELECT SUM(GIA_SP*quantity*0.94) AS price FROM (cart INNER JOIN product ON cart.productID = product.ID)";
+session_start();
+$Username = $_SESSION['username'];
+
+$queryPrice = "SELECT SUM(GIA_SP*quantity*0.94) AS price FROM (cart INNER JOIN product ON cart.productID = product.ID) WHERE cart.username = '$Username'";
 $resultPrice = mysqli_query($mysqli, $queryPrice);
 $row = $resultPrice->fetch_assoc();
 $price = number_format($row['price'], 0, ',', '.');
-
 ?>;
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -219,7 +220,6 @@ $price = number_format($row['price'], 0, ',', '.');
                         <div class="check-before"></div>
                     </label>
                     <div class="product-info-1">Sản phẩm</div>
-
                     <div class="product-info-2">Đơn giá </div>
                     <div class="product-info-3">Số Lượng</div>
                     <div class="product-info-4">Số Tiền</div>
@@ -228,7 +228,7 @@ $price = number_format($row['price'], 0, ',', '.');
                 </div>
 
                 <?php
-                $query = "SELECT * FROM (cart INNER JOIN product ON product.ID = cart.productID)";
+                $query = "SELECT * FROM (cart INNER JOIN product ON product.ID = cart.productID) where cart.username = '$Username'";
 
                 // Thực hiện truy vấn
                 $result = $mysqli->query($query);
@@ -253,7 +253,7 @@ $price = number_format($row['price'], 0, ',', '.');
 
                         switch ($TypeProduct) {
                             case 1:
-                                $tmpQuery = "SELECT DISTINCT mau_sp.productline FROM (cart INNER JOIN product ON cart.productId = product.ID) INNER JOIN mau_sp ON mau_sp.productline = product.DANHMUCSP_ID WHERE cart.id = $cartID";
+                                $tmpQuery = "SELECT DISTINCT mau_sp.productline FROM (cart INNER JOIN product ON cart.productId = product.ID) INNER JOIN mau_sp ON mau_sp.productline = product.DANHMUCSP_ID WHERE cart.id = $cartID AND cart.username = '$Username'";
                                 $aRes = mysqli_query($mysqli, $tmpQuery);
                                 if (!$aRes) {
                                     die("Query failed: " . mysqli_error($mysqli));
@@ -309,10 +309,10 @@ $price = number_format($row['price'], 0, ',', '.');
             
             </div>
             <!-- Phân loại mặt hàng -->
-            <div class="item-classification">
+            <div class="item-classification">   
                 <button class="select-item">
                     <div id="select-item">'. ($typeProductWord == 'none' ? "" : "Phân loại hàng") .'
-                        <div class="before-select-item" '. ($typeProductWord == 'none' ? 'style="display:none"': 'style="display:block"') .'></div>
+                        <div class="before-select-item" '. ($typeProductWord == 'none' ? 'style="display:none"': '') .'></div>
                     </div>
                     
                     <div>' . ($typeProductWord == 'none' ? "" : $typeProductWord) . '</div>
