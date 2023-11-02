@@ -126,10 +126,10 @@ function deleteProduct(id) {
       'Content-Type': 'application/json',
     },
   })
-    .then(response => response.json())
+    // .then(response => response.json())
     .then(data => {
       // Xử lý phản hồi từ server (nếu cần)
-      console.log(data);
+      // console.log(data); 
       window.location.href = '../php/cart.php';
     })
 
