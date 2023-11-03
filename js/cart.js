@@ -6,6 +6,9 @@ const real_coins = Array.from(document.querySelectorAll(".coin-item-cart")).map(
 const coinsElement = document.querySelectorAll("#coin-number");
 const coins = [];
 let total_coin = parseInt(document.querySelector(".real-coin").textContent.replace(/\D/g, ""));
+const productId= document.querySelectorAll('#productId');
+const typeProduct = document.querySelectorAll('#TypeProduct');
+
 
 document.addEventListener('DOMContentLoaded', function () {
   // console.log(total_coin);
@@ -22,8 +25,9 @@ document.addEventListener('DOMContentLoaded', function () {
         inputElements[index].value = value;
         coins[index] = parseInt(real_coins[index].replace(/\D/g, "")) * inputElements[index].value;
         total_coin -= parseInt(real_coins[index].replace(/\D/g, ""));
+        console.log(productId[index]);
 
-        var url = "../php/dataChange.php?index=" + encodeURIComponent(index + 1) + "&value=" + encodeURIComponent(value);
+        var url = "../php/dataChange.php?index=" + encodeURIComponent((productId[index].innerHTML)) + "&value=" + encodeURIComponent(value) + "&productType=" + encodeURIComponent(typeProduct[index].innerHTML);
         fetch(url, {
           method: 'POST', // Use POST method to send data
           headers: {
@@ -51,8 +55,10 @@ document.addEventListener('DOMContentLoaded', function () {
     button.addEventListener('click', function () {
       let value = parseInt(inputElements[index].value);
       value++;
-
-      var url = "../php/dataChange.php?index=" + encodeURIComponent(index + 1) + "&value=" + encodeURIComponent(value);
+      console.log(value);
+      console.log(productId[index]);
+      console.log(typeProduct);
+      var url = "../php/dataChange.php?index=" + encodeURIComponent((productId[index].innerHTML)) + "&value=" + encodeURIComponent(value) + "&productType=" + encodeURIComponent(typeProduct[index].innerHTML);
       fetch(url, {
         method: 'POST', // Use POST method to send data
         headers: {

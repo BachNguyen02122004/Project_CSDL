@@ -16,10 +16,12 @@ session_start();
 $Username = $_SESSION['username'];
 
 $id = $_GET['index'];
+$typeProduct = $_GET['productType'];
+echo $id;
 $quantity = $_GET['value'];
 
 // Prepare and bind the update query
-$query = $mysqli->prepare("UPDATE cart SET quantity = ? WHERE id = ? AND username = '$Username'");
+$query = $mysqli->prepare("UPDATE cart SET quantity = ? WHERE productId = ? AND username = '$Username' AND TypeProduct = '$typeProduct'");
 $query->bind_param("ii", $quantity, $id);
 
 // Execute the query
