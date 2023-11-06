@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // console.log(total_coin);
   // console.log(coins);
 
-  handleDelete();
+  handleDelete(); 
+  changePage();
 
   decreaseButtons.forEach(function (button, index) {
     button.addEventListener('click', function () {
@@ -122,6 +123,14 @@ function handleDelete() {
     });
   });
 };
+
+function changePage(){
+  const button = document.querySelector('.buy-product-cart');
+  button.addEventListener('click', function(e){
+    e.preventDefault();
+    window.location.href = "../html/checkout.html";
+  })
+}
 
 // xóa product id dùng call api
 function deleteProduct(id) {
