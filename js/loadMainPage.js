@@ -7,7 +7,7 @@ function handlePageChange(page) {
   pageNumber = page;
   // Update the URL with the new page number
   const url = `${endpoint}?pageNumber=${pageNumber}`;
-  
+
   fetchData(url);
 
   // Update active state of page links
@@ -47,11 +47,11 @@ function updateActivePage(page) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const pageLinks = document.getElementsByClassName('pagination-item__link');
   for (let i = 0; i < pageLinks.length; i++) {
     const link = pageLinks[i];
-    link.addEventListener('click', function(event) {
+    link.addEventListener('click', function (event) {
       event.preventDefault();
       const page = parseInt(this.textContent);
       handlePageChange(page);
@@ -62,9 +62,8 @@ document.addEventListener('DOMContentLoaded', function() {
   fetchData(`${endpoint}?pageNumber=${pageNumber}`);
 
   const endpoint2 = '../php/headerData.php'; // Relative path to the PHP file
-  const url2 = `${endpoint2}`;
 
-  fetch(url2, {
+  fetch(endpoint2, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

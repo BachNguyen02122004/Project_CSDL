@@ -346,7 +346,7 @@ $conn->close();
             </div>
             <section class="content">
                 <div id="product-id"><?php echo $productId ?> </div>
-                <h1 id='product-name' class="position-1">[Xin đánh giá] <?php echo $productName; ?></h1>
+                <h1 id='product-name' class="position-1"><?php echo $productName; ?></h1>
                 <section class="select-image">
                     <img id="product-image" class="image-item" src="<?php echo $productImage; ?>" alt="Ảnh sản phẩm ">
                     <div class="image-small">
