@@ -14,7 +14,7 @@ if ($mysqli->connect_error) {
 $usernameInput = $mysqli->real_escape_string($_GET['username']);
 $userpasswordInput = $mysqli->real_escape_string($_GET['password']);
 
-$queryUser = "SELECT username, password FROM nguoi_dung WHERE username = '$usernameInput'";
+$queryUser = "SELECT username, password, id FROM nguoi_dung WHERE username = '$usernameInput'";
 $resultUser = $mysqli->query($queryUser);
 
 if ($resultUser->num_rows === 0) {
@@ -28,6 +28,7 @@ if ($resultUser->num_rows === 0) {
         $response = array('success' => 'Right password');
         session_start();
         $_SESSION['username'] = $usernameInput;
+        $_SESSION['id'] = $row['id'];
         echo json_encode($response);
     } else {
         $response = array('error' => 'Wrong password');

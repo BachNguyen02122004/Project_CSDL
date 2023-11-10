@@ -179,6 +179,10 @@ $price = number_format($row['price'], 0, ',', '.');
 
         </header>
 
+        <?php
+            $queryAddress = "select fullname, sdt, addressLine from (nguoi_dung as u inner join address as a on u.id = a.user_id)";
+        ?>
+        
         <div id="container">
             <div class="content-checkout">
                 <div id="infomation">
@@ -190,7 +194,7 @@ $price = number_format($row['price'], 0, ',', '.');
                         <div class="address-text">Địa chỉ nhận hàng</div>
                     </div>
                     <div class="info-user">
-                        <div class="infomation-item">Bách Nguyễn(+84)325453480 </div>
+                        <div class="infomation-item">Nam Hoàn(+84)325453480 </div>
                           <div  class='info-item-1' style="margin-right: 8px;">2c Ngách 15 Ngõ 20 Hồ Tùng Mậu, Phường Mai Dịch, Quận Cầu Giấy, Hà Nội</div>
                         <div class="info-default">Mặc định</div>
                         <div class="change-item">Thay đổi </div> 

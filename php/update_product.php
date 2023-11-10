@@ -32,7 +32,7 @@ $result = mysqli_query($conn, $check);
 // Thêm vào giỏ hàng
 
 //changed
-if ($result->num_rows == 0) {
+if ($result->num_rows == 0 and $Username != null) {
     $sql = "INSERT INTO cart (id, productId, productName, productImage, quantity, TypeProduct, username) VALUES ('$newId', '$data->productId', '$data->name', '$data->image', '$data->quantity', '$data->TypeId', '$Username')";
 
     if ($conn->query($sql) === TRUE) {
