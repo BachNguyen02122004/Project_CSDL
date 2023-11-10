@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   handleDelete(); 
   changePage();
-
   decreaseButtons.forEach(function (button, index) {
     button.addEventListener('click', function () {
       let value = parseInt(inputElements[index].value);
@@ -128,9 +127,10 @@ function changePage(){
   const button = document.querySelector('.buy-product-cart');
   button.addEventListener('click', function(e){
     e.preventDefault();
-    window.location.href = "../html/checkout.html";
+    window.location.href = "../php/checkout.php";
   })
 }
+
 
 // xóa product id dùng call api
 function deleteProduct(id) {

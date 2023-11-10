@@ -13,13 +13,10 @@ if ($conn->connect_error) {
 }
 
 $data = json_decode(file_get_contents("php://input"));
-$user = $data->fullName;
-$newUsername = $data->usernameInput;
-$newPassword = $data->passwordInput;
-$id = $data->id;
+$addressLine =  $data->address;
 
 // Create a new SQL query to insert the data
-$insertQuery = "INSERT INTO nguoi_dung(id, fullname, username, password) VALUES ('$id', '$user', '$newUsername', '$newPassword')";
+$insertQuery = "INSERT INTO address(user_id, addressLine) VALUES ('1', '$addressLine')";
 
 // Execute the insert query
 if ($conn->query($insertQuery) === true) {

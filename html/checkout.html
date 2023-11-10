@@ -1,30 +1,5 @@
-<?php
-
-$servername = "localhost";
-$username = "root";
-$password = getenv('mySQLPass');
-$dbname = "project";
-
-$mysqli = new mysqli($servername, $username, $password, $dbname);
-
-// Kiểm tra kết nối
-if ($mysqli->connect_error) {
-    die("Kết nối cơ sở dữ liệu thất bại: " . $mysqli->connect_error);
-}
-
-session_start();
-$Username = $_SESSION['username'];
-
-
-$queryPrice = "SELECT SUM(GIA_SP*quantity*0.94) AS price FROM (cart INNER JOIN product ON cart.productID = product.ID) WHERE cart.username = '$Username'";
-$resultPrice = mysqli_query($mysqli, $queryPrice);
-$row = $resultPrice->fetch_assoc();
-$price = number_format($row['price'], 0, ',', '.');
-?>;
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,7 +15,6 @@ $price = number_format($row['price'], 0, ',', '.');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <div id="main">
         <header id="header">
@@ -169,7 +143,7 @@ $price = number_format($row['price'], 0, ',', '.');
                             </div>
                             <div></div>
 
-
+                            
                             <!-- Cart layout -->
                         </div>
                     </div>
@@ -178,25 +152,22 @@ $price = number_format($row['price'], 0, ',', '.');
             </div>
 
         </header>
-
+        
         <div id="container">
             <div class="content-checkout">
                 <div id="infomation">
                     <div class="decorate-item"></div>
                     <div class="address-item">
-                        <svg height="16" viewBox="0 0 12 16" width="12" class="shopee-svg-icon icon-location-marker">
-                            <path d="M6 3.2c1.506 0 2.727 1.195 2.727 2.667 0 1.473-1.22 2.666-2.727 2.666S3.273 7.34 3.273 5.867C3.273 4.395 4.493 3.2 6 3.2zM0 6c0-3.315 2.686-6 6-6s6 2.685 6 6c0 2.498-1.964 5.742-6 9.933C1.613 11.743 0 8.498 0 6z" fill-rule="evenodd"></path>
-                        </svg>
+                        <svg height="16" viewBox="0 0 12 16" width="12" class="shopee-svg-icon icon-location-marker"><path d="M6 3.2c1.506 0 2.727 1.195 2.727 2.667 0 1.473-1.22 2.666-2.727 2.666S3.273 7.34 3.273 5.867C3.273 4.395 4.493 3.2 6 3.2zM0 6c0-3.315 2.686-6 6-6s6 2.685 6 6c0 2.498-1.964 5.742-6 9.933C1.613 11.743 0 8.498 0 6z" fill-rule="evenodd"></path></svg>
                         <div class="address-text">Địa chỉ nhận hàng</div>
                     </div>
                     <div class="info-user">
-                        <div class="infomation-item">Bách Nguyễn(+84)325453480 </div>
-                          <div  class='info-item-1' style="margin-right: 8px;">2c Ngách 15 Ngõ 20 Hồ Tùng Mậu, Phường Mai Dịch, Quận Cầu Giấy, Hà Nội</div>
+                        <div class="infomation-item">Bách Nguyễn(+84)325453480</div>
+                        <div class="info-item-1">2c Ngách 15 Ngõ 20 Hồ Tùng Mậu, Phường Mai Dịch, Quận Cầu Giấy, Hà Nội</div>
                         <div class="info-default">Mặc định</div>
-                        <div class="change-item">Thay đổi </div> 
+                        <a href="#" class="change-item">Thay đổi</a>
                     </div>
                 </div>
-
                 <div id="product-info">
                     <div class="product__info-item">
                         <div class="product__info-item1">
@@ -207,241 +178,168 @@ $price = number_format($row['price'], 0, ',', '.');
                         <div class="product__info-quantity product__info-color">Số lượng</div>
                         <div class="product__info-total product__info-color">Thành tiền</div>
                     </div>
-
-                    <?php
-                    $query = "SELECT * FROM (cart INNER JOIN product ON product.ID = cart.productID) where cart.username = '$Username'";
-
-                    // Thực hiện truy vấn
-                    $result = $mysqli->query($query);
-                    $productNum = $result->num_rows;
-
-                    // Kiểm tra kết quả truy vấn
-                    if ($result->num_rows > 0) {
-                        // Lặp qua từng dòng dữ liệu và thay thế vào file HTML
-                        while ($row = $result->fetch_assoc()) {
-                            $cartID = $row['id'];
-                            $productName = $row['productName'];
-                            $productImage = $row['productImage'];
-                            $productID = $row['productId'];
-                            $quantity = $row['quantity'];
-                            $totalPrice = number_format($row['GIA_SP'] * $quantity * 0.94, 0, ',', '.');
-                            $onePrice = number_format($row['GIA_SP'], 0, ',', '.');
-                            $onePriceUpdate = number_format($row['GIA_SP'] * 0.94, 0, ',', '.');
-
-                            //changed
-                            $TypeProduct = $row['TypeProduct'];
-                            $typeProductWord;
-
-                            switch ($TypeProduct) {
-                                case 1:
-                                    $tmpQuery = "SELECT DISTINCT mau_sp.productline FROM (cart INNER JOIN product ON cart.productId = product.ID) INNER JOIN mau_sp ON mau_sp.productline = product.DANHMUCSP_ID WHERE cart.id = $cartID AND cart.username = '$Username'";
-                                    $aRes = mysqli_query($mysqli, $tmpQuery);
-                                    if (!$aRes) {
-                                        die("Query failed: " . mysqli_error($mysqli));
-                                    }
-                                    $typeProductWord = ($aRes->num_rows == 0) ? 'none' : 'Đen';
-                                    break;
-
-                                case 2:
-                                    $typeProductWord = 'Trắng';
-                                    break;
-                                case 3:
-                                    $typeProductWord = 'Vàng';
-                                    break;
-                                case 4:
-                                    $typeProductWord = 'Đỏ';
-                                    break;
-                                case 5:
-                                    $typeProductWord = 'Nâu';
-                                    break;
-                            }
-
-                            echo '<div class="fake-item">
+                    <div class="fake-item">
                         <div class="mall-item">
                             <svg viewBox="0 0 24 11"><g fill="#fff" fill-rule="evenodd"><path d="M19.615 7.143V1.805a.805.805 0 0 0-1.611 0v5.377H18c0 1.438.634 2.36 1.902 2.77V9.95c.09.032.19.05.293.05.444 0 .805-.334.805-.746a.748.748 0 0 0-.498-.69v-.002c-.59-.22-.885-.694-.885-1.42h-.002zm3 0V1.805a.805.805 0 0 0-1.611 0v5.377H21c0 1.438.634 2.36 1.902 2.77V9.95c.09.032.19.05.293.05.444 0 .805-.334.805-.746a.748.748 0 0 0-.498-.69v-.002c-.59-.22-.885-.694-.885-1.42h-.002zm-7.491-2.985c.01-.366.37-.726.813-.726.45 0 .814.37.814.742v5.058c0 .37-.364.73-.813.73-.395 0-.725-.278-.798-.598a3.166 3.166 0 0 1-1.964.68c-1.77 0-3.268-1.456-3.268-3.254 0-1.797 1.497-3.328 3.268-3.328a3.1 3.1 0 0 1 1.948.696zm-.146 2.594a1.8 1.8 0 1 0-3.6 0 1.8 1.8 0 1 0 3.6 0z"></path><path d="M.078 1.563A.733.733 0 0 1 .565.89c.423-.15.832.16 1.008.52.512 1.056 1.57 1.88 2.99 1.9s2.158-.85 2.71-1.882c.19-.356.626-.74 1.13-.537.342.138.477.4.472.65a.68.68 0 0 1 .004.08v7.63a.75.75 0 0 1-1.5 0V3.67c-.763.72-1.677 1.18-2.842 1.16a4.856 4.856 0 0 1-2.965-1.096V9.25a.75.75 0 0 1-1.5 0V1.648c0-.03.002-.057.005-.085z" fill-rule="nonzero"></path></g></svg>
                         </div>
                         <div>ShopDunk Office Store</div>
                     </div>
-
                     <div class="product__info-content">
                         <div class="product__info-item1 product__info-divide">
-                            <img src="' . $productImage . '" alt="" class="product__info-image">
-                            <div>' . $productName . '</div>
+                            <img src="../image/phone1.png" alt="" class="product__info-image">
+                            <div>Apple iPhone 14 Pro Max 128GB</div>
                             
                         </div>
-                        <div class="product__info-select empty-item">Loại : ' . $typeProductWord . '</div>
-                        <div class="product__info-coins product__info-text">₫' . $onePriceUpdate . '</div>
-                        <div class="product__info-quantity product__info-text">' . $quantity . '</div>
-                        <div class="product__info-total product__info-text">₫' . $totalPrice . '</div>
-                    </div>';
-                    }
-                }
-                    ?>
-
+                        <div class="product__info-select empty-item">
+                            Loại : Gold
+                        </div>
+                        <div class="product__info-coins product__info-text">₫27.700.000</div>
+                        <div class="product__info-quantity product__info-text">1</div>
+                        <div class="product__info-total product__info-text">₫27.700.000</div>
+                    </div>
                     <div class="freeship-item">
                         <div class="vourcher-item">
-                            <svg fill="none" viewBox="0 -2 23 22" class="shopee-svg-icon icon-voucher-line">
-                                <g filter="url(#voucher-filter0_d)">
-                                    <mask id="a" fill="#fff">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1 2h18v2.32a1.5 1.5 0 000 2.75v.65a1.5 1.5 0 000 2.75v.65a1.5 1.5 0 000 2.75V16H1v-2.12a1.5 1.5 0 000-2.75v-.65a1.5 1.5 0 000-2.75v-.65a1.5 1.5 0 000-2.75V2z"></path>
-                                    </mask>
-                                    <path d="M19 2h1V1h-1v1zM1 2V1H0v1h1zm18 2.32l.4.92.6-.26v-.66h-1zm0 2.75h1v-.65l-.6-.26-.4.91zm0 .65l.4.92.6-.26v-.66h-1zm0 2.75h1v-.65l-.6-.26-.4.91zm0 .65l.4.92.6-.26v-.66h-1zm0 2.75h1v-.65l-.6-.26-.4.91zM19 16v1h1v-1h-1zM1 16H0v1h1v-1zm0-2.12l-.4-.92-.6.26v.66h1zm0-2.75H0v.65l.6.26.4-.91zm0-.65l-.4-.92-.6.26v.66h1zm0-2.75H0v.65l.6.26.4-.91zm0-.65l-.4-.92-.6.26v.66h1zm0-2.75H0v.65l.6.26.4-.91zM19 1H1v2h18V1zm1 3.32V2h-2v2.32h2zm-.9 1.38c0-.2.12-.38.3-.46l-.8-1.83a2.5 2.5 0 00-1.5 2.29h2zm.3.46a.5.5 0 01-.3-.46h-2c0 1.03.62 1.9 1.5 2.3l.8-1.84zm.6 1.56v-.65h-2v.65h2zm-.9 1.38c0-.2.12-.38.3-.46l-.8-1.83a2.5 2.5 0 00-1.5 2.29h2zm.3.46a.5.5 0 01-.3-.46h-2c0 1.03.62 1.9 1.5 2.3l.8-1.84zm.6 1.56v-.65h-2v.65h2zm-.9 1.38c0-.2.12-.38.3-.46l-.8-1.83a2.5 2.5 0 00-1.5 2.29h2zm.3.46a.5.5 0 01-.3-.46h-2c0 1.03.62 1.9 1.5 2.3l.8-1.84zM20 16v-2.13h-2V16h2zM1 17h18v-2H1v2zm-1-3.12V16h2v-2.12H0zm1.4.91a2.5 2.5 0 001.5-2.29h-2a.5.5 0 01-.3.46l.8 1.83zm1.5-2.29a2.5 2.5 0 00-1.5-2.3l-.8 1.84c.18.08.3.26.3.46h2zM0 10.48v.65h2v-.65H0zM.9 9.1a.5.5 0 01-.3.46l.8 1.83A2.5 2.5 0 002.9 9.1h-2zm-.3-.46c.18.08.3.26.3.46h2a2.5 2.5 0 00-1.5-2.3L.6 8.65zM0 7.08v.65h2v-.65H0zM.9 5.7a.5.5 0 01-.3.46l.8 1.83A2.5 2.5 0 002.9 5.7h-2zm-.3-.46c.18.08.3.26.3.46h2a2.5 2.5 0 00-1.5-2.3L.6 5.25zM0 2v2.33h2V2H0z" mask="url(#a)"></path>
-                                </g>
-                                <path clip-rule="evenodd" d="M6.49 14.18h.86v-1.6h-.86v1.6zM6.49 11.18h.86v-1.6h-.86v1.6zM6.49 8.18h.86v-1.6h-.86v1.6zM6.49 5.18h.86v-1.6h-.86v1.6z"></path>
-                                <defs>
-                                    <filter id="voucher-filter0_d" x="0" y="1" width="20" height="16" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                                        <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
-                                        <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></feColorMatrix>
-                                        <feOffset></feOffset>
-                                        <feGaussianBlur stdDeviation=".5"></feGaussianBlur>
-                                        <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0"></feColorMatrix>
-                                        <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
-                                        <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape"></feBlend>
-                                    </filter>
-                                </defs>
-                            </svg>
+                            <svg fill="none" viewBox="0 -2 23 22" class="shopee-svg-icon icon-voucher-line"><g filter="url(#voucher-filter0_d)"><mask id="a" fill="#fff"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 2h18v2.32a1.5 1.5 0 000 2.75v.65a1.5 1.5 0 000 2.75v.65a1.5 1.5 0 000 2.75V16H1v-2.12a1.5 1.5 0 000-2.75v-.65a1.5 1.5 0 000-2.75v-.65a1.5 1.5 0 000-2.75V2z"></path></mask><path d="M19 2h1V1h-1v1zM1 2V1H0v1h1zm18 2.32l.4.92.6-.26v-.66h-1zm0 2.75h1v-.65l-.6-.26-.4.91zm0 .65l.4.92.6-.26v-.66h-1zm0 2.75h1v-.65l-.6-.26-.4.91zm0 .65l.4.92.6-.26v-.66h-1zm0 2.75h1v-.65l-.6-.26-.4.91zM19 16v1h1v-1h-1zM1 16H0v1h1v-1zm0-2.12l-.4-.92-.6.26v.66h1zm0-2.75H0v.65l.6.26.4-.91zm0-.65l-.4-.92-.6.26v.66h1zm0-2.75H0v.65l.6.26.4-.91zm0-.65l-.4-.92-.6.26v.66h1zm0-2.75H0v.65l.6.26.4-.91zM19 1H1v2h18V1zm1 3.32V2h-2v2.32h2zm-.9 1.38c0-.2.12-.38.3-.46l-.8-1.83a2.5 2.5 0 00-1.5 2.29h2zm.3.46a.5.5 0 01-.3-.46h-2c0 1.03.62 1.9 1.5 2.3l.8-1.84zm.6 1.56v-.65h-2v.65h2zm-.9 1.38c0-.2.12-.38.3-.46l-.8-1.83a2.5 2.5 0 00-1.5 2.29h2zm.3.46a.5.5 0 01-.3-.46h-2c0 1.03.62 1.9 1.5 2.3l.8-1.84zm.6 1.56v-.65h-2v.65h2zm-.9 1.38c0-.2.12-.38.3-.46l-.8-1.83a2.5 2.5 0 00-1.5 2.29h2zm.3.46a.5.5 0 01-.3-.46h-2c0 1.03.62 1.9 1.5 2.3l.8-1.84zM20 16v-2.13h-2V16h2zM1 17h18v-2H1v2zm-1-3.12V16h2v-2.12H0zm1.4.91a2.5 2.5 0 001.5-2.29h-2a.5.5 0 01-.3.46l.8 1.83zm1.5-2.29a2.5 2.5 0 00-1.5-2.3l-.8 1.84c.18.08.3.26.3.46h2zM0 10.48v.65h2v-.65H0zM.9 9.1a.5.5 0 01-.3.46l.8 1.83A2.5 2.5 0 002.9 9.1h-2zm-.3-.46c.18.08.3.26.3.46h2a2.5 2.5 0 00-1.5-2.3L.6 8.65zM0 7.08v.65h2v-.65H0zM.9 5.7a.5.5 0 01-.3.46l.8 1.83A2.5 2.5 0 002.9 5.7h-2zm-.3-.46c.18.08.3.26.3.46h2a2.5 2.5 0 00-1.5-2.3L.6 5.25zM0 2v2.33h2V2H0z" mask="url(#a)"></path></g><path clip-rule="evenodd" d="M6.49 14.18h.86v-1.6h-.86v1.6zM6.49 11.18h.86v-1.6h-.86v1.6zM6.49 8.18h.86v-1.6h-.86v1.6zM6.49 5.18h.86v-1.6h-.86v1.6z"></path><defs><filter id="voucher-filter0_d" x="0" y="1" width="20" height="16" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood><feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></feColorMatrix><feOffset></feOffset><feGaussianBlur stdDeviation=".5"></feGaussianBlur><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0"></feColorMatrix><feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend><feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape"></feBlend></filter></defs></svg>
                             <div>Vourcher của shop</div>
                         </div>
-                        <a href="#" class="select-vourcher">Chọn vourcher</a>
+                            <a href="#" class="select-vourcher">Chọn vourcher</a>
                     </div>
-
                     <div class="total-coin-item">
                         <div class="total-coin-text">Tổng số tiền(1 sản phẩm):</div>
-                        <div class="total-coin">₫<?php echo $price ?></div>
+                        <div class="total-coin">₫28.144.799</div>
                     </div>
+                </div>
+                <div class="payment">
+                            <div class="abc text-coin-1">Tổng tiền hàng</div>
+                            <div class="abc bwwaGp">₫27.700.000</div>
+                            <div class="abc text-coin-1 transport">Phí vật chuyển</div>
+                            <div class="abc vourcher-ship transport">₫0</div>
+                            <div class="abc text-coin-1 total-coins">Tổng thanh toán</div>
+                            <div class="abc payment__item-total">₫27.700.000</div>
+                </div>
 
-                    <div class="payment">
-                        <div class="abc text-coin-1">Tổng tiền hàng</div>
-                        <div class="abc bwwaGp">₫<?php echo $price ?></div>
-                        <div class="abc text-coin-1 transport">Phí vật chuyển</div>
-                        <div class="abc vourcher-ship transport">₫0</div>
-                        <div class="abc text-coin-1 total-coins">Tổng thanh toán</div>
-                        <div class="abc payment__item-total">₫<?php echo $price ?></div>
-                    </div>;
+                <div class="select-product">
+                    <div style="font-size: 15px;">Nhấn "Đặt hàng" đồng nghĩa với việc bạn đồng ý tuân theo 
+                        <a style="text-decoration: none;" href="#">Điều khoản Shopee</a>
+                    </div>
+                    <button class="select__product-item">Đặt hàng</button>
+                </div>
+                
+            </div>
+            
 
-                    <div class="select-product">
-                        <div style="font-size: 15px;">Nhấn "Đặt hàng" đồng nghĩa với việc bạn đồng ý tuân theo
-                            <a style="text-decoration: none;" href="#">Điều khoản Shopee</a>
+        </div>
+
+             
+        <footer id="footer">
+            <div class="grid">
+                <!-- Footer shop -->
+                <div class="footer-shop grid__row">
+                    <div class="column-1">
+                        <h3 class="footer-shop__heading">CHĂM SÓC KHÁCH HÀNG</h3>
+                        <ul class="footer-shop__list">
+                            <li class="footer-shop__item">
+                                <a href="" class="footer-shop__link">Trung Tâm Trợ Giúp</a>
+                                <a href="" class="footer-shop__link">Shopee Blog</a>
+                                <a href="" class="footer-shop__link">Shopee Mall</a>
+                                <a href="" class="footer-shop__link">Hướng Dẫn Mua Hàng</a>
+                                <a href="" class="footer-shop__link">Hướng Dẫn Bán Hàng</a>
+                                <a href="" class="footer-shop__link">Thanh Toán</a>
+                                <a href="" class="footer-shop__link">Shopee Xu</a>
+                                <a href="" class="footer-shop__link">Vận Chuyển</a>
+                                <a href="" class="footer-shop__link">Trả Hàng & Hoàn Tiền</a>
+                                <a href="" class="footer-shop__link">Chăm Sóc Khách Hàng</a>
+                                <a href="" class="footer-shop__link">Chính Sách Bảo Hành</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="column-1">
+                        <h3 class="footer-shop__heading">VỀ SHOPEE</h3>
+                        <ul class="footer-shop__list">
+                            <li class="footer-shop__item">
+                                <a href="" class="footer-shop__link">Giới Thiệu Về Shopee Việt Nam</a>
+                                <a href="" class="footer-shop__link">Tuyển Dụng</a>
+                                <a href="" class="footer-shop__link">Điều Khoản Shopee</a>
+                                <a href="" class="footer-shop__link">Chính Sách Bảo Mật</a>
+                                <a href="" class="footer-shop__link">Chính Hãng</a>
+                                <a href="" class="footer-shop__link">Kênh Người Bán</a>
+                                <a href="" class="footer-shop__link">Flash Sales</a>
+                                <a href="" class="footer-shop__link">Chương Trình Tiếp Thị Liên Kết Shopee</a>
+                                <a href="" class="footer-shop__link">Liên Hệ Với Truyền Thông</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="column-1 footer-shop__pay-ship">
+                        <div>
+                            <h3 class="footer-shop__heading">THANH TOÁN</h3>
+                            <img src="../img/thanhtoan.png" alt="" class="footer-shop__heading-img">
                         </div>
-                        <button class="select__product-item">Đặt hàng</button>
+                        <div>
+                            <h3 class="footer-shop__heading">ĐƠN VỊ VẬN CHUYỂN</h3>
+                            <img src="../img/đơn vị vận chuyển.png" alt="" class="footer-shop__heading-img">
+                        </div>
                     </div>
+                    <div class="column-1">
+                        <h3 class="footer-shop__heading">THEO DÕI CHÚNG TÔI TRÊN</h3>
+                        <ul class="footer-shop__list">
+                            <li class="footer-shop__item">
+                                <a href="" class="footer-shop__social footer-shop__link">
+                                    <i class="footer-shop__social-icon fab fa-facebook"></i>
+                                    Facebook
+                                </a>
+                                <a href="" class="footer-shop__social footer-shop__link">
+                                    <i class="footer-shop__social-icon fab fa-instagram-square"></i>
+                                    Instagram
+                                </a>
+                                <a href="" class="footer-shop__social footer-shop__link">
+                                    <i class="footer-shop__social-icon fab fa-linkedin"></i>
+                                    Linkedin
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="column-1">
+                        <h3 class="footer-shop__heading">TẢI ỨNG DỤNG SHOPEE NGAY THÔI</h3>
+                        <div class="footer-shop__qr">
+                            <a class="footer-shop__qr-link">
+                                <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/d91264e165ed6facc6178994d5afae79.png" alt="QR code" class="footer-shop__qr-img">
+                            </a>
+                            <div class="footer-shop__apps">
+                                <a href="" class="footer-shop__app-link">
+                                    <img src="../img/googleplay.png" alt="Google Play" class="footer-shop__app-icon">
+                                </a>
+                                <a href="" class="footer-shop__app-link">
+                                    <img src="../img/appstore.png" alt="App Store" class="footer-shop__app-icon">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                
+                <div class="footer-notice grid__row">
+                    <span class="footer-notice__copy-right">© 2023 LTC. Tất cả các quyền được bảo lưu.</span>
+                    <div class="footer-notice__area">
+                        <span class="footer-notice__heading">Quốc gia & Khu vực:</span>
+                        <a class="footer-notice__country">Singapore</a>
+                        <a class="footer-notice__country">Indonesia</a>
+                        <a class="footer-notice__country">Đài Loan</a>
+                        <a class="footer-notice__country">Thái Lan</a>
+                        <a class="footer-notice__country">Malaysia</a>
+                        <a class="footer-notice__country">Việt Nam</a>
+                        <a class="footer-notice__country">Philippines</a>
+                        <a class="footer-notice__country">Brazil</a>
+                        <a class="footer-notice__country">México</a>
+                        <a class="footer-notice__country">Colombia</a>
+                        <a class="footer-notice__country">Chile</a>
+                    </div>
                 </div>
             </div>
-
-
-            <footer id="footer">
-                <div class="grid">
-                    <!-- Footer shop -->
-                    <div class="footer-shop grid__row">
-                        <div class="column-1">
-                            <h3 class="footer-shop__heading">CHĂM SÓC KHÁCH HÀNG</h3>
-                            <ul class="footer-shop__list">
-                                <li class="footer-shop__item">
-                                    <a href="" class="footer-shop__link">Trung Tâm Trợ Giúp</a>
-                                    <a href="" class="footer-shop__link">Shopee Blog</a>
-                                    <a href="" class="footer-shop__link">Shopee Mall</a>
-                                    <a href="" class="footer-shop__link">Hướng Dẫn Mua Hàng</a>
-                                    <a href="" class="footer-shop__link">Hướng Dẫn Bán Hàng</a>
-                                    <a href="" class="footer-shop__link">Thanh Toán</a>
-                                    <a href="" class="footer-shop__link">Shopee Xu</a>
-                                    <a href="" class="footer-shop__link">Vận Chuyển</a>
-                                    <a href="" class="footer-shop__link">Trả Hàng & Hoàn Tiền</a>
-                                    <a href="" class="footer-shop__link">Chăm Sóc Khách Hàng</a>
-                                    <a href="" class="footer-shop__link">Chính Sách Bảo Hành</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="column-1">
-                            <h3 class="footer-shop__heading">VỀ SHOPEE</h3>
-                            <ul class="footer-shop__list">
-                                <li class="footer-shop__item">
-                                    <a href="" class="footer-shop__link">Giới Thiệu Về Shopee Việt Nam</a>
-                                    <a href="" class="footer-shop__link">Tuyển Dụng</a>
-                                    <a href="" class="footer-shop__link">Điều Khoản Shopee</a>
-                                    <a href="" class="footer-shop__link">Chính Sách Bảo Mật</a>
-                                    <a href="" class="footer-shop__link">Chính Hãng</a>
-                                    <a href="" class="footer-shop__link">Kênh Người Bán</a>
-                                    <a href="" class="footer-shop__link">Flash Sales</a>
-                                    <a href="" class="footer-shop__link">Chương Trình Tiếp Thị Liên Kết Shopee</a>
-                                    <a href="" class="footer-shop__link">Liên Hệ Với Truyền Thông</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="column-1 footer-shop__pay-ship">
-                            <div>
-                                <h3 class="footer-shop__heading">THANH TOÁN</h3>
-                                <img src="../img/thanhtoan.png" alt="" class="footer-shop__heading-img">
-                            </div>
-                            <div>
-                                <h3 class="footer-shop__heading">ĐƠN VỊ VẬN CHUYỂN</h3>
-                                <img src="../img/đơn vị vận chuyển.png" alt="" class="footer-shop__heading-img">
-                            </div>
-                        </div>
-                        <div class="column-1">
-                            <h3 class="footer-shop__heading">THEO DÕI CHÚNG TÔI TRÊN</h3>
-                            <ul class="footer-shop__list">
-                                <li class="footer-shop__item">
-                                    <a href="" class="footer-shop__social footer-shop__link">
-                                        <i class="footer-shop__social-icon fab fa-facebook"></i>
-                                        Facebook
-                                    </a>
-                                    <a href="" class="footer-shop__social footer-shop__link">
-                                        <i class="footer-shop__social-icon fab fa-instagram-square"></i>
-                                        Instagram
-                                    </a>
-                                    <a href="" class="footer-shop__social footer-shop__link">
-                                        <i class="footer-shop__social-icon fab fa-linkedin"></i>
-                                        Linkedin
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="column-1">
-                            <h3 class="footer-shop__heading">TẢI ỨNG DỤNG SHOPEE NGAY THÔI</h3>
-                            <div class="footer-shop__qr">
-                                <a class="footer-shop__qr-link">
-                                    <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/d91264e165ed6facc6178994d5afae79.png" alt="QR code" class="footer-shop__qr-img">
-                                </a>
-                                <div class="footer-shop__apps">
-                                    <a href="" class="footer-shop__app-link">
-                                        <img src="../img/googleplay.png" alt="Google Play" class="footer-shop__app-icon">
-                                    </a>
-                                    <a href="" class="footer-shop__app-link">
-                                        <img src="../img/appstore.png" alt="App Store" class="footer-shop__app-icon">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="footer-notice grid__row">
-                        <span class="footer-notice__copy-right">© 2023 LTC. Tất cả các quyền được bảo lưu.</span>
-                        <div class="footer-notice__area">
-                            <span class="footer-notice__heading">Quốc gia & Khu vực:</span>
-                            <a class="footer-notice__country">Singapore</a>
-                            <a class="footer-notice__country">Indonesia</a>
-                            <a class="footer-notice__country">Đài Loan</a>
-                            <a class="footer-notice__country">Thái Lan</a>
-                            <a class="footer-notice__country">Malaysia</a>
-                            <a class="footer-notice__country">Việt Nam</a>
-                            <a class="footer-notice__country">Philippines</a>
-                            <a class="footer-notice__country">Brazil</a>
-                            <a class="footer-notice__country">México</a>
-                            <a class="footer-notice__country">Colombia</a>
-                            <a class="footer-notice__country">Chile</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        </div>
-    </div>
-
-
-
-
+        </footer>
+    
+            
+            
+            
 
 </body>
-<script src="../js/checkout.js"></script>
 </html>
