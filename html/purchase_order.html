@@ -16,7 +16,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="../css/purchase_order.css">
 </head>
 
 <body>
@@ -115,13 +115,13 @@
                     </li>
                         <!-- Login -->
                         <li class="navbar__item navbar__user">
-                            <img id="user_image" class="navbar__user-avt"/>
+                            <img id="user_image" class="navbar__user-avt" src='../img/admin.jpg'/>Admin
                             <span class="navbar__user-name"></span>
 
                             <ul class="navbar__user-menu">
                                 <li class="navbar__user-item"><a href="">Tài khoản của tôi</a></li>
                                 <li class="navbar__user-item"><a href="">Địa chỉ của tôi</a></li>
-                                <li class="navbar__user-item"><a href="../html/purchase_order.html">Đơn mua</a></li>
+                                <li class="navbar__user-item"><a href="">Đơn mua</a></li>
                                 <li class="navbar__user-item navbar__user-item-separate" id="logout"><a href="../html/form.html"></a></li>
                             </ul>
                         </li>
@@ -167,9 +167,77 @@
                     </div>
 
                     <!-- Cart layout -->
-                    <div class="header__cart" id="headerData">
-                       
+                    <div class="header__cart">
+                        <div class="header__cart-wrap">
+                            <i class="header__cart-icon fas fa-shopping-cart"></i>
+                            <span class="header__cart-notice">0</span>
+                            <!-- No cart: header__cart-list--no-cart -->
+                            <div class="header__cart-list">
+                                <img src="./asset/img/nocard.png" alt="No card" class="header__cart-no-cart-img">
+
+                                <h4 class="header__cart-heading">Sản phẩm đã thêm</h4>
+                                <ul class="header__cart-group">
+                                    <!-- Cart items -->
+                                    <li class="header__cart-item">
+                                        <img src="https://cf.shopee.vn/file/f9864891a8ba04e463d2dd446e745c49" alt="Bàn Phím Cơ EDRA EK387" class="header__cart-img">
+                                        <div class="header__cart-item-info">
+                                            <div class="header__cart-item-head">
+                                                <h5 class="header__cart-item-name">Bàn Phím Cơ EDRA EK387 Bàn Phím Cơ EDRA EK387Bàn Phím Cơ EDRA EK387Bàn Phím Cơ EDRA EK387Bàn Phím Cơ EDRA EK387</h5>
+                                                <div class="header__cart-price-wrap">
+                                                    <span class="header__cart-item-price">640.000đ</span>
+                                                    <span class="header__cart-item-delect">x</span>
+                                                    <span class="header__cart-item-qnt">2</span>
+                                                </div>
+                                            </div>
+                                            <div class="header__cart-item-body">
+                                                <span class="header__cart-item-desc">Phân loại hàng: Red Switch</span>
+                                                <span class="header__cart-item-remove">Xóa</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="header__cart-item">
+                                        <img src="https://cf.shopee.vn/file/c64ddf57f14037d07edc37f88c364641_tn" alt="Ghế Chơi Game E-DRA Jupiter" class="header__cart-img">
+                                        <div class="header__cart-item-info">
+                                            <div class="header__cart-item-head">
+                                                <h5 class="header__cart-item-name">Ghế Chơi Game E-DRA Jupiter</h5>
+                                                <div class="header__cart-price-wrap">
+                                                    <span class="header__cart-item-price">2.000.000đ</span>
+                                                    <span class="header__cart-item-delect">x</span>
+                                                    <span class="header__cart-item-qnt">1</span>
+                                                </div>
+                                            </div>
+                                            <div class="header__cart-item-body">
+                                                <span class="header__cart-item-desc">Phân loại hàng: Red Switch</span>
+                                                <span class="header__cart-item-remove">Xóa</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="header__cart-item">
+                                        <img src="https://cf.shopee.vn/file/2a4a9a695ba8e32e84d5c14da4fe785e_tn" alt="Giá đỡ màn hình máy tính" class="header__cart-img">
+                                        <div class="header__cart-item-info">
+                                            <div class="header__cart-item-head">
+                                                <h5 class="header__cart-item-name">Giá đỡ màn hình máy tính</h5>
+                                                <div class="header__cart-price-wrap">
+                                                    <span class="header__cart-item-price">699.000đ</span>
+                                                    <span class="header__cart-item-delect">x</span>
+                                                    <span class="header__cart-item-qnt">1</span>
+                                                </div>
+                                            </div>
+                                            <div class="header__cart-item-body">
+                                                <span class="header__cart-item-desc">Phân loại hàng: Red Switch</span>
+                                                <span class="header__cart-item-remove">Xóa</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <a style="display: flex;font-size: 1.2rem;" class="header__cart-view btn btn--primary">Xem giỏ hàng</a>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                <!-- End: Search -->
+            </div>
+
 
 
                 </div>
@@ -179,161 +247,113 @@
         </header>
 
 
-</div>
-    
-        <div id="app__container">
-            
-            <div class="grid">
-                <div class="grid__row app__content">
-                    
-         <!-- Indicators/dots -->
-         <!-- bootstrap dùng thanh trượt -->
-        <div id="app-banner" >
-            <div id="demo" class="carousel slide banner" data-bs-ride="carousel">
-
-                <!-- Indicators/dots -->
-                <div class="carousel-indicators">
-                <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-                <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-                <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-                </div>
-                
-                <!-- The slideshow/carousel -->
-                <div class="carousel-inner carousel-fake">
-                <div class="carousel-item active">
-                    <img src="../img/banner-1.jpg" alt="Los Angeles" class="d-block" style="width:600px">
-                </div>
-                <div class="carousel-item">
-                    <img src="../img/banner.png" alt="Chicago" class="d-block" style="width:600px ">
-                </div>
-                <div class="carousel-item">
-                    <img src="../img/banner-2.jpg" alt="New York" class="d-block" style="width:600px" >
-                </div>
-                </div>
-                
-                <!-- Left and right controls/icons -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-                </button>
-            </div>
-            <div class="banner-right">
-                <span class="banner-right-span">
-                    <img class="banner-1" src="../img/banner.png" alt="Ảnh banner">
-                </span>
-            </div>
-        </div>
-          
-                    <div class="grid__column-2">
-                        <nav class="category">
-                            <h3 class="category__heading">
-                                <i class="category__heading-icon fas fa-list"></i>
-                                Danh Mục
-                            </h3>
-
-                            <ul class="category-list">
-                                <div id="new-item">
-                                    <a href="mouses.html" class="category-item__link">
-                                        <li class="nav-icon-item ">
-                                            <img  class="nav-item" src="../img/mouse.jpg" alt="">
-                                            <div >Chuột chính hãng</div>
-                                        </li>
-                                    </a>
-                                    <a href="laptop.html" class="category-item__link">
-                                        <li class="nav-icon-item">
-                                            <img  class="nav-item" src="../img/laptop.png" alt="">
-                                            <div>Laptop chính hãng </div>
-                                        </li>
-                                    </a>
-                                    <a href="keyboard.html" class="category-item__link">
-                                        <li class="nav-icon-item">
-                                            <img  class="nav-item" src="../img/keyboard.png" alt="">
-                                            <div>Bàn phím cơ chính hãng </div>
-                                        </li>
-
-                                    </a>
-
-                                    <a href="#" class="category-item__link">
-                                        <li class="nav-icon-item">
-                                            <img  class="nav-item" src="../img/dong_ho.jpg" alt="">
-                                            <div>Đồng hồ</div>
-                                        </li>
-                                    </a>
-
-                                    <a href="smartphone.html" class="category-item__link">
-                                        <li class="nav-icon-item">
-                                            <img  class="nav-item" src="../img/tainghe.png" alt="">
-                                            <div>Tai nghe chính hãng</div>
-                                        </li>
-                                    </a>
-                                    <a href="#" class="category-item__link">
-                                        <li class="nav-icon-item">
-                                            <img  class="nav-item" src="../img/phone.png" alt="">
-                                            <div>Điện thoại mới nhất</div>
-                                        </li>
-                                    </a>
-                                    <a href="#" class="category-item__link">
-                                        <li class="nav-icon-item">
-                                            <img  class="nav-item" src="../img/tivi.png" alt="">
-                                            <div>Tivi mới nhất </div>
-                                        </li>
-                                    </a>
-                                    <a href="#" class="category-item__link">
-                                        <li class="nav-icon-item">
-                                            <img  class="nav-item" src="../img/camera.png" alt="">
-                                            <div>Máy ảnh</div>
-                                        </li>
-                                    </a>
-                                </div>
-                                
-                            </ul>
-                        </nav>
-                    </div>
-
-                        <!-- Product -->
-                        <div class=" home-product">
-                            <div class="grid__row" id="main_page"></div>
+        <div id="container">
+            <div class="user">
+                <div class="user-item">
+                    <div class="user-avt"></div>
+                    <div class="user-info">
+                        <div id="user__item-name">275r90f2xo</div>
+                        <div class="fix-user">
+                            <div>Sửa hồ sơ</div>
+                            <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" style="margin-right: 4px;"><path d="M8.54 0L6.987 1.56l3.46 3.48L12 3.48M0 8.52l.073 3.428L3.46 12l6.21-6.18-3.46-3.48" fill="#9B9B9B" fill-rule="evenodd"></path></svg>
+                            
                         </div>
-
-                        <ul id="pagination" class="pagination home-product--pagination">
-                            <li class="pagination-item">
-                                <a href="" class="pagination-item__link">
-                                    <i class="pagination-item__icon fas fa-chevron-left"></i>
-                                </a>
-                            </li>
-
-                            <li class="pagination-item pagination-item--active">
-                                <a id="page1" href="" class="pagination-item__link">1</a>
-                            </li>
-                            <li class="pagination-item">
-                                <a id="page2" href="" class="pagination-item__link">2</a>
-                            </li>
-                            <li class="pagination-item">
-                                <a id="page3" href="" class="pagination-item__link">3</a>
-                            </li>
-                            <li class="pagination-item">
-                                <a id="page4"href="" class="pagination-item__link">4</a>
-                            </li>
-                            <li class="pagination-item">
-                                <a href="" class="pagination-item__link">5</a>
-                            </li>
-                            <li class="pagination-item">
-                                <a href="" class="pagination-item__link">...</a>
-                            </li>
-
-                            <li class="pagination-item">
-                                <a href="" class="pagination-item__link">
-                                    <i class="pagination-item__icon fas fa-chevron-right"></i>
-                                </a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
+
+                <div class="nav">
+                    <ul class="info-item">
+                        <li class="navbar-item">
+                            <img class="image-item" src="https://down-vn.img.susercontent.com/file/sg-11134004-7rbmf-lmyeojqx4sdl3c">
+                            <div>11.11 Shopee Live Thời Trang</div>
+                        </li>
+                        <li class="navbar-item">
+                            <img class="image-item" src="https://down-vn.img.susercontent.com/file/ba61750a46794d8847c3f463c5e71cc4">
+                            <div>Tài khoản của tôi</div>
+                        </li>
+                        <li class="navbar-item">
+                            <img  class="image-item selected" src="https://down-vn.img.susercontent.com/file/f0049e9df4e536bc3e7f140d071e9078">
+                            <div class="selected">Đơn mua</div>
+                        </li>
+                        <li class="navbar-item">
+                            <img class="image-item" src="https://down-vn.img.susercontent.com/file/e10a43b53ec8605f4829da5618e0717c">
+                            <div>Thông báo</div>
+                        </li>
+                        <li class="navbar-item">
+                            <img class="image-item" src="https://down-vn.img.susercontent.com/file/84feaa363ce325071c0a66d3c9a88748">
+                            <div>Kho Voucher</div>
+                        </li>
+                        <li class="navbar-item">
+                            <img class="image-item" src="https://down-vn.img.susercontent.com/file/a0ef4bd8e16e481b4253bd0eb563f784">
+                            <div>Shoppee xu</div>
+                        </li >
+                    </ul>
+                </div>
+            </div>
+            <div id="product-info">
+                <div class="product__info-item">
+                    <a href="#" class="link-item link-selected">
+                        <span>Tất cả</span>
+                    </a>
+                    <a href="#" class="link-item">
+                        <span> Chờ thanh toán</span>
+                    </a>
+                    <a href="#" class="link-item">
+                        <span>Vận chuyển</span>
+                    </a>
+                    <a href="#" class="link-item">
+                        <span>Chờ giao hàng</span>
+                    </a>
+                    <a href="#" class="link-item">
+                        <span>Hoàn thành</span>
+                    </a>
+                    <a href="#" class="link-item">
+                        <span>Đã hủy</span>
+                    </a>
+                    <a href="#" class="link-item">
+                        <span>Trả hàng/Hoàn tiền</span>
+                    </a>
+                </div>
+                <div class="search-select">
+                    <svg style="margin: 0 15px;
+                    stroke: #bbb;"width="19px" height="19px" viewBox="0 0 19 19"><g id="Search-New" stroke-width="1" fill="none" fill-rule="evenodd"><g id="my-purchase-copy-27" transform="translate(-399.000000, -221.000000)" stroke-width="2"><g id="Group-32" transform="translate(400.000000, 222.000000)"><circle id="Oval-27" cx="7" cy="7" r="7"></circle><path d="M12,12 L16.9799555,16.919354" id="Path-184" stroke-linecap="round" stroke-linejoin="round"></path></g></g></g></svg>
+                    <div>Bạn có thể tìm kiếm theo tên Shop, ID đơn hàng hoặc Tên Sản phẩm</div>
+                </div>
+                <div class="info__product-selected">
+                    <div class="shop-user">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="62" height="16" fill="none"><title>Preferred Seller</title><path fill="#EE4D2D" fill-rule="evenodd" d="M0 2C0 .9.9 0 2 0h58a2 2 0 012 2v12a2 2 0 01-2 2H2a2 2 0 01-2-2V2z" clip-rule="evenodd"></path><g clip-path="url(#clip0)"><path fill="#fff" d="M8.7 13H7V8.7L5.6 6.3A828.9 828.9 0 004 4h2l2 3.3a1197.3 1197.3 0 002-3.3h1.6L8.7 8.7V13zm7.9-1.7h1.7c0 .3-.2.6-.5 1-.2.3-.5.5-1 .7l-.6.2h-.8c-.5 0-1 0-1.5-.2l-1-.8a4 4 0 01-.9-2.4c0-1 .3-1.9 1-2.6a3 3 0 012.4-1l.8.1a2.8 2.8 0 011.3.7l.4.6.3.8V10h-4.6l.2 1 .4.7.6.5.7.1c.4 0 .7 0 .9-.2l.2-.6v-.1zm0-2.3l-.1-1-.3-.3c0-.2-.1-.2-.2-.3l-.8-.2c-.3 0-.6.2-.9.5l-.3.5a4 4 0 00-.3.8h3zm-1.4-4.2l-.7.7h-1.4l1.5-2h1.1l1.5 2h-1.4l-.6-.7zm8.1 1.6H25V13h-1.7v-.5.1H23l-.7.5-.9.1-1-.1-.7-.4c-.3-.2-.4-.5-.6-.8l-.2-1.3V6.4h1.7v3.7c0 1 0 1.6.3 1.7.2.2.5.3.7.3h.4l.4-.2.3-.3.3-.5.2-1.4V6.4zM34.7 13a11.2 11.2 0 01-1.5.2 3.4 3.4 0 01-1.3-.2 2 2 0 01-.5-.3l-.3-.5-.2-.6V7.4h-1.2v-1h1.1V5h1.7v1.5h1.9v1h-2v3l.2 1.2.1.3.2.2h.3l.2.1c.2 0 .6 0 1.3-.3v1zm2.4 0h-1.7V3.5h1.7v3.4a3.7 3.7 0 01.2-.1 2.8 2.8 0 013.4 0l.4.4.2.7V13h-1.6V9.3 8.1l-.4-.6-.6-.2a1 1 0 00-.4.1 2 2 0 00-.4.2l-.3.3a3 3 0 00-.3.5l-.1.5-.1.9V13zm5.4-6.6H44V13h-1.6V6.4zm-.8-.9l1.8-2h1.8l-2.1 2h-1.5zm7.7 5.8H51v.5l-.4.5a2 2 0 01-.4.4l-.6.3-1.4.2c-.5 0-1 0-1.4-.2l-1-.7c-.3-.3-.5-.7-.6-1.2-.2-.4-.3-.9-.3-1.4 0-.5.1-1 .3-1.4a2.6 2.6 0 011.6-1.8c.4-.2.9-.3 1.4-.3.6 0 1 .1 1.5.3.4.1.7.4 1 .6l.2.5.1.5h-1.6c0-.3-.1-.5-.3-.6-.2-.2-.4-.3-.8-.3s-.8.2-1.2.6c-.3.4-.4 1-.4 2 0 .9.1 1.5.4 1.8.4.4.8.6 1.2.6h.5l.3-.2.2-.3v-.4zm4 1.7h-1.6V3.5h1.7v3.4a3.7 3.7 0 01.2-.1 2.8 2.8 0 013.4 0l.3.4.3.7V13h-1.6V9.3L56 8.1c-.1-.3-.2-.5-.4-.6l-.6-.2a1 1 0 00-.3.1 2 2 0 00-.4.2l-.3.3a3 3 0 00-.3.5l-.2.5V13z"></path></g><defs><clipPath id="clip0"><path fill="#fff" d="M0 0h55v16H0z" transform="translate(4)"></path></clipPath></defs></svg>
+                        <div class="name-shop">Sammi offical</div>
+                        <div class="yHlRfY"><button class="stardust-button stardust-button--primary"><svg viewBox="0 0 17 17" class="shopee-svg-icon icon-btn-chat" style="fill: white;"><g fill-rule="evenodd"><path d="M13.89 0C14.504 0 15 .512 15 1.144l-.003.088-.159 2.117.162.001c.79 0 1.46.558 1.618 1.346l.024.15.008.154v9.932a1.15 1.15 0 01-1.779.963l-.107-.08-1.882-1.567-7.962.002a1.653 1.653 0 01-1.587-1.21l-.036-.148-.021-.155-.071-.836h-.01L.91 13.868a.547.547 0 01-.26.124L.556 14a.56.56 0 01-.546-.47L0 13.429V1.144C0 .512.497 0 1.11 0h12.78zM15 4.65l-.259-.001-.461 6.197c-.045.596-.527 1.057-1.106 1.057L4.509 11.9l.058.69.01.08a.35.35 0 00.273.272l.07.007 8.434-.001 1.995 1.662.002-9.574-.003-.079a.35.35 0 00-.274-.3L15 4.65zM13.688 1.3H1.3v10.516l1.413-1.214h10.281l.694-9.302zM4.234 5.234a.8.8 0 011.042-.077l.187.164c.141.111.327.208.552.286.382.131.795.193 1.185.193s.803-.062 1.185-.193c.225-.078.41-.175.552-.286l.187-.164a.8.8 0 011.042 1.209c-.33.33-.753.579-1.26.753A5.211 5.211 0 017.2 7.4a5.211 5.211 0 01-1.706-.28c-.507-.175-.93-.424-1.26-.754a.8.8 0 010-1.132z" fill-rule="nonzero"></path></g></svg><span>chat</span></button></div>
+                    </div>
+                    <div class="status-ship">
+                        <div class="status__ship-item">
+                            <svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="shopee-svg-icon icon-free-shipping-line"><g><line fill="none" stroke-linejoin="round" stroke-miterlimit="10" x1="8.6" x2="4.2" y1="9.8" y2="9.8"></line><circle cx="3" cy="11.2" fill="none" r="2" stroke-miterlimit="10"></circle><circle cx="10" cy="11.2" fill="none" r="2" stroke-miterlimit="10"></circle><line fill="none" stroke-miterlimit="10" x1="10.5" x2="14.4" y1="7.3" y2="7.3"></line><polyline fill="none" points="1.5 9.8 .5 9.8 .5 1.8 10 1.8 10 9.1" stroke-linejoin="round" stroke-miterlimit="10"></polyline><polyline fill="none" points="9.9 3.8 14 3.8 14.5 10.2 11.9 10.2" stroke-linejoin="round" stroke-miterlimit="10"></polyline></g></svg>
+                            <div>Đơn hàng đang vận chuyển</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="FycaKn"></div>
+                <div class="product-info-item">
+                    <div class="product-info-1">
+                        <img src="../image/phone1.png" class="product-image" alt="">
+                        <div class="product-item-info">
+                            <div class="name-product">iPhone 14 Pro Max</div>
+                            <div class="type-product">Phân loại hàng : Gold</div>
+                            <div class="quantity-produdct">x1</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-coin">
+                        <span class="coin-old">₫95.000</span>
+                        <span class="coin-safe">₫69.000</span>
+                    </div>
+                </div>
+                <div class="O2KPzo"><div class="mn7INg xFSVYg"> </div><div class="mn7INg EfbgJE"> </div></div>
+
+                
             </div>
         </div>
-
         <footer id="footer">
             <div class="grid">
                 <!-- Footer shop -->
@@ -375,11 +395,11 @@
                     <div class="column-1 footer-shop__pay-ship">
                         <div>
                             <h3 class="footer-shop__heading">THANH TOÁN</h3>
-                            <img src="../asset/img/thanhtoan.png" alt="" class="footer-shop__heading-img">
+                            <img src="../img/thanhtoan.png" alt="" class="footer-shop__heading-img">
                         </div>
                         <div>
                             <h3 class="footer-shop__heading">ĐƠN VỊ VẬN CHUYỂN</h3>
-                            <img src="../asset/img/đơn vị vận chuyển.png" alt="" class="footer-shop__heading-img">
+                            <img src="../img/đơn vị vận chuyển.png" alt="" class="footer-shop__heading-img">
                         </div>
                     </div>
                     <div class="column-1">
@@ -438,12 +458,6 @@
                     </div>
                 </div>
             </div>
-            
-    </div>
-    <script src="../js/app.js"></script>
-    <script src="../js/LoadMainPage.js"></script>
-    <script src="../js/loadHeader.js"></script>
-    <script src="../js/logOut.js"></script>
-</body>
+        </footer>
 
-</html>
+</div>

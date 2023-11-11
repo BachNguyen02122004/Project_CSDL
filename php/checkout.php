@@ -194,11 +194,16 @@ $price = number_format($row['price'], 0, ',', '.');
                     $queryAddress = "select fullname, sdt, addressLine from (nguoi_dung as u inner join address as a on u.id = a.user_id) where u.id = '$id' LIMIT 1"; 
                     $result = mysqli_query($mysqli, $queryAddress);
 
-                    if ($row = mysqli_fetch_assoc($result)) {
-                        $fullname = $row['fullname'];
-                        $sdt = $row['sdt'];
-                        $addressLine = $row['addressLine'];
-                    }                
+                    if ($result->num_rows > 0) {
+                        $row = mysqli_fetch_assoc($result);
+                        $row['fullname'] != null ? $fullname = $row['fullname'] : $fullname = "";
+                        $row['sdt'] != null ? $sdt = $row['sdt'] : $sdt = "";
+                        $row['addressLine'] != null ? $addressLine = $row['addressLine'] : $addressLine = "";
+                    } else {
+                        $fullname = "";
+                        $sdt = "";
+                        $addressLine = "";
+                    }   
                     ?>
 
                     <div class="info-user">

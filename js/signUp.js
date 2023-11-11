@@ -1,5 +1,5 @@
 
-let i = 0;
+let i = 1;
 document.addEventListener('DOMContentLoaded', function(){
     signUp();
   });

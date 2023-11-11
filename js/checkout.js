@@ -286,4 +286,5 @@ function handleSubmit(e) {
   };
 
   fetchAPI(user);
-}
+  window.location.reload();
+};
