@@ -14,6 +14,9 @@ if ($conn->connect_error) {
 }
 
 session_start();
+if (!isset($_SESSION['username'])) {
+    $_SESSION['username'] = null;
+}
 $Username = $_SESSION['username'];
 
 //initialize

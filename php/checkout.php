@@ -14,7 +14,7 @@ if ($mysqli->connect_error) {
 
 session_start();
 $Username = $_SESSION['username'];
-
+$id = $_SESSION['id'];
 
 $queryPrice = "SELECT SUM(GIA_SP*quantity*0.94) AS price FROM (cart INNER JOIN product ON cart.productID = product.ID) WHERE cart.username = '$Username'";
 $resultPrice = mysqli_query($mysqli, $queryPrice);
@@ -179,10 +179,6 @@ $price = number_format($row['price'], 0, ',', '.');
 
         </header>
 
-        <?php
-            $queryAddress = "select fullname, sdt, addressLine from (nguoi_dung as u inner join address as a on u.id = a.user_id)";
-        ?>
-        
         <div id="container">
             <div class="content-checkout">
                 <div id="infomation">
@@ -193,11 +189,23 @@ $price = number_format($row['price'], 0, ',', '.');
                         </svg>
                         <div class="address-text">Địa chỉ nhận hàng</div>
                     </div>
+                    
+                    <?php
+                    $queryAddress = "select fullname, sdt, addressLine from (nguoi_dung as u inner join address as a on u.id = a.user_id) where u.id = '$id' LIMIT 1"; 
+                    $result = mysqli_query($mysqli, $queryAddress);
+
+                    if ($row = mysqli_fetch_assoc($result)) {
+                        $fullname = $row['fullname'];
+                        $sdt = $row['sdt'];
+                        $addressLine = $row['addressLine'];
+                    }                
+                    ?>
+
                     <div class="info-user">
-                        <div class="infomation-item">Nam Hoàn(+84)325453480 </div>
-                          <div  class='info-item-1' style="margin-right: 8px;">2c Ngách 15 Ngõ 20 Hồ Tùng Mậu, Phường Mai Dịch, Quận Cầu Giấy, Hà Nội</div>
+                        <div class="infomation-item"> <?php echo $fullname?> (+84)<?php echo $sdt?> </div>
+                        <div class='info-item-1' style="margin-right: 8px;"><?php echo $addressLine?> </div>
                         <div class="info-default">Mặc định</div>
-                        <div class="change-item">Thay đổi </div> 
+                        <div class="change-item">Thay đổi </div>
                     </div>
                 </div>
 
@@ -218,6 +226,7 @@ $price = number_format($row['price'], 0, ',', '.');
                     // Thực hiện truy vấn
                     $result = $mysqli->query($query);
                     $productNum = $result->num_rows;
+                    
 
                     // Kiểm tra kết quả truy vấn
                     if ($result->num_rows > 0) {
@@ -278,8 +287,8 @@ $price = number_format($row['price'], 0, ',', '.');
                         <div class="product__info-quantity product__info-text">' . $quantity . '</div>
                         <div class="product__info-total product__info-text">₫' . $totalPrice . '</div>
                     </div>';
+                        }
                     }
-                }
                     ?>
 
                     <div class="freeship-item">
@@ -310,7 +319,7 @@ $price = number_format($row['price'], 0, ',', '.');
                     </div>
 
                     <div class="total-coin-item">
-                        <div class="total-coin-text">Tổng số tiền(1 sản phẩm):</div>
+                        <div class="total-coin-text">Tổng số tiền(<?php echo $productNum ?> sản phẩm):</div>
                         <div class="total-coin">₫<?php echo $price ?></div>
                     </div>
 
@@ -442,10 +451,7 @@ $price = number_format($row['price'], 0, ',', '.');
         </div>
     </div>
 
-
-
-
-
 </body>
 <script src="../js/checkout.js"></script>
+
 </html>

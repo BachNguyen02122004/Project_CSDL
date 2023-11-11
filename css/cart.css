@@ -845,7 +845,7 @@
 
 .X278ad {
     flex: 1;
-    /* overflow: scroll; */
+    overflow: scroll;
     padding: 24px 24px 88px;
     -ms-overflow-style: none;
     scrollbar-width: none;
