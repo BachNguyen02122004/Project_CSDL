@@ -189,9 +189,9 @@ $price = number_format($row['price'], 0, ',', '.');
                         </svg>
                         <div class="address-text">Địa chỉ nhận hàng</div>
                     </div>
-                    
+
                     <?php
-                    $queryAddress = "select fullname, sdt, addressLine from (nguoi_dung as u inner join address as a on u.id = a.user_id) where u.id = '$id' LIMIT 1"; 
+                    $queryAddress = "select fullname, sdt, addressLine from (nguoi_dung as u inner join address as a on u.id = a.user_id) where u.id = '$id' LIMIT 1";
                     $result = mysqli_query($mysqli, $queryAddress);
 
                     if ($result->num_rows > 0) {
@@ -203,12 +203,12 @@ $price = number_format($row['price'], 0, ',', '.');
                         $fullname = "";
                         $sdt = "";
                         $addressLine = "";
-                    }   
+                    }
                     ?>
 
                     <div class="info-user">
-                        <div class="infomation-item"> <?php echo $fullname?> (+84)<?php echo $sdt?> </div>
-                        <div class='info-item-1' style="margin-right: 8px;"><?php echo $addressLine?> </div>
+                        <div class="infomation-item"> <?php echo $fullname ?> (+84)<?php echo $sdt ?> </div>
+                        <div class='info-item-1' style="margin-right: 8px;"><?php echo $addressLine ?> </div>
                         <div class="info-default">Mặc định</div>
                         <div class="change-item">Thay đổi </div>
                     </div>
@@ -231,7 +231,7 @@ $price = number_format($row['price'], 0, ',', '.');
                     // Thực hiện truy vấn
                     $result = $mysqli->query($query);
                     $productNum = $result->num_rows;
-                    
+
 
                     // Kiểm tra kết quả truy vấn
                     if ($result->num_rows > 0) {
@@ -458,5 +458,7 @@ $price = number_format($row['price'], 0, ',', '.');
 
 </body>
 <script src="../js/checkout.js"></script>
+<script src="../js/loadHeader.js"></script>
+<script src="../js/logOut.js"></script>
 
 </html>

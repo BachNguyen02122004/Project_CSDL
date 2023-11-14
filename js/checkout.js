@@ -288,3 +288,21 @@ function handleSubmit(e) {
   fetchAPI(user);
   window.location.reload();
 };
+
+document.addEventListener('DOMContentLoaded', function () {
+  const orderButtons = document.querySelector('.select__product-item');
+  orderButtons.addEventListener('click', () => {
+    fetch("../php/addOrders.php", {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then(response => {
+        console.log('Data sent successfully');
+      })
+      .catch(error => {
+        console.error('Error sending data:', error);
+      });
+  });
+});
+
+

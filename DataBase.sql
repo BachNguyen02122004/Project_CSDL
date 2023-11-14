@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `os` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `os`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: localhost    Database: os
+-- Host: localhost    Database: project
 -- ------------------------------------------------------
--- Server version	8.0.34
+-- Server version	8.1.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,6 +14,30 @@ USE `os`;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `address`
+--
+
+DROP TABLE IF EXISTS `address`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `address` (
+  `user_id` int NOT NULL,
+  `addressLine` varchar(255) NOT NULL,
+  PRIMARY KEY (`user_id`,`addressLine`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `address`
+--
+
+LOCK TABLES `address` WRITE;
+/*!40000 ALTER TABLE `address` DISABLE KEYS */;
+INSERT INTO `address` VALUES (3,'alhdrioq'),(3,'kasjdhao');
+/*!40000 ALTER TABLE `address` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `brand`
@@ -37,8 +59,38 @@ CREATE TABLE `brand` (
 
 LOCK TABLES `brand` WRITE;
 /*!40000 ALTER TABLE `brand` DISABLE KEYS */;
-INSERT INTO `brand` VALUES (1,'Apple'),(2,'True Wireless'),(3,'Kanen '),(4,'MSI'),(5,'HP'),(6,'Lenovo'),(7,'Asus'),(8,'OPPO'),(9,'SAMSUNG'),(10,'VIVO'),(11,'XIAOMI'),(12,'NOKIA'),(13,'RAPOO'),(14,'DAREU'),(15,'Microsoft'),(16,'Logitech'),(17,'Corsair'),(18,'Razer'),(19,'BeFit'),(20,'Amazfit'),(21,'Honor'),(22,'LG'),(23,'Sony'),(24,'Fujifilm'),(25,'Canon'),(26,'Leica'),(27,'Nikon');
+INSERT INTO `brand` VALUES (1,'Apple'),(2,'True Wireless'),(3,'Kanen '),(4,'MSI'),(5,'HP'),(6,'Lenovo'),(7,'Asus'),(8,'OPPO'),(9,'SAMSUNG'),(10,'VIVO'),(11,'XIAOMI'),(12,'NOKIA'),(13,'RAPOO'),(14,'DAREU'),(15,'Micrprojectoft'),(16,'Logitech'),(17,'Corsair'),(18,'Razer'),(19,'BeFit'),(20,'Amazfit'),(21,'Honor'),(22,'LG'),(23,'Sony'),(24,'Fujifilm'),(25,'Canon'),(26,'Leica'),(27,'Nikon');
 /*!40000 ALTER TABLE `brand` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cart`
+--
+
+DROP TABLE IF EXISTS `cart`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cart` (
+  `id` int NOT NULL,
+  `productId` int DEFAULT NULL,
+  `productName` varchar(100) DEFAULT NULL,
+  `productImage` varchar(100) DEFAULT NULL,
+  `quantity` int NOT NULL,
+  `TypeProduct` int NOT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`,`TypeProduct`),
+  KEY `productId` (`productId`),
+  CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`productId`) REFERENCES `product` (`ID`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cart`
+--
+
+LOCK TABLES `cart` WRITE;
+/*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -66,6 +118,58 @@ INSERT INTO `danhmuc_sp` VALUES (1,'LapTop'),(2,'Phone'),(3,'Tai nghe'),(4,'Chuo
 UNLOCK TABLES;
 
 --
+-- Table structure for table `mau_sp`
+--
+
+DROP TABLE IF EXISTS `mau_sp`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `mau_sp` (
+  `productline` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `detail_of` int NOT NULL,
+  PRIMARY KEY (`productline`,`detail_of`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mau_sp`
+--
+
+LOCK TABLES `mau_sp` WRITE;
+/*!40000 ALTER TABLE `mau_sp` DISABLE KEYS */;
+INSERT INTO `mau_sp` VALUES ('1',1),('1',2),('1',3),('1',4),('1',5),('2',1),('2',2),('2',3),('2',4),('3',1),('3',2),('4',1),('4',2),('4',3),('4',4),('5',1),('5',2),('6',1),('6',2),('8',1),('8',2);
+/*!40000 ALTER TABLE `mau_sp` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `nguoi_dung`
+--
+
+DROP TABLE IF EXISTS `nguoi_dung`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `nguoi_dung` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `accountName` varchar(100) DEFAULT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `sdt` varchar(255) DEFAULT NULL,
+  `fullname` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`,`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `nguoi_dung`
+--
+
+LOCK TABLES `nguoi_dung` WRITE;
+/*!40000 ALTER TABLE `nguoi_dung` DISABLE KEYS */;
+INSERT INTO `nguoi_dung` VALUES (3,'duc','ducnam','123456','0138401848','truong minh duc');
+/*!40000 ALTER TABLE `nguoi_dung` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `order_detail`
 --
 
@@ -80,7 +184,6 @@ CREATE TABLE `order_detail` (
   PRIMARY KEY (`id`),
   KEY `order_id` (`order_id`),
   KEY `product_id` (`product_id`),
-  CONSTRAINT `order_detail_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`ID`),
   CONSTRAINT `order_detail_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -103,14 +206,15 @@ DROP TABLE IF EXISTS `orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `orders` (
-  `ID` int NOT NULL,
-  `SUM` decimal(10,0) DEFAULT NULL,
-  `STATUS` varchar(15) DEFAULT NULL,
-  `user_id` int DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id` int NOT NULL AUTO_INCREMENT,
+  `productId` int DEFAULT NULL,
+  `productName` varchar(100) DEFAULT NULL,
+  `productImage` varchar(100) DEFAULT NULL,
+  `quantity` int DEFAULT NULL,
+  `TypeProduct` int DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +223,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,3,'1',1),(2,4,'0',2),(3,2,'1',2);
+INSERT INTO `orders` VALUES (1,4,'OPPO Reno10 5G','http://localhost/Project_CSDL/image/phone2.png',1,1,'ducnam'),(2,8,'Lenovo Legion 5 15IAH7 i5 12500H','http://localhost/Project_CSDL/image/laptop3.png',1,1,'ducnam'),(3,50,'Samsung Galaxy Watch5 40mm day silicone','http://localhost/Project_CSDL/image/watch1.png',3,2,'ducnam');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,7 +257,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'Tai nghe Bluetooth AirPods Pro (2nd Gen) USB-C Charge Apple',NULL,990000,1,'../image/earphone1.png',1,3),(2,'MSI Gaming GF63 Thin 11SC i5 11400H (664VN)',NULL,16490000,1,'../image/laptop1.png',4,1),(3,'iPhone 14 Pro Max',NULL,29990000,1,'../image/phone1.png',1,2),(4,'OPPO Reno10 5G',NULL,9900000,1,'../image/phone2.png',8,2),(5,'Tai nghe Bluetooth True Wireless AVA+ Buds Life Rider GT07',NULL,440000,1,'../image/earphone2.png',2,3),(6,'HP Gaming VICTUS 15 fa0144TX i5 12450H',NULL,27990000,1,'../image/laptop2.png',5,1),(7,'Samsung Galaxy Z Fold5 5G',NULL,40990000,1,'../image/phone3.png',9,2),(8,'Lenovo Legion 5 15IAH7 i5 12500H',NULL,35490000,1,'../image/laptop3.png',6,1),(9,'Tai nghe Bluetooth True Wireless AVA+ Buds Life Air 2',NULL,490000,1,'../image/earphone3.png',3,3),(10,'Asus TUF Gaming F15 FX506HX i5 11400H',NULL,23990000,1,'../image/laptop4.png',7,1),(11,'Tai nghe Bluetooth True Wireless AVA+ FreeGo A20',NULL,290000,1,'../image/earphone4.png',2,3),(12,'OPPO Find N2 Flip 5G',NULL,19000000,1,'../image/phone4.png',8,2),(13,'MSI Gaming GF63 Thin 12VE i5 12450H ( 460VN)',NULL,22490000,1,'../image/laptop5.png',4,1),(14,'vivo Y36',NULL,6290000,1,'../image/phone5.png',10,2),(15,'Tai nghe Bluetooth True Wireless HAVIT TW945',NULL,450000,1,'../image/earphone5.png',2,3),(16,'Lenovo LOQ Gaming 15IRH8 i5 13420H',NULL,28990000,1,'../image/laptop6.png',6,1),(17,'Xiaomi Redmi 12C',NULL,3590000,1,'../image/phone6.png',11,2),(18,'Tai nghe Bluetooth True Wireless AVA+ FreeGo Plus PT19',NULL,390000,1,'../image/earphone6.png',2,3),(19,'MSI Gaming GF66 12UCK i7 12650 (840VN)',NULL,27490000,1,'../image/laptop7.png',4,1),(20,'iPhone 11',NULL,11990000,1,'../image/phone7.png',1,2),(21,'Tai nghe Bluetooth True Wireless AVA+ DS206',NULL,790000,1,'../image/earphone7.png',2,3),(22,'Asus Gaming TUF Dash F15 FX517ZE i5 12450H (HN045W)',NULL,24990000,1,'../image/laptop8.png',7,1),(23,'Samsung Galaxy s23 Ultra 5G',NULL,31990000,1,'../image/phone8.png',9,2),(24,'Tai nghe Bluetooth True Wireless Baseus AirNora 2',NULL,1400000,1,'../image/earphone8.png',2,3),(25,'Asus Gaming ROG Strix G17 G713RW R9 6900HX (LL178W)',NULL,57990000,1,'../image/laptop9.png',7,1),(26,'Nokia 105',NULL,820000,1,'../image/phone9.png',12,2),(27,'Tai nghe Bluetooth True Wireless vivo Air XEW25',NULL,790000,1,'../image/earphone9.png',2,3),(28,'Lenovo Gaming Legion 5 16IRH8 i7 13700H (82YA00DTVN)',NULL,44990000,1,'../image/laptop10.png',6,1),(29,'Tai nghe Bluetooth Chup Tai Kanen K6',NULL,600000,1,'../image/earphone10.png',3,3),(30,'Chuot khong day Rapoo B2',NULL,150000,1,'../image/mouse1.png',13,4),(31,'Chuot khong day DareU LM106G',NULL,150000,1,'../image/mouse2.png',14,4),(32,'Chuot khong day Bluetooth Silent Rapoo M500',NULL,500000,1,'../image/mouse3.png',13,4),(33,'Chuot co day Gaming Asus TUF M3',NULL,550000,1,'../image/mouse4.png',7,4),(34,'Chuot Bluetooth Microsoft Arc',NULL,2600000,1,'../image/mouse5.png',15,4),(35,'Chuot Khong day Bluetooth Silent Rapoo M300',NULL,490000,1,'../image/mouse6.png',13,4),(36,'Chuot khong day Logitech M190',NULL,390000,1,'../image/mouse7.png',16,4),(37,'Chuot Bluetooth Microsoft Modern Mobile KTF',NULL,965000,1,'../image/mouse8.png',15,4),(38,'Chuot co day Gaming Corsair M55 RGB Pro',NULL,920000,1,'../image/mouse9.png',17,4),(39,'Chuot Bluetooth Apple MK2E3',NULL,2490000,1,'../image/mouse10.png',1,4),(40,'Ban phim co co Day Gaming Razer BlackWidow',NULL,3200000,1,'../image/keyboard1.png',18,5),(41,'Ban Phim Co Day Gaming Asus TUF k1',NULL,990000,1,'../image/keyboard2.png',7,5),(42,'Ban Phim Co Day Gaming Silent Razer BlackWidow Lite',NULL,2390000,1,'../image/keyboard3.png',18,5),(43,'Ban Phim Khong Day Bluetooth Rapoo 8000M',NULL,500000,1,'../image/keyboard4.png',13,5),(44,'Ban Phim Co Co Day Gaming Razer BlackWidow V3',NULL,3640000,1,'../image/keyboard5.png',18,5),(45,'Ban Phim Co Co Day Gaming Razer Huntsman Tournament',NULL,3550000,1,'../image/keyboard6.png',18,5),(46,'Ban Phim Co Co Day Gaming Corsair K68 RGB Mechanical',NULL,3100000,1,'../image/keyboard7.png',17,5),(47,'Ban Phim Co Day Gaming Rapoo V50S',NULL,390000,1,'../image/keyboard8.png',13,5),(48,'Ban Phim Co Bluetooth Dareu EK75 Pro',NULL,1390000,1,'../image/keyboard9.png',14,5),(49,'Ban Phim Co Co Day Dareu EK75',NULL,790000,1,'../image/keyboard10.png',14,5),(50,'Samsung Galaxy Watch5 40mm day silicone',NULL,5990000,1,'../image/watch1.png',9,6),(51,'Apple Watch SE 2022 40mm vien nhom day silicone',NULL,7490000,1,'../image/watch2.png',1,6),(52,'BeFit WatchS 45mm day silicone',NULL,1490000,1,'../image/watch3.png',19,6),(53,'AmazFit Bip 3 44.12mm day silicone',NULL,1190000,1,'../image/watch4.png',20,6),(54,'Xiaomi Watch S1 46.5mm day da',NULL,5990000,1,'../image/watch5.png',11,6),(55,'Honor Watch GS3 45.9mm day da',NULL,5990000,1,'../image/watch6.png',21,6),(56,'BeFit B3 44mm day silicone',NULL,1290000,1,'../image/watch7.png',19,6),(57,'Samsung Galaxy Watch4 40mm day silicone',NULL,3990000,1,'../image/watch8.png',9,6),(58,'Amazfit GTS 4 mini 41.8mm day silicone',NULL,2590000,1,'../image/watch9.png',20,6),(59,'Samsung Galaxy Watch4 LTE Classic 46mm day silicone',NULL,9900000,1,'../image/watch10.png',9,6),(60,'LG Smart TV NanoCell 55NANO76SQA',NULL,22900000,1,'../image/tivi1.png',22,7),(61,'Samsung Smart TV UA43AU7002',NULL,8390000,1,'../image/tivi2.png',9,7),(62,'Samsung Smart TV Crystal UHD UA65AU8100',NULL,16370000,1,'../image/tivi3.png',9,7),(63,'Sony Google TV KD-55X80K',NULL,17890000,1,'../image/tivi4.png',23,7),(64,'LG Smart TV 55UQ8000PSC',NULL,19990000,1,'../image/tivi5.png',22,7),(65,'Samsung Smart TV QLED QA50Q65A',NULL,14390000,1,'../image/tivi6.png',9,7),(66,'Samsung Smart TV CryStal UHD UA50AU8100',NULL,12390000,1,'../image/tivi7.png',9,7),(67,'Sony Google TV KD-50X75K',NULL,13890000,1,'../image/tivi8.png',23,7),(68,'Samsung Smart TV Crystal UHD UA55AU8100',NULL,13390000,1,'../image/tivi9.png',9,7),(69,'Samsung Smart TV Crystal UHD UA50AU7200',NULL,13890000,1,'../image/tivi10.png',9,7),(70,'May anh Fujifilm X-S20 (Body Only) | Chinh hang',NULL,31990000,1,'../image/camera1.png',24,8),(71,'May anh Canon EOS R3 (Body Only)',NULL,174990000,1,'../image/camera2.png',25,8),(72,'May anh Leica M11 (Silver)',NULL,238000000,1,'../image/camera3.png',26,8),(73,'May anh Canon EOS-1D X Mark III',NULL,158000000,1,'../image/camera4.png',25,8),(74,'May anh Canon EOS-R6 (Body Only) | Chinh hang',NULL,77880000,1,'../image/camera5.png',25,8),(75,'May anh Sony ALpha A7C (Black) +lens 28-60mm F/4-5.6 | Chinh hang',NULL,48990000,1,'../image/camera6.png',23,8),(76,'May anh Sony ALpha A9 Mark II | Chinh hang',NULL,99000000,1,'../image/camera7.png',23,8),(77,'May anh Nikon Z5 +Lens 24-200mm f/4-6.3',NULL,48690000,1,'../image/camera8.png',27,8),(78,'May anh Sony ZV-1 (Black) | Nhap Khau',NULL,17990000,1,'../image/camera9.png',23,8),(79,'May anh Sony Alpha A7R IVA (Nhap khau, Body Only)',NULL,63990000,1,'../image/camera10.png',23,8);
+INSERT INTO `product` VALUES (1,'Tai nghe Bluetooth AirPods Pro (2nd Gen) USB-C Charge Apple',NULL,990000,1,'../image/earphone1.png',1,3),(2,'MSI Gaming GF63 Thin 11SC i5 11400H (664VN)',NULL,16490000,1,'../image/laptop1.png',4,1),(3,'iPhone 14 Pro Max',NULL,29990000,1,'../image/phone1.png',1,2),(4,'OPPO Reno10 5G',NULL,9900000,1,'../image/phone2.png',8,2),(5,'Tai nghe Bluetooth True Wireless AVA+ Buds Life Rider GT07',NULL,440000,1,'../image/earphone2.png',2,3),(6,'HP Gaming VICTUS 15 fa0144TX i5 12450H',NULL,27990000,1,'../image/laptop2.png',5,1),(7,'Samsung Galaxy Z Fold5 5G',NULL,40990000,1,'../image/phone3.png',9,2),(8,'Lenovo Legion 5 15IAH7 i5 12500H',NULL,35490000,1,'../image/laptop3.png',6,1),(9,'Tai nghe Bluetooth True Wireless AVA+ Buds Life Air 2',NULL,490000,1,'../image/earphone3.png',3,3),(10,'Asus TUF Gaming F15 FX506HX i5 11400H',NULL,23990000,1,'../image/laptop4.png',7,1),(11,'Tai nghe Bluetooth True Wireless AVA+ FreeGo A20',NULL,290000,1,'../image/earphone4.png',2,3),(12,'OPPO Find N2 Flip 5G',NULL,19000000,1,'../image/phone4.png',8,2),(13,'MSI Gaming GF63 Thin 12VE i5 12450H ( 460VN)',NULL,22490000,1,'../image/laptop5.png',4,1),(14,'vivo Y36',NULL,6290000,1,'../image/phone5.png',10,2),(15,'Tai nghe Bluetooth True Wireless HAVIT TW945',NULL,450000,1,'../image/earphone5.png',2,3),(16,'Lenovo LOQ Gaming 15IRH8 i5 13420H',NULL,28990000,1,'../image/laptop6.png',6,1),(17,'Xiaomi Redmi 12C',NULL,3590000,1,'../image/phone6.png',11,2),(18,'Tai nghe Bluetooth True Wireless AVA+ FreeGo Plus PT19',NULL,390000,1,'../image/earphone6.png',2,3),(19,'MSI Gaming GF66 12UCK i7 12650 (840VN)',NULL,27490000,1,'../image/laptop7.png',4,1),(20,'iPhone 11',NULL,11990000,1,'../image/phone7.png',1,2),(21,'Tai nghe Bluetooth True Wireless AVA+ DS206',NULL,790000,1,'../image/earphone7.png',2,3),(22,'Asus Gaming TUF Dash F15 FX517ZE i5 12450H (HN045W)',NULL,24990000,1,'../image/laptop8.png',7,1),(23,'Samsung Galaxy s23 Ultra 5G',NULL,31990000,1,'../image/phone8.png',9,2),(24,'Tai nghe Bluetooth True Wireless Baseus AirNora 2',NULL,1400000,1,'../image/earphone8.png',2,3),(25,'Asus Gaming ROG Strix G17 G713RW R9 6900HX (LL178W)',NULL,57990000,1,'../image/laptop9.png',7,1),(26,'Nokia 105',NULL,820000,1,'../image/phone9.png',12,2),(27,'Tai nghe Bluetooth True Wireless vivo Air XEW25',NULL,790000,1,'../image/earphone9.png',2,3),(28,'Lenovo Gaming Legion 5 16IRH8 i7 13700H (82YA00DTVN)',NULL,44990000,1,'../image/laptop10.png',6,1),(29,'Tai nghe Bluetooth Chup Tai Kanen K6',NULL,600000,1,'../image/earphone10.png',3,3),(30,'Chuot khong day Rapoo B2',NULL,150000,1,'../image/mouse1.png',13,4),(31,'Chuot khong day DareU LM106G',NULL,150000,1,'../image/mouse2.png',14,4),(32,'Chuot khong day Bluetooth Silent Rapoo M500',NULL,500000,1,'../image/mouse3.png',13,4),(33,'Chuot co day Gaming Asus TUF M3',NULL,550000,1,'../image/mouse4.png',7,4),(34,'Chuot Bluetooth Micrprojectoft Arc',NULL,2600000,1,'../image/mouse5.png',15,4),(35,'Chuot Khong day Bluetooth Silent Rapoo M300',NULL,490000,1,'../image/mouse6.png',13,4),(36,'Chuot khong day Logitech M190',NULL,390000,1,'../image/mouse7.png',16,4),(37,'Chuot Bluetooth Micrprojectoft Modern Mobile KTF',NULL,965000,1,'../image/mouse8.png',15,4),(38,'Chuot co day Gaming Corsair M55 RGB Pro',NULL,920000,1,'../image/mouse9.png',17,4),(39,'Chuot Bluetooth Apple MK2E3',NULL,2490000,1,'../image/mouse10.png',1,4),(40,'Ban phim co co Day Gaming Razer BlackWidow',NULL,3200000,1,'../image/keyboard1.png',18,5),(41,'Ban Phim Co Day Gaming Asus TUF k1',NULL,990000,1,'../image/keyboard2.png',7,5),(42,'Ban Phim Co Day Gaming Silent Razer BlackWidow Lite',NULL,2390000,1,'../image/keyboard3.png',18,5),(43,'Ban Phim Khong Day Bluetooth Rapoo 8000M',NULL,500000,1,'../image/keyboard4.png',13,5),(44,'Ban Phim Co Co Day Gaming Razer BlackWidow V3',NULL,3640000,1,'../image/keyboard5.png',18,5),(45,'Ban Phim Co Co Day Gaming Razer Huntsman Tournament',NULL,3550000,1,'../image/keyboard6.png',18,5),(46,'Ban Phim Co Co Day Gaming Corsair K68 RGB Mechanical',NULL,3100000,1,'../image/keyboard7.png',17,5),(47,'Ban Phim Co Day Gaming Rapoo V50S',NULL,390000,1,'../image/keyboard8.png',13,5),(48,'Ban Phim Co Bluetooth Dareu EK75 Pro',NULL,1390000,1,'../image/keyboard9.png',14,5),(49,'Ban Phim Co Co Day Dareu EK75',NULL,790000,1,'../image/keyboard10.png',14,5),(50,'Samsung Galaxy Watch5 40mm day silicone',NULL,5990000,1,'../image/watch1.png',9,6),(51,'Apple Watch SE 2022 40mm vien nhom day silicone',NULL,7490000,1,'../image/watch2.png',1,6),(52,'BeFit WatchS 45mm day silicone',NULL,1490000,1,'../image/watch3.png',19,6),(53,'AmazFit Bip 3 44.12mm day silicone',NULL,1190000,1,'../image/watch4.png',20,6),(54,'Xiaomi Watch S1 46.5mm day da',NULL,5990000,1,'../image/watch5.png',11,6),(55,'Honor Watch GS3 45.9mm day da',NULL,5990000,1,'../image/watch6.png',21,6),(56,'BeFit B3 44mm day silicone',NULL,1290000,1,'../image/watch7.png',19,6),(57,'Samsung Galaxy Watch4 40mm day silicone',NULL,3990000,1,'../image/watch8.png',9,6),(58,'Amazfit GTS 4 mini 41.8mm day silicone',NULL,2590000,1,'../image/watch9.png',20,6),(59,'Samsung Galaxy Watch4 LTE Classic 46mm day silicone',NULL,9900000,1,'../image/watch10.png',9,6),(60,'LG Smart TV NanoCell 55NANO76SQA',NULL,22900000,1,'../image/tivi1.png',22,7),(61,'Samsung Smart TV UA43AU7002',NULL,8390000,1,'../image/tivi2.png',9,7),(62,'Samsung Smart TV Crystal UHD UA65AU8100',NULL,16370000,1,'../image/tivi3.png',9,7),(63,'Sony Google TV KD-55X80K',NULL,17890000,1,'../image/tivi4.png',23,7),(64,'LG Smart TV 55UQ8000PSC',NULL,19990000,1,'../image/tivi5.png',22,7),(65,'Samsung Smart TV QLED QA50Q65A',NULL,14390000,1,'../image/tivi6.png',9,7),(66,'Samsung Smart TV CryStal UHD UA50AU8100',NULL,12390000,1,'../image/tivi7.png',9,7),(67,'Sony Google TV KD-50X75K',NULL,13890000,1,'../image/tivi8.png',23,7),(68,'Samsung Smart TV Crystal UHD UA55AU8100',NULL,13390000,1,'../image/tivi9.png',9,7),(69,'Samsung Smart TV Crystal UHD UA50AU7200',NULL,13890000,1,'../image/tivi10.png',9,7),(70,'May anh Fujifilm X-S20 (Body Only) | Chinh hang',NULL,31990000,1,'../image/camera1.png',24,8),(71,'May anh Canon Eproject R3 (Body Only)',NULL,174990000,1,'../image/camera2.png',25,8),(72,'May anh Leica M11 (Silver)',NULL,238000000,1,'../image/camera3.png',26,8),(73,'May anh Canon Eproject-1D X Mark III',NULL,158000000,1,'../image/camera4.png',25,8),(74,'May anh Canon Eproject-R6 (Body Only) | Chinh hang',NULL,77880000,1,'../image/camera5.png',25,8),(75,'May anh Sony ALpha A7C (Black) +lens 28-60mm F/4-5.6 | Chinh hang',NULL,48990000,1,'../image/camera6.png',23,8),(76,'May anh Sony ALpha A9 Mark II | Chinh hang',NULL,99000000,1,'../image/camera7.png',23,8),(77,'May anh Nikon Z5 +Lens 24-200mm f/4-6.3',NULL,48690000,1,'../image/camera8.png',27,8),(78,'May anh Sony ZV-1 (Black) | Nhap Khau',NULL,17990000,1,'../image/camera9.png',23,8),(79,'May anh Sony Alpha A7R IVA (Nhap khau, Body Only)',NULL,63990000,1,'../image/camera10.png',23,8);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -249,4 +353,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-13 14:59:43
+-- Dump completed on 2023-11-14 17:29:58

@@ -1,3 +1,23 @@
+<?php
+
+$servername = "localhost";
+$username = "root";
+$password = getenv('mySQLPass');
+$dbname = "project";
+
+$mysqli = new mysqli($servername, $username, $password, $dbname);
+
+// Kiểm tra kết nối
+if ($mysqli->connect_error) {
+    die("Kết nối cơ sở dữ liệu thất bại: " . $mysqli->connect_error);
+}
+
+session_start();
+$Username = $_SESSION['username'];
+$id = $_SESSION['id'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -290,6 +310,7 @@
                     </ul>
                 </div>
             </div>
+
             <div id="product-info">
                 <div class="product__info-item">
                     <a href="#" class="link-item link-selected">
@@ -319,41 +340,97 @@
                     stroke: #bbb;"width="19px" height="19px" viewBox="0 0 19 19"><g id="Search-New" stroke-width="1" fill="none" fill-rule="evenodd"><g id="my-purchase-copy-27" transform="translate(-399.000000, -221.000000)" stroke-width="2"><g id="Group-32" transform="translate(400.000000, 222.000000)"><circle id="Oval-27" cx="7" cy="7" r="7"></circle><path d="M12,12 L16.9799555,16.919354" id="Path-184" stroke-linecap="round" stroke-linejoin="round"></path></g></g></g></svg>
                     <div>Bạn có thể tìm kiếm theo tên Shop, ID đơn hàng hoặc Tên Sản phẩm</div>
                 </div>
-                <div class="info__product-selected">
-                    <div class="shop-user">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="62" height="16" fill="none"><title>Preferred Seller</title><path fill="#EE4D2D" fill-rule="evenodd" d="M0 2C0 .9.9 0 2 0h58a2 2 0 012 2v12a2 2 0 01-2 2H2a2 2 0 01-2-2V2z" clip-rule="evenodd"></path><g clip-path="url(#clip0)"><path fill="#fff" d="M8.7 13H7V8.7L5.6 6.3A828.9 828.9 0 004 4h2l2 3.3a1197.3 1197.3 0 002-3.3h1.6L8.7 8.7V13zm7.9-1.7h1.7c0 .3-.2.6-.5 1-.2.3-.5.5-1 .7l-.6.2h-.8c-.5 0-1 0-1.5-.2l-1-.8a4 4 0 01-.9-2.4c0-1 .3-1.9 1-2.6a3 3 0 012.4-1l.8.1a2.8 2.8 0 011.3.7l.4.6.3.8V10h-4.6l.2 1 .4.7.6.5.7.1c.4 0 .7 0 .9-.2l.2-.6v-.1zm0-2.3l-.1-1-.3-.3c0-.2-.1-.2-.2-.3l-.8-.2c-.3 0-.6.2-.9.5l-.3.5a4 4 0 00-.3.8h3zm-1.4-4.2l-.7.7h-1.4l1.5-2h1.1l1.5 2h-1.4l-.6-.7zm8.1 1.6H25V13h-1.7v-.5.1H23l-.7.5-.9.1-1-.1-.7-.4c-.3-.2-.4-.5-.6-.8l-.2-1.3V6.4h1.7v3.7c0 1 0 1.6.3 1.7.2.2.5.3.7.3h.4l.4-.2.3-.3.3-.5.2-1.4V6.4zM34.7 13a11.2 11.2 0 01-1.5.2 3.4 3.4 0 01-1.3-.2 2 2 0 01-.5-.3l-.3-.5-.2-.6V7.4h-1.2v-1h1.1V5h1.7v1.5h1.9v1h-2v3l.2 1.2.1.3.2.2h.3l.2.1c.2 0 .6 0 1.3-.3v1zm2.4 0h-1.7V3.5h1.7v3.4a3.7 3.7 0 01.2-.1 2.8 2.8 0 013.4 0l.4.4.2.7V13h-1.6V9.3 8.1l-.4-.6-.6-.2a1 1 0 00-.4.1 2 2 0 00-.4.2l-.3.3a3 3 0 00-.3.5l-.1.5-.1.9V13zm5.4-6.6H44V13h-1.6V6.4zm-.8-.9l1.8-2h1.8l-2.1 2h-1.5zm7.7 5.8H51v.5l-.4.5a2 2 0 01-.4.4l-.6.3-1.4.2c-.5 0-1 0-1.4-.2l-1-.7c-.3-.3-.5-.7-.6-1.2-.2-.4-.3-.9-.3-1.4 0-.5.1-1 .3-1.4a2.6 2.6 0 011.6-1.8c.4-.2.9-.3 1.4-.3.6 0 1 .1 1.5.3.4.1.7.4 1 .6l.2.5.1.5h-1.6c0-.3-.1-.5-.3-.6-.2-.2-.4-.3-.8-.3s-.8.2-1.2.6c-.3.4-.4 1-.4 2 0 .9.1 1.5.4 1.8.4.4.8.6 1.2.6h.5l.3-.2.2-.3v-.4zm4 1.7h-1.6V3.5h1.7v3.4a3.7 3.7 0 01.2-.1 2.8 2.8 0 013.4 0l.3.4.3.7V13h-1.6V9.3L56 8.1c-.1-.3-.2-.5-.4-.6l-.6-.2a1 1 0 00-.3.1 2 2 0 00-.4.2l-.3.3a3 3 0 00-.3.5l-.2.5V13z"></path></g><defs><clipPath id="clip0"><path fill="#fff" d="M0 0h55v16H0z" transform="translate(4)"></path></clipPath></defs></svg>
-                        <div class="name-shop">Sammi offical</div>
-                        <div class="yHlRfY"><button class="stardust-button stardust-button--primary"><svg viewBox="0 0 17 17" class="shopee-svg-icon icon-btn-chat" style="fill: white;"><g fill-rule="evenodd"><path d="M13.89 0C14.504 0 15 .512 15 1.144l-.003.088-.159 2.117.162.001c.79 0 1.46.558 1.618 1.346l.024.15.008.154v9.932a1.15 1.15 0 01-1.779.963l-.107-.08-1.882-1.567-7.962.002a1.653 1.653 0 01-1.587-1.21l-.036-.148-.021-.155-.071-.836h-.01L.91 13.868a.547.547 0 01-.26.124L.556 14a.56.56 0 01-.546-.47L0 13.429V1.144C0 .512.497 0 1.11 0h12.78zM15 4.65l-.259-.001-.461 6.197c-.045.596-.527 1.057-1.106 1.057L4.509 11.9l.058.69.01.08a.35.35 0 00.273.272l.07.007 8.434-.001 1.995 1.662.002-9.574-.003-.079a.35.35 0 00-.274-.3L15 4.65zM13.688 1.3H1.3v10.516l1.413-1.214h10.281l.694-9.302zM4.234 5.234a.8.8 0 011.042-.077l.187.164c.141.111.327.208.552.286.382.131.795.193 1.185.193s.803-.062 1.185-.193c.225-.078.41-.175.552-.286l.187-.164a.8.8 0 011.042 1.209c-.33.33-.753.579-1.26.753A5.211 5.211 0 017.2 7.4a5.211 5.211 0 01-1.706-.28c-.507-.175-.93-.424-1.26-.754a.8.8 0 010-1.132z" fill-rule="nonzero"></path></g></svg><span>chat</span></button></div>
-                    </div>
-                    <div class="status-ship">
-                        <div class="status__ship-item">
-                            <svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="shopee-svg-icon icon-free-shipping-line"><g><line fill="none" stroke-linejoin="round" stroke-miterlimit="10" x1="8.6" x2="4.2" y1="9.8" y2="9.8"></line><circle cx="3" cy="11.2" fill="none" r="2" stroke-miterlimit="10"></circle><circle cx="10" cy="11.2" fill="none" r="2" stroke-miterlimit="10"></circle><line fill="none" stroke-miterlimit="10" x1="10.5" x2="14.4" y1="7.3" y2="7.3"></line><polyline fill="none" points="1.5 9.8 .5 9.8 .5 1.8 10 1.8 10 9.1" stroke-linejoin="round" stroke-miterlimit="10"></polyline><polyline fill="none" points="9.9 3.8 14 3.8 14.5 10.2 11.9 10.2" stroke-linejoin="round" stroke-miterlimit="10"></polyline></g></svg>
-                            <div>Đơn hàng đang vận chuyển</div>
-                        </div>
-                    </div>
 
-                </div>
-                <div class="FycaKn"></div>
-                <div class="product-info-item">
-                    <div class="product-info-1">
-                        <img src="../image/phone1.png" class="product-image" alt="">
-                        <div class="product-item-info">
-                            <div class="name-product">iPhone 14 Pro Max</div>
-                            <div class="type-product">Phân loại hàng : Gold</div>
-                            <div class="quantity-produdct">x1</div>
-                        </div>
-                    </div>
+                <?php
+                    $query = "SELECT * FROM (orders INNER JOIN product ON product.ID = orders.productID) where orders.username = '$Username'";
+
+                    // Thực hiện truy vấn
+                    $result = $mysqli->query($query);
+                    $productNum = $result->num_rows;
                     
-                    <div class="product-coin">
-                        <span class="coin-old">₫95.000</span>
-                        <span class="coin-safe">₫69.000</span>
-                    </div>
-                </div>
-                <div class="O2KPzo"><div class="mn7INg xFSVYg"> </div><div class="mn7INg EfbgJE"> </div></div>
 
-                
+                    // Kiểm tra kết quả truy vấn
+                    if ($result->num_rows > 0) {
+                        // Lặp qua từng dòng dữ liệu và thay thế vào file HTML
+                        while ($row = $result->fetch_assoc()) {
+                            $ordersID = $row['id'];
+                            $productName = $row['productName'];
+                            $productImage = $row['productImage'];
+                            $productID = $row['productId'];
+                            $quantity = $row['quantity'];
+                            $totalPrice = number_format($row['GIA_SP'] * $quantity * 0.94, 0, ',', '.');
+                            $onePrice = number_format($row['GIA_SP'], 0, ',', '.');
+                            $onePriceUpdate = number_format($row['GIA_SP'] * 0.94, 0, ',', '.');
+
+                            //changed
+                            $TypeProduct = $row['TypeProduct'];
+                            $typeProductWord;
+
+                            switch ($TypeProduct) {
+                                case 1:
+                                    $tmpQuery = "SELECT DISTINCT mau_sp.productline FROM (orders INNER JOIN product ON orders.productId = product.ID) INNER JOIN mau_sp ON mau_sp.productline = product.DANHMUCSP_ID WHERE orders.id = $ordersID AND orders.username = '$Username'";
+                                    $aRes = mysqli_query($mysqli, $tmpQuery);
+                                    if (!$aRes) {
+                                        die("Query failed: " . mysqli_error($mysqli));
+                                    }
+                                    $typeProductWord = ($aRes->num_rows == 0) ? 'none' : 'Đen';
+                                    break;
+
+                                case 2:
+                                    $typeProductWord = 'Trắng';
+                                    break;
+                                case 3:
+                                    $typeProductWord = 'Vàng';
+                                    break;
+                                case 4:
+                                    $typeProductWord = 'Đỏ';
+                                    break;
+                                case 5:
+                                    $typeProductWord = 'Nâu';
+                                    break;
+                            }
+
+                    echo '<div class="info__product-selected">
+                                <div class="shop-user">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="62" height="16" fill="none"><title>Preferred Seller</title><path fill="#EE4D2D" fill-rule="evenodd" d="M0 2C0 .9.9 0 2 0h58a2 2 0 012 2v12a2 2 0 01-2 2H2a2 2 0 01-2-2V2z" clip-rule="evenodd"></path><g clip-path="url(#clip0)"><path fill="#fff" d="M8.7 13H7V8.7L5.6 6.3A828.9 828.9 0 004 4h2l2 3.3a1197.3 1197.3 0 002-3.3h1.6L8.7 8.7V13zm7.9-1.7h1.7c0 .3-.2.6-.5 1-.2.3-.5.5-1 .7l-.6.2h-.8c-.5 0-1 0-1.5-.2l-1-.8a4 4 0 01-.9-2.4c0-1 .3-1.9 1-2.6a3 3 0 012.4-1l.8.1a2.8 2.8 0 011.3.7l.4.6.3.8V10h-4.6l.2 1 .4.7.6.5.7.1c.4 0 .7 0 .9-.2l.2-.6v-.1zm0-2.3l-.1-1-.3-.3c0-.2-.1-.2-.2-.3l-.8-.2c-.3 0-.6.2-.9.5l-.3.5a4 4 0 00-.3.8h3zm-1.4-4.2l-.7.7h-1.4l1.5-2h1.1l1.5 2h-1.4l-.6-.7zm8.1 1.6H25V13h-1.7v-.5.1H23l-.7.5-.9.1-1-.1-.7-.4c-.3-.2-.4-.5-.6-.8l-.2-1.3V6.4h1.7v3.7c0 1 0 1.6.3 1.7.2.2.5.3.7.3h.4l.4-.2.3-.3.3-.5.2-1.4V6.4zM34.7 13a11.2 11.2 0 01-1.5.2 3.4 3.4 0 01-1.3-.2 2 2 0 01-.5-.3l-.3-.5-.2-.6V7.4h-1.2v-1h1.1V5h1.7v1.5h1.9v1h-2v3l.2 1.2.1.3.2.2h.3l.2.1c.2 0 .6 0 1.3-.3v1zm2.4 0h-1.7V3.5h1.7v3.4a3.7 3.7 0 01.2-.1 2.8 2.8 0 013.4 0l.4.4.2.7V13h-1.6V9.3 8.1l-.4-.6-.6-.2a1 1 0 00-.4.1 2 2 0 00-.4.2l-.3.3a3 3 0 00-.3.5l-.1.5-.1.9V13zm5.4-6.6H44V13h-1.6V6.4zm-.8-.9l1.8-2h1.8l-2.1 2h-1.5zm7.7 5.8H51v.5l-.4.5a2 2 0 01-.4.4l-.6.3-1.4.2c-.5 0-1 0-1.4-.2l-1-.7c-.3-.3-.5-.7-.6-1.2-.2-.4-.3-.9-.3-1.4 0-.5.1-1 .3-1.4a2.6 2.6 0 011.6-1.8c.4-.2.9-.3 1.4-.3.6 0 1 .1 1.5.3.4.1.7.4 1 .6l.2.5.1.5h-1.6c0-.3-.1-.5-.3-.6-.2-.2-.4-.3-.8-.3s-.8.2-1.2.6c-.3.4-.4 1-.4 2 0 .9.1 1.5.4 1.8.4.4.8.6 1.2.6h.5l.3-.2.2-.3v-.4zm4 1.7h-1.6V3.5h1.7v3.4a3.7 3.7 0 01.2-.1 2.8 2.8 0 013.4 0l.3.4.3.7V13h-1.6V9.3L56 8.1c-.1-.3-.2-.5-.4-.6l-.6-.2a1 1 0 00-.3.1 2 2 0 00-.4.2l-.3.3a3 3 0 00-.3.5l-.2.5V13z"></path></g><defs><clipPath id="clip0"><path fill="#fff" d="M0 0h55v16H0z" transform="translate(4)"></path></clipPath></defs></svg>
+                                    <div class="name-shop">Sammi offical</div>
+                                    <div class="yHlRfY"><button class="stardust-button stardust-button--primary"><svg viewBox="0 0 17 17" class="shopee-svg-icon icon-btn-chat" style="fill: white;"><g fill-rule="evenodd"><path d="M13.89 0C14.504 0 15 .512 15 1.144l-.003.088-.159 2.117.162.001c.79 0 1.46.558 1.618 1.346l.024.15.008.154v9.932a1.15 1.15 0 01-1.779.963l-.107-.08-1.882-1.567-7.962.002a1.653 1.653 0 01-1.587-1.21l-.036-.148-.021-.155-.071-.836h-.01L.91 13.868a.547.547 0 01-.26.124L.556 14a.56.56 0 01-.546-.47L0 13.429V1.144C0 .512.497 0 1.11 0h12.78zM15 4.65l-.259-.001-.461 6.197c-.045.596-.527 1.057-1.106 1.057L4.509 11.9l.058.69.01.08a.35.35 0 00.273.272l.07.007 8.434-.001 1.995 1.662.002-9.574-.003-.079a.35.35 0 00-.274-.3L15 4.65zM13.688 1.3H1.3v10.516l1.413-1.214h10.281l.694-9.302zM4.234 5.234a.8.8 0 011.042-.077l.187.164c.141.111.327.208.552.286.382.131.795.193 1.185.193s.803-.062 1.185-.193c.225-.078.41-.175.552-.286l.187-.164a.8.8 0 011.042 1.209c-.33.33-.753.579-1.26.753A5.211 5.211 0 017.2 7.4a5.211 5.211 0 01-1.706-.28c-.507-.175-.93-.424-1.26-.754a.8.8 0 010-1.132z" fill-rule="nonzero"></path></g></svg><span>chat</span></button></div>
+                                </div>
+                                <div class="status-ship">
+                                    <div class="status__ship-item">
+                                        <svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="shopee-svg-icon icon-free-shipping-line"><g><line fill="none" stroke-linejoin="round" stroke-miterlimit="10" x1="8.6" x2="4.2" y1="9.8" y2="9.8"></line><circle cx="3" cy="11.2" fill="none" r="2" stroke-miterlimit="10"></circle><circle cx="10" cy="11.2" fill="none" r="2" stroke-miterlimit="10"></circle><line fill="none" stroke-miterlimit="10" x1="10.5" x2="14.4" y1="7.3" y2="7.3"></line><polyline fill="none" points="1.5 9.8 .5 9.8 .5 1.8 10 1.8 10 9.1" stroke-linejoin="round" stroke-miterlimit="10"></polyline><polyline fill="none" points="9.9 3.8 14 3.8 14.5 10.2 11.9 10.2" stroke-linejoin="round" stroke-miterlimit="10"></polyline></g></svg>
+                                        <div>Đơn hàng đang vận chuyển</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="FycaKn"></div>
+
+                            <div class="product-info-item">
+                                <div class="product-info-1">
+                                    <img src="'. $productImage.'" class="product-image" alt="">
+                                    <div class="product-item-info">
+                                        <div class="name-product">' . $productName.'</div>
+                                        <div class="type-product">Phân loại hàng : '. $typeProductWord.'</div>
+                                        <div class="quantity-produdct">x'.$quantity.'</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="product-coin">
+                                    <span class="coin-old">₫'.$onePrice.'</span>
+                                    <span class="coin-safe">₫'.$onePriceUpdate.'</span>
+                                </div>
+                            </div>
+                        <div class="O2KPzo"><div class="mn7INg xFSVYg"> </div>
+                        <div class="mn7INg EfbgJE"> </div>
+                        </div>';
+                    }
+                }
+                ?>
             </div>
         </div>
+
         <footer id="footer">
             <div class="grid">
                 <!-- Footer shop -->
@@ -459,5 +536,5 @@
                 </div>
             </div>
         </footer>
-
-</div>
+    </div>
+</body>
