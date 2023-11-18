@@ -15,20 +15,11 @@ if ($mysqli->connect_error) {
 session_start();
 $cart_id = $_SESSION['cart_id'];
 
-$id = $_GET['index'];
-$typeProduct = $_GET['productType'];
-$quantity = $_GET['value'];
-
 // Prepare and bind the update query
-$query = $mysqli->prepare("UPDATE cart_detail
-SET quantity = ?
-WHERE product_id = ?
-AND cart_id = '$cart_id'
-AND option_id IN (SELECT id FROM variation_option WHERE value = '$typeProduct')");
-$query->bind_param("ii", $quantity, $id);
+$query = "UPDATE cart_detail SET is_selected = 1 WHERE cart_id = '$cart_id'";
 
 // Execute the query
-if ($query->execute()) {
+if ($mysqli->query($query)) {
     // Update successful, send a success response
     echo json_encode(array("status" => "success", "message" => "Quantity updated successfully"));
 } else {
@@ -37,5 +28,5 @@ if ($query->execute()) {
 }
 
 // Close the prepared statement and database connection
-$query->close();
 $mysqli->close();
+?>

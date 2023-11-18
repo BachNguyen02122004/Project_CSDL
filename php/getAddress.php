@@ -1,8 +1,9 @@
 <?php
+//check - pass
 $servername = "localhost";
 $username = "root";
 $password = getenv('mySQLPass');
-$dbname = "project";
+$dbname = "test_project";
 
 $mysqli = new mysqli($servername, $username, $password, $dbname);
 
@@ -15,7 +16,7 @@ session_start();
 $id = $_SESSION['id'];
 $username = $_SESSION['username'];
 
-$queryAddress = "SELECT fullname, sdt, addressLine FROM (nguoi_dung AS u INNER JOIN address AS a ON u.id = a.user_id) WHERE u.id = '$id'";
+$queryAddress = "SELECT username, a.phone_number, address_line1, address_line2, is_default FROM (user AS u INNER JOIN user_address as ua ON u.id = ua.user_id INNER JOIN address as a ON a.id = ua.address_id) WHERE u.id = '$id'";
 $result = $mysqli->query($queryAddress);
 
 if ($result) {

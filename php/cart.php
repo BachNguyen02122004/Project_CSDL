@@ -1,9 +1,9 @@
 <?php
-
+//check - pass
 $servername = "localhost";
 $username = "root";
 $password = getenv('mySQLPass');
-$dbname = "project";
+$dbname = "test_project";
 
 $mysqli = new mysqli($servername, $username, $password, $dbname);
 
@@ -14,11 +14,12 @@ if ($mysqli->connect_error) {
 
 session_start();
 $Username = $_SESSION['username'];
+$cart_id = $_SESSION['cart_id'];
 
-$queryPrice = "SELECT SUM(GIA_SP*quantity*0.94) AS price FROM (cart INNER JOIN product ON cart.productID = product.ID) WHERE cart.username = '$Username'";
+$queryPrice = "SELECT SUM(price*quantity*0.94) AS prices FROM (cart_detail INNER JOIN product ON cart_detail.product_id = product.id) WHERE cart_detail.cart_id = '$cart_id' and cart_detail.is_selected = 1";
 $resultPrice = mysqli_query($mysqli, $queryPrice);
 $row = $resultPrice->fetch_assoc();
-$price = number_format($row['price'], 0, ',', '.');
+$price = number_format($row['prices'], 0, ',', '.');
 ?>;
 
 <!DOCTYPE html>
@@ -216,7 +217,7 @@ $price = number_format($row['price'], 0, ',', '.');
                 </div>
                 <div class="product-info-check">
                     <label class="check-box">
-                        <input class="" type="checkbox" aria-checked="true" aria-disabled="false" tabindex="0" role="checkbox" aria-label="Click here to select all products">
+                        <input class="item-check-box" type="checkbox" aria-checked="true" aria-disabled="false" tabindex="0" role="checkbox" aria-label="Click here to select all products">
                         <div class="check-before"></div>
                     </label>
                     <div class="product-info-1">Sản phẩm</div>
@@ -228,7 +229,12 @@ $price = number_format($row['price'], 0, ',', '.');
                 </div>
 
                 <?php
-                $query = "SELECT * FROM (cart INNER JOIN product ON product.ID = cart.productID) where cart.username = '$Username'";
+                $query = "SELECT cd.id AS ID, cd.is_selected, p.name, p.id, pi.image, cd.quantity, p.price, vo.value
+                            FROM (cart_detail AS cd 
+                            INNER JOIN product AS p ON cd.product_id = p.id 
+                            INNER JOIN product_image AS pi ON p.id = pi.id 
+                            INNER JOIN variation_option AS vo ON cd.option_id = vo.id) 
+                            WHERE pi.is_default = 1 AND cd.cart_id = '$cart_id'";
 
                 // Thực hiện truy vấn
                 $result = $mysqli->query($query);
@@ -238,44 +244,19 @@ $price = number_format($row['price'], 0, ',', '.');
                 if ($result->num_rows > 0) {
                     // Lặp qua từng dòng dữ liệu và thay thế vào file HTML
                     while ($row = $result->fetch_assoc()) {
-                        $cartID = $row['id'];
-                        $productName = $row['productName'];
-                        $productImage = $row['productImage'];
-                        $productID = $row['productId'];
+                        $ID = $row['ID'];
+                        $productName = $row['name'];
+                        $productImage = $row['image'];
+                        $productID = $row['id'];
                         $quantity = $row['quantity'];
-                        $totalPrice = number_format($row['GIA_SP'] * $quantity * 0.94, 0, ',', '.');
-                        $onePrice = number_format($row['GIA_SP'], 0, ',', '.');
-                        $onePriceUpdate = number_format($row['GIA_SP'] * 0.94, 0, ',', '.');
+                        $totalPrice = number_format($row['price'] * $quantity * 0.94, 0, ',', '.');
+                        $onePrice = number_format($row['price'], 0, ',', '.');
+                        $onePriceUpdate = number_format($row['price'] * 0.94, 0, ',', '.');
+                        $selected = $row['is_selected'];
 
                         //changed
-                        $TypeProduct = $row['TypeProduct'];
-                        $typeProductWord;
 
-                        switch ($TypeProduct) {
-                            case 1:
-                                $tmpQuery = "SELECT DISTINCT mau_sp.productline FROM (cart INNER JOIN product ON cart.productId = product.ID) INNER JOIN mau_sp ON mau_sp.productline = product.DANHMUCSP_ID WHERE cart.id = $cartID AND cart.username = '$Username'";
-                                $aRes = mysqli_query($mysqli, $tmpQuery);
-                                if (!$aRes) {
-                                    die("Query failed: " . mysqli_error($mysqli));
-                                }
-                                $typeProductWord = ($aRes->num_rows == 0) ? 'none' : 'Đen';
-                                break;
-
-                            case 2:
-                                $typeProductWord = 'Trắng';
-                                break;
-                            case 3:
-                                $typeProductWord = 'Vàng';
-                                break;
-                            case 4:
-                                $typeProductWord = 'Đỏ';
-                                break;
-                            case 5:
-                                $typeProductWord = 'Nâu';
-                                break;
-                        }
-
-
+                        $row['value'] == null ? $TypeProduct = "none" : $TypeProduct = $row['value'];
                         echo '<div class="product-info">
         
         
@@ -283,7 +264,7 @@ $price = number_format($row['price'], 0, ',', '.');
         <div id="productId" >' . $productID . '</div> 
         <div id="TypeProduct" style="display: none">' . $TypeProduct . '</div> 
         <label class="check-box">
-            <input class="" type="checkbox" aria-checked="true" aria-disabled="false" tabindex="0" role="checkbox" aria-label="Click here to select all products">
+            <input class="item-check-box" type="checkbox" aria-checked="false" aria-disabled="false" tabindex="1" role="checkbox" '. ($selected == 1 ? 'checked = "true"' : '') .'aria-label="Click here to select a product">
             <div class="check-before"></div>
         </label>
         <div class="box-info-item">
@@ -311,11 +292,11 @@ $price = number_format($row['price'], 0, ',', '.');
             <!-- Phân loại mặt hàng -->
             <div class="item-classification">   
                 <button class="select-item">
-                    <div id="select-item">'. ($typeProductWord == 'none' ? "" : "Phân loại hàng") .'
-                        <div class="before-select-item" '. ($typeProductWord == 'none' ? 'style="display:none"': '') .'></div>
+                    <div id="select-item">'. ($TypeProduct == 'none' ? "" : "Phân loại hàng") .'
+                        <div class="before-select-item" '. ($TypeProduct == 'none' ? 'style="display:none"': '') .'></div>
                     </div>
                     
-                    <div>' . ($typeProductWord == 'none' ? "" : $typeProductWord) . '</div>
+                    <div>' . $TypeProduct . '</div>
                 </button>
             </div>
             <div class="coins">
@@ -386,7 +367,7 @@ $price = number_format($row['price'], 0, ',', '.');
                     <div class="dashed-item"></div>
                     <div class="box-buy-btn">
                         <label class="check-box">
-                            <input class="" type="checkbox" aria-checked="true" aria-disabled="false" tabindex="0" role="checkbox" aria-label="Click here to select all products">
+                            <input class="item-check-box" type="checkbox" aria-checked="true" aria-disabled="false" tabindex="0" role="checkbox" aria-label="Click here to select all products">
                             <div class="check-before"></div>
                         </label>
                         <button class="select-buy-item">Chọn tất cả(<?php echo $productNum ?>)</button>

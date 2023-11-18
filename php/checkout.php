@@ -1,9 +1,9 @@
 <?php
-
+//check - pass
 $servername = "localhost";
 $username = "root";
 $password = getenv('mySQLPass');
-$dbname = "project";
+$dbname = "test_project";
 
 $mysqli = new mysqli($servername, $username, $password, $dbname);
 
@@ -15,11 +15,12 @@ if ($mysqli->connect_error) {
 session_start();
 $Username = $_SESSION['username'];
 $id = $_SESSION['id'];
+$cart_id = $_SESSION['cart_id'];
 
-$queryPrice = "SELECT SUM(GIA_SP*quantity*0.94) AS price FROM (cart INNER JOIN product ON cart.productID = product.ID) WHERE cart.username = '$Username'";
+$queryPrice = "SELECT SUM(price*quantity*0.94) AS prices FROM (cart_detail INNER JOIN product ON cart_detail.product_id = product.id) WHERE cart_detail.cart_id = '$cart_id' and cart_detail.is_selected = 1";
 $resultPrice = mysqli_query($mysqli, $queryPrice);
 $row = $resultPrice->fetch_assoc();
-$price = number_format($row['price'], 0, ',', '.');
+$price = number_format($row['prices'], 0, ',', '.');
 ?>;
 
 <!DOCTYPE html>
@@ -191,14 +192,14 @@ $price = number_format($row['price'], 0, ',', '.');
                     </div>
 
                     <?php
-                    $queryAddress = "select fullname, sdt, addressLine from (nguoi_dung as u inner join address as a on u.id = a.user_id) where u.id = '$id' LIMIT 1";
+                    $queryAddress = "select u.username, u.phone_number, a.address_line1, a.address_line2 from (user as u inner join user_address as ua on u.id = ua.user_id inner join address as a on a.id = ua.address_id) where u.id = '$id' and ua.is_default = 1";
                     $result = mysqli_query($mysqli, $queryAddress);
 
                     if ($result->num_rows > 0) {
                         $row = mysqli_fetch_assoc($result);
-                        $row['fullname'] != null ? $fullname = $row['fullname'] : $fullname = "";
-                        $row['sdt'] != null ? $sdt = $row['sdt'] : $sdt = "";
-                        $row['addressLine'] != null ? $addressLine = $row['addressLine'] : $addressLine = "";
+                        $row['username'] != null ? $fullname = $row['username'] : $fullname = "";
+                        $row['phone_number'] != null ? $sdt = $row['phone_number'] : $sdt = "";
+                        $row['address_line1'] != null ? $addressLine = $row['address_line1'] : $addressLine = "";
                     } else {
                         $fullname = "";
                         $sdt = "";
@@ -208,7 +209,7 @@ $price = number_format($row['price'], 0, ',', '.');
 
                     <div class="info-user">
                         <div class="infomation-item"> <?php echo $fullname ?> (+84)<?php echo $sdt ?> </div>
-                        <div class='info-item-1' style="margin-right: 8px;"><?php echo $addressLine ?> </div>
+                        <div class='info-item-1' id="addressline" style="margin-right: 8px;"><?php echo $addressLine ?> </div>
                         <div class="info-default">Mặc định</div>
                         <div class="change-item">Thay đổi </div>
                     </div>
@@ -226,7 +227,12 @@ $price = number_format($row['price'], 0, ',', '.');
                     </div>
 
                     <?php
-                    $query = "SELECT * FROM (cart INNER JOIN product ON product.ID = cart.productID) where cart.username = '$Username'";
+                    $query = "SELECT cd.id AS ID, p.name, p.id, pi.image, cd.quantity, p.price, vo.value
+                            FROM (cart_detail AS cd 
+                            INNER JOIN product AS p ON cd.product_id = p.id 
+                            INNER JOIN product_image AS pi ON p.id = pi.id 
+                            INNER JOIN variation_option AS vo ON cd.option_id = vo.id) 
+                            WHERE pi.is_default = 1 AND cd.cart_id = '$cart_id' and cd.is_selected = 1";
 
                     // Thực hiện truy vấn
                     $result = $mysqli->query($query);
@@ -237,42 +243,18 @@ $price = number_format($row['price'], 0, ',', '.');
                     if ($result->num_rows > 0) {
                         // Lặp qua từng dòng dữ liệu và thay thế vào file HTML
                         while ($row = $result->fetch_assoc()) {
-                            $cartID = $row['id'];
-                            $productName = $row['productName'];
-                            $productImage = $row['productImage'];
-                            $productID = $row['productId'];
+                            $ID = $row['ID'];
+                            $productName = $row['name'];
+                            $productImage = $row['image'];
+                            $productID = $row['id'];
                             $quantity = $row['quantity'];
-                            $totalPrice = number_format($row['GIA_SP'] * $quantity * 0.94, 0, ',', '.');
-                            $onePrice = number_format($row['GIA_SP'], 0, ',', '.');
-                            $onePriceUpdate = number_format($row['GIA_SP'] * 0.94, 0, ',', '.');
+                            $totalPrice = number_format($row['price'] * $quantity * 0.94, 0, ',', '.');
+                            $onePrice = number_format($row['price'], 0, ',', '.');
+                            $onePriceUpdate = number_format($row['price'] * 0.94, 0, ',', '.');
 
                             //changed
-                            $TypeProduct = $row['TypeProduct'];
-                            $typeProductWord;
 
-                            switch ($TypeProduct) {
-                                case 1:
-                                    $tmpQuery = "SELECT DISTINCT mau_sp.productline FROM (cart INNER JOIN product ON cart.productId = product.ID) INNER JOIN mau_sp ON mau_sp.productline = product.DANHMUCSP_ID WHERE cart.id = $cartID AND cart.username = '$Username'";
-                                    $aRes = mysqli_query($mysqli, $tmpQuery);
-                                    if (!$aRes) {
-                                        die("Query failed: " . mysqli_error($mysqli));
-                                    }
-                                    $typeProductWord = ($aRes->num_rows == 0) ? 'none' : 'Đen';
-                                    break;
-
-                                case 2:
-                                    $typeProductWord = 'Trắng';
-                                    break;
-                                case 3:
-                                    $typeProductWord = 'Vàng';
-                                    break;
-                                case 4:
-                                    $typeProductWord = 'Đỏ';
-                                    break;
-                                case 5:
-                                    $typeProductWord = 'Nâu';
-                                    break;
-                            }
+                            $row['value'] == null ? $TypeProduct = "none" : $TypeProduct = $row['value'];
 
                             echo '<div class="fake-item">
                         <div class="mall-item">
@@ -287,7 +269,7 @@ $price = number_format($row['price'], 0, ',', '.');
                             <div>' . $productName . '</div>
                             
                         </div>
-                        <div class="product__info-select empty-item">Loại : ' . $typeProductWord . '</div>
+                        <div class="product__info-select empty-item">Loại : ' . $TypeProduct . '</div>
                         <div class="product__info-coins product__info-text">₫' . $onePriceUpdate . '</div>
                         <div class="product__info-quantity product__info-text">' . $quantity . '</div>
                         <div class="product__info-total product__info-text">₫' . $totalPrice . '</div>

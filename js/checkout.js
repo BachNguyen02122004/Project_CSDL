@@ -38,9 +38,11 @@ async function handleAddChangeAddress() {
 
         data.forEach(row => {
           // Access each attribute in the row
-          const fullname = row.fullname;
-          const sdt = row.sdt;
-          const addressLine = row.addressLine;
+          const fullname = row.username;
+          const sdt = row.phone_number;
+          const addressLine1 = row.address_line1;
+          const addressLine2 = row.address_line2;
+          const is_default = row.is_default;
 
           addressHTML += `<div class="_79Pezb -wWYCG">
                             <div class="oMEsz4">
@@ -72,7 +74,7 @@ async function handleAddChangeAddress() {
                                 <div id="address-card_9f8036a7-b0ac-4266-ab42-9e12c3d2a202_content" role="heading" class="_5iyJY7 phl0s1">
                                     <div class="CYaaBD QDEIR1">
                                         <div class="gSHonO">
-                                            <div role="row" class="lQPEK6">${addressLine}</div>
+                                            <div role="row" class="lQPEK6">${addressLine1}</div>
                                         </div>
                                     </div>
                                     <div class="nC8H0V MPRaRR"></div>
@@ -289,15 +291,18 @@ function handleSubmit(e) {
   window.location.reload();
 };
 
+const addressline = document.querySelector('#addressline').innerHTML;
+console.log(addressline);
 document.addEventListener('DOMContentLoaded', function () {
   const orderButtons = document.querySelector('.select__product-item');
   orderButtons.addEventListener('click', () => {
-    fetch("../php/addOrders.php", {
+    const url = "../php/addOrders.php?address=" + encodeURIComponent(addressline);
+    fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }
     })
       .then(response => {
-        console.log('Data sent successfully');
+        console.log(response);
       })
       .catch(error => {
         console.error('Error sending data:', error);

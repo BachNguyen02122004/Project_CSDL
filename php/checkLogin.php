@@ -1,8 +1,9 @@
 <?php
+//check - pass
 $servername = "localhost";
 $username = "root";
 $password = getenv('mySQLPass');
-$dbname = "project";
+$dbname = "test_project";
 
 $mysqli = new mysqli($servername, $username, $password, $dbname);
 
@@ -14,7 +15,7 @@ if ($mysqli->connect_error) {
 $usernameInput = $mysqli->real_escape_string($_GET['username']);
 $userpasswordInput = $mysqli->real_escape_string($_GET['password']);
 
-$queryUser = "SELECT username, password, id FROM nguoi_dung WHERE username = '$usernameInput'";
+$queryUser = "SELECT username, password, user.id as uID, cart.id as cID FROM (user inner join cart on user.id = cart.id) WHERE username = '$usernameInput'";
 $resultUser = $mysqli->query($queryUser);
 
 if ($resultUser->num_rows === 0) {
@@ -24,11 +25,12 @@ if ($resultUser->num_rows === 0) {
     $row = $resultUser->fetch_assoc();
     $storedPassword = $row['password'];
 
-    if ($userpasswordInput === $storedPassword) {
+    if (password_verify($userpasswordInput, $storedPassword)) {
         $response = array('success' => 'Right password');
         session_start();
         $_SESSION['username'] = $usernameInput;
-        $_SESSION['id'] = $row['id'];
+        $_SESSION['id'] = $row['uID'];
+        $_SESSION['cart_id'] = $row['cID'];
         echo json_encode($response);
     } else {
         $response = array('error' => 'Wrong password');

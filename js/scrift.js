@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-
   handleCreate();
   addtoCart();
   // loadCartFromLocalStorage();
@@ -18,31 +17,12 @@ function handleCreate() {
 
 
     //changed
-    var TypeId = 1;
+    var TypeId;
 
     var selectedElement = document.querySelector('.color-1.selected');
     if (selectedElement !== null && selectedElement !== undefined) {
-      var type = selectedElement.innerHTML;
-      switch (type) {
-        case 'Đen':
-          TypeId = 1;
-          break;
-        case 'Trắng':
-          TypeId = 2;
-          break;
-        case 'Vàng':
-          TypeId = 3;
-          break;
-        case 'Đỏ':
-          TypeId = 4;
-          break;
-        case 'Nâu':
-          TypeId = 5;
-          break;
-        default:
-          console.log("Unknown color: " + type);
-          break;
-      }
+      TypeId = selectedElement.innerHTML;
+      console.log(TypeId);
     } else {
       console.log("Selected element is null or undefined. Using default TypeId: " + TypeId);
     }

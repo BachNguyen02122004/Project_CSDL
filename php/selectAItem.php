@@ -16,16 +16,12 @@ session_start();
 $cart_id = $_SESSION['cart_id'];
 
 $id = $_GET['index'];
+$state = $_GET['state'];
 $typeProduct = $_GET['productType'];
-$quantity = $_GET['value'];
 
 // Prepare and bind the update query
-$query = $mysqli->prepare("UPDATE cart_detail
-SET quantity = ?
-WHERE product_id = ?
-AND cart_id = '$cart_id'
-AND option_id IN (SELECT id FROM variation_option WHERE value = '$typeProduct')");
-$query->bind_param("ii", $quantity, $id);
+$query = $mysqli->prepare("UPDATE cart_detail SET is_selected = ? WHERE product_id = ? AND cart_id = '$cart_id' AND option_id IN (SELECT id FROM variation_option WHERE value = '$typeProduct')");
+$query->bind_param("ii", $state, $id);
 
 // Execute the query
 if ($query->execute()) {
@@ -39,3 +35,4 @@ if ($query->execute()) {
 // Close the prepared statement and database connection
 $query->close();
 $mysqli->close();
+?>

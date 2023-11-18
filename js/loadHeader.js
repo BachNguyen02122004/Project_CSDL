@@ -23,5 +23,6 @@ const endpoint3 = '../php/getUsername.php';
       }
     })
     .catch(error => {
-      document.getElementsByClassName('navbar__user-name')[0].innerHTML = 'Guest';
+      console.log(error);
+      document.getElementsByClassName('navbar__user-name')[0].innerHTML = 'A Guest';
     });

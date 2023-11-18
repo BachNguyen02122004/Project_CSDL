@@ -1,11 +1,11 @@
 <?php
-
+//check - pass
 // Kết nối đến cơ sở dữ liệu MySQL
 
 $servername = "localhost";
 $username = "root";
 $password = getenv('mySQLPass');
-$dbname = "project";
+$dbname = "test_project";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -18,22 +18,22 @@ if ($conn->connect_error) {
 $productId = $_GET['id'];
 
 // Truy vấn dữ liệu sản phẩm từ cơ sở dữ liệu
-$sql1 = "SELECT *, product.name AS name1, brand.name AS name2, brand.ID AS brandID FROM ((product INNER JOIN brand ON product.BRAND_ID = brand.ID) INNER JOIN danhmuc_sp ON product.DANHMUCSP_ID = danhmuc_sp.DANHMUCSP_ID) WHERE product.ID = '$productId'";
+$sql1 = "SELECT product.name, image, description, price, quantity_in_stock FROM (product INNER JOIN product_image ON product.id = product_image.id) WHERE product.id = '$productId' and product_image.is_default = 1";
 
 $result1 = $conn->query($sql1);
 
 if ($result1->num_rows > 0) {
     // Lấy thông tin sản phẩm từ kết quả truy vấn
     $row = $result1->fetch_assoc();
-    $productName = $row['name1'];
-    $brandName = $row['name2'];
-    $productImage = $row['IMAGE'];
-    $productDescription = $row['MIEUTA_SP'];
-    $GIA_SP = number_format($row['GIA_SP'], 0, ',', '.');
-    $GIA_SP_update = number_format($row['GIA_SP'] * 0.94, 0, ',', '.');
+    $productName = $row['name'];
+    $productImage = $row['image'];
+    $productDescription = $row['description'];
+    $GIA_SP = number_format($row['price'], 0, ',', '.');
+    $GIA_SP_update = number_format($row['price'] * 0.94, 0, ',', '.');
+    $inStock = $row['quantity_in_stock'];
 }
 
-$sql2 = "SELECT * FROM product_img WHERE productID = '$productId'";
+$sql2 = "SELECT image FROM product_image WHERE id = '$productId' and is_default = 0";
 $result2 = $conn->query($sql2);
 $saveImage = array();
 $number = 1;
@@ -41,19 +41,19 @@ $number = 1;
 if ($result2->num_rows > 0) {
     // Lấy thông tin sản phẩm từ kết quả truy vấn
     while ($row = $result2->fetch_assoc()) {
-        $saveImage[$number] = $row['product_imgIMAGE'];
+        $saveImage[$number] = $row['image'];
         $number++;
     }
 }
 
-$sql3 = "SELECT mau_sp.detail_of FROM (mau_sp INNER JOIN (danhmuc_sp INNER JOIN product ON product.DANHMUCSP_ID = danhmuc_sp.DANHMUCSP_ID) ON mau_sp.productline = danhmuc_sp.DANHMUCSP_ID) WHERE product.ID = '$productId';";
+$sql3 = "SELECT value FROM (product as p inner join product_configuration as pc on p.id = pc.product_id inner join variation_option as vo on pc.variation_option_id = vo.id) WHERE p.id = '$productId'";
 $result3 = $conn->query($sql3);
 $saveType = array();
 $number1 = 1;
 if ($result3->num_rows > 0) {
     // Lấy thông tin sản phẩm từ kết quả truy vấn
     while ($row = $result3->fetch_assoc()) {
-        $saveType[$number1] = $row['detail_of'];
+        $saveType[$number1] = $row['value'];
         $number1++;
     }
 }
@@ -95,23 +95,28 @@ $conn->close();
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             const buttons = document.querySelectorAll('.color-1');
+            let checking; // Declare checking outside the loop
 
-
-            buttons.forEach(button => {
+            buttons.forEach((button, index) => {
                 button.addEventListener('click', () => {
                     // Remove 'selected' class from all buttons
                     buttons.forEach(btn => {
                         btn.classList.remove('selected');
-
                     });
 
                     // Add 'selected' class to the clicked button
                     button.classList.add('selected');
 
                 });
+
+                // Automatically select the first button
+                if (index === 0) {
+                    button.click();
+                }
             });
         });
     </script>
+
 
 </head>
 
@@ -431,11 +436,7 @@ $conn->close();
                                 <?php
                                 if (!empty($saveType)) {
                                     foreach ($saveType as $Type) {
-                                        if ($Type == 1) echo '<button class="color-1 select-color">Đen</button>';
-                                        else if ($Type == 2) echo '<button class="color-1 select-color">Trắng</button>';
-                                        else if ($Type == 3) echo '<button class="color-1 select-color">Vàng</button>';
-                                        else if ($Type == 4) echo '<button class="color-1 select-color">Đỏ</button>';
-                                        else if ($Type == 5) echo '<button class="color-1 select-color">Nâu</button>';
+                                        echo '<button class="color-1 select-color">' . $Type . '</button>';
                                     }
                                 }
                                 ?>
@@ -461,7 +462,7 @@ $conn->close();
                                         <polygon points="10 4.5 5.5 4.5 5.5 0 4.5 0 4.5 4.5 0 4.5 0 5.5 4.5 5.5 4.5 10 5.5 10 5.5 5.5 10 5.5"></polygon>
                                     </svg></button>
                             </div>
-                            <div class="available-number">200 sản phẩm có sẵn</div>
+                            <div class="available-number"><?php echo $inStock ?> sản phẩm có sẵn</div>
                         </div>
 
                         <div class="buy-item">

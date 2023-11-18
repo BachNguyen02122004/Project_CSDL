@@ -1,12 +1,16 @@
 
 const decreaseButtons = document.querySelectorAll('.item-down-up[aria-label="Decrease"]');
 const increaseButtons = document.querySelectorAll('.item-down-up:not([aria-label="Decrease"])');
+
+const chooseSingleItem = document.querySelectorAll('.item-check-box[aria-label="Click here to select a product"]');
+const chooseAllItem = document.querySelectorAll('.item-check-box[aria-label="Click here to select all products"]');
+
 const inputElements = document.querySelectorAll('.text-number');
 const real_coins = Array.from(document.querySelectorAll(".coin-item-cart")).map(element => element.textContent);
 const coinsElement = document.querySelectorAll("#coin-number");
 const coins = [];
 let total_coin = parseInt(document.querySelector(".real-coin").textContent.replace(/\D/g, ""));
-const productId= document.querySelectorAll('#productId');
+const productId = document.querySelectorAll('#productId');
 const typeProduct = document.querySelectorAll('#TypeProduct');
 
 
@@ -14,8 +18,53 @@ document.addEventListener('DOMContentLoaded', function () {
   // console.log(total_coin);
   // console.log(coins);
 
-  handleDelete(); 
+  handleDelete();
   changePage();
+
+  chooseAllItem.forEach(function (button, index) {
+    button.addEventListener('click', function () {
+      var url = "../php/selectAllItem.php";
+      fetch(url, {
+        method: 'POST', // Use POST method to send data
+        headers: {
+          'Content-Type': 'application/json' // Set content type to JSON
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          // Handle the response from the PHP file
+          console.log(data);
+          window.location.reload();
+        })
+        .catch(error => {
+          // Handle errors
+          console.error('Error:', error);
+        });
+    });
+  });
+
+  chooseSingleItem.forEach(function (button, index) {
+    button.addEventListener('click', function () {
+      let state = (this.checked ? 1 : 0);
+      var url = "../php/selectAItem.php?index=" + encodeURIComponent((productId[index].innerHTML)) + "&state=" + encodeURIComponent(state) + "&productType=" + encodeURIComponent(typeProduct[index].innerHTML);
+      fetch(url, {
+        method: 'POST', // Use POST method to send data
+        headers: {
+          'Content-Type': 'application/json' // Set content type to JSON
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          // Handle the response from the PHP file
+          console.log(data);
+        })
+        .catch(error => {
+          // Handle errors
+          console.error('Error:', error);
+        });
+    });
+  });
+
   decreaseButtons.forEach(function (button, index) {
     button.addEventListener('click', function () {
       let value = parseInt(inputElements[index].value);
@@ -123,9 +172,9 @@ function handleDelete() {
   });
 };
 
-function changePage(){
+function changePage() {
   const button = document.querySelector('.buy-product-cart');
-  button.addEventListener('click', function(e){
+  button.addEventListener('click', function (e) {
     e.preventDefault();
     window.location.href = "../php/checkout.php";
   })

@@ -232,9 +232,6 @@ a {
     flex-direction: column;
 }
 
-.product-coin {
-    font-size: 14px;
-}
 .coin-old{
     font-size : 14px;
     text-decoration: line-through;

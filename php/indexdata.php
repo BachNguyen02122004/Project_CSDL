@@ -1,10 +1,9 @@
-
 <?php
-
+//check - pass
 $servername = "localhost";
 $username = "root";
 $password = getenv('mySQLPass');
-$dbname = "project";
+$dbname = "test_project";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -18,7 +17,7 @@ $page = $_GET['pageNumber'];
 $start = 1 + ($page - 1) * 20;
 $end = $start + 19;
 
-$query = "SELECT * FROM product WHERE ID BETWEEN $start AND $end";
+$query = "SELECT product.id as ID, image, name, price FROM (product inner join product_image on product.id = product_image.id) WHERE product.id BETWEEN $start AND $end and product_image.is_default = 1";
 $results = mysqli_query($conn, $query);
 
 $body = '<div class="grid__row" style="display:flex;">';
@@ -28,8 +27,8 @@ if ($results && mysqli_num_rows($results) > 0) {
 
     while ($row = mysqli_fetch_assoc($results)) {
 
-        $GIA_SP = number_format($row['GIA_SP'], 0, ',', '.');
-        $GIA_SP_update = number_format($row['GIA_SP']*0.94, 0, ',', '.');
+        $GIA_SP = number_format($row['price'], 0, ',', '.');
+        $GIA_SP_update = number_format($row['price']*0.94, 0, ',', '.');
 
         // Append the product item HTML to the body string
         
@@ -39,7 +38,7 @@ if ($results && mysqli_num_rows($results) > 0) {
 
         $body .= '<div class="column-1">';
         $body .= '    <a class="product-item" href="../php/product.php?id=' .$row['ID'] . '">';
-        $body .= '        <div class="product-item__img" style="background-image: url(' . $row['IMAGE'].')"></div>';
+        $body .= '        <div class="product-item__img" style="background-image: url(' . $row['image'].')"></div>';
         
         $body .= '        <div class="product-item__info">';
         $body .= '            <h4 class="product-item__name">' .$row['name'] .'</h4>';
