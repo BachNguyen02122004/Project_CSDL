@@ -11,7 +11,7 @@ $mysqli = new mysqli($servername, $username, $password, $dbname);
 if ($mysqli->connect_error) {
     die("Kết nối cơ sở dữ liệu thất bại: " . $mysqli->connect_error);
 }
-// ...
+
 $usernameInput = $mysqli->real_escape_string($_GET['username']);
 $userpasswordInput = $mysqli->real_escape_string($_GET['password']);
 
@@ -35,5 +35,10 @@ if ($resultUser->num_rows === 0) {
     } else {
         $response = array('error' => 'Wrong password');
         echo json_encode($response);
+
+        // Hiển thị thông báo sai mật khẩu bằng JavaScript
+        
     }
-}
+} 
+
+?>
