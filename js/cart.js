@@ -8,10 +8,11 @@ const chooseAllItem = document.querySelectorAll('.item-check-box[aria-label="Cli
 const inputElements = document.querySelectorAll('.text-number');
 const real_coins = Array.from(document.querySelectorAll(".coin-item-cart")).map(element => element.textContent);
 const coinsElement = document.querySelectorAll("#coin-number");
-const coins = [];
+const coins = [0];
+const state = [];
 let total_coin = parseInt(document.querySelector(".real-coin").textContent.replace(/\D/g, ""));
 const productId = document.querySelectorAll('#productId');
-const typeProduct = document.querySelectorAll('#TypeProduct');
+const typeProduct = document.querySelectorAll('#TypeProduct');  
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -45,8 +46,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
   chooseSingleItem.forEach(function (button, index) {
     button.addEventListener('click', function () {
-      let state = (this.checked ? 1 : 0);
-      var url = "../php/selectAItem.php?index=" + encodeURIComponent((productId[index].innerHTML)) + "&state=" + encodeURIComponent(state) + "&productType=" + encodeURIComponent(typeProduct[index].innerHTML);
+      state[index] = (this.checked ? 1 : 0);
+      coins[index] = parseInt(real_coins[index].replace(/\D/g, "")) * inputElements[index].value;
+      console.log(state[index]);
+      console.log(coins[index]);
+      if(state[index] === 0){
+        total_coin -= coins[index];
+      }
+      else {
+        total_coin += coins[index];
+      }
+      updateTotalCoin();
+      
+      var url = "../php/selectAItem.php?index=" + encodeURIComponent((productId[index].innerHTML)) + "&state=" + encodeURIComponent(state[index]) + "&productType=" + encodeURIComponent(typeProduct[index].innerHTML);
       fetch(url, {
         method: 'POST', // Use POST method to send data
         headers: {
@@ -73,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
         value--;
         inputElements[index].value = value;
         coins[index] = parseInt(real_coins[index].replace(/\D/g, "")) * inputElements[index].value;
+        if(state[index] === 1)
         total_coin -= parseInt(real_coins[index].replace(/\D/g, ""));
         console.log(productId[index]);
 
@@ -106,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
       value++;
       console.log(value);
       console.log(productId[index]);
-      console.log(typeProduct);
+      console.log(typeProduct.innerHTML);
       var url = "../php/dataChange.php?index=" + encodeURIComponent((productId[index].innerHTML)) + "&value=" + encodeURIComponent(value) + "&productType=" + encodeURIComponent(typeProduct[index].innerHTML);
       fetch(url, {
         method: 'POST', // Use POST method to send data
@@ -126,6 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       inputElements[index].value = value;
       coins[index] = parseInt(real_coins[index].replace(/\D/g, "")) * inputElements[index].value;
+      if(state[index] === 1)
       total_coin += parseInt(real_coins[index].replace(/\D/g, ""));
       updateTotalPrice(index);
       updateTotalCoin();
@@ -138,6 +152,7 @@ function updateTotalPrice(index) {
   const quantity = inputElements[index].value;
   const totalPriceElement = document.querySelectorAll('.coin-number')[index];
   const totalPrice = coins[index];
+ 
 
   totalPriceElement.textContent = '₫' + totalPrice.toLocaleString('vi-VN');
 

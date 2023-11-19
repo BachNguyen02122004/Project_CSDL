@@ -136,8 +136,8 @@ $price = number_format($row['prices'], 0, ',', '.');
                         </li>
                         <!-- Login -->
                         <li class="navbar__item navbar__user">
-                            <img src="https://scontent.fhan5-2.fna.fbcdn.net/v/t39.30808-6/334087802_3382305192083244_2123568042910148607_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=a2f6c7&_nc_ohc=vZoTiEhQ_20AX-s2s6D&_nc_ht=scontent.fhan5-2.fna&oh=00_AfAT59ibTdTpBy6wOv0-FoXAqZ-m0Lhw9vOkgw01QVXOHg&oe=6509F395" alt="avt" class="navbar__user-avt">
-                            <span class="navbar__user-name">Admin</span>
+                            <img id="user_image" class="navbar__user-avt" src="../img/admin.jpg"/>
+                            <span class="navbar__user-name"><?php echo $Username?></span>
 
                             <ul class="navbar__user-menu">
                                 <li class="navbar__user-item"><a href="">Tài khoản của tôi</a></li>
@@ -499,6 +499,7 @@ $price = number_format($row['prices'], 0, ',', '.');
     </div>
 
     <script src="../js/cart.js"></script>
+    <!-- <script src="../js/loadHeader.js"></script> -->
 </body>
 
 </html>

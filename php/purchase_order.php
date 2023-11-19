@@ -129,8 +129,8 @@ $cart_id = $_SESSION['cart_id'];
                         </li>
                         <!-- Login -->
                         <li class="navbar__item navbar__user">
-                            <img id="user_image" class="navbar__user-avt" src='../img/admin.jpg' />Admin
-                            <span class="navbar__user-name"></span>
+                            <img id="user_image" class="navbar__user-avt" src='../img/admin.jpg' />
+                            <span class="navbar__user-name"><?php echo $Username ?></span>
 
                             <ul class="navbar__user-menu">
                                 <li class="navbar__user-item"><a href="">Tài khoản của tôi</a></li>
@@ -146,7 +146,7 @@ $cart_id = $_SESSION['cart_id'];
                 <!-- Begin: Search -->
                 <div class="header-with-search">
                     <div class="header__logo">
-                        <a href="#" class="header__logo-link">
+                        <a href="../html/index.html" class="header__logo-link">
 
                             <svg viewBox="0 0 192 65" class="header__logo-img"><a href="index.html">
                                     <g fill-rule="evenodd">
@@ -270,7 +270,7 @@ $cart_id = $_SESSION['cart_id'];
             <div class="user-item">
                 <div class="user-avt"></div>
                 <div class="user-info">
-                    <div id="user__item-name">275r90f2xo</div>
+                    <div id="user__item-name"><?php echo $Username ?></div>
                     <div class="fix-user">
                         <div>Sửa hồ sơ</div>
                         <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" style="margin-right: 4px;">

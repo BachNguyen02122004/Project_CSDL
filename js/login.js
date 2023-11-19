@@ -21,6 +21,7 @@ function checkInputValidity() {
   }
 }
 
+
 function clickBtn(e) {
   e.preventDefault();
   const usernameValue = usernameInput.value;

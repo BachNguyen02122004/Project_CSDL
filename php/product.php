@@ -13,9 +13,12 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
 }
-
+session_start();
 // Lấy giá trị của tham số "id" từ URL
 $productId = $_GET['id'];
+$Username = $_SESSION['username'];
+$cart_id = $_SESSION['cart_id'];
+
 
 // Truy vấn dữ liệu sản phẩm từ cơ sở dữ liệu
 $sql1 = "SELECT product.name, image, description, price, quantity_in_stock FROM (product INNER JOIN product_image ON product.id = product_image.id) WHERE product.id = '$productId' and product_image.is_default = 1";
@@ -211,9 +214,11 @@ $conn->close();
                             </a>
                         </li>
                         <!-- Login -->
+                        
+
                         <li class="navbar__item navbar__user">
-                            <img src="https://scontent.fhan5-2.fna.fbcdn.net/v/t39.30808-6/334087802_3382305192083244_2123568042910148607_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=a2f6c7&_nc_ohc=vZoTiEhQ_20AX-s2s6D&_nc_ht=scontent.fhan5-2.fna&oh=00_AfAT59ibTdTpBy6wOv0-FoXAqZ-m0Lhw9vOkgw01QVXOHg&oe=6509F395" alt="avt" class="navbar__user-avt">
-                            <span class="navbar__user-name">Admin</span>
+                            <img id="user_image" class="navbar__user-avt" src="../img/admin.jpg"/>
+                            <span class="navbar__user-name"><?php echo $Username; ?></span>
 
                             <ul class="navbar__user-menu">
                                 <li class="navbar__user-item"><a href="">Tài khoản của tôi</a></li>
@@ -230,7 +235,7 @@ $conn->close();
                 <div class="header-with-search">
 
                     <div class="header__logo">
-                        <a href="#" class="header__logo-link">
+                        <a href="../html/index.html" class="header__logo-link">
 
                             <svg viewBox="0 0 192 65" class="header__logo-img"><a href="index.html">
                                     <g fill-rule="evenodd">
@@ -272,74 +277,9 @@ $conn->close();
                     </div>
 
                     <!-- Cart layout -->
-                    <div class="header__cart">
-                        <div class="header__cart-wrap">
-                            <i class="header__cart-icon fas fa-shopping-cart"></i>
-                            <span class="header__cart-notice">0</span>
-                            <!-- No cart: header__cart-list--no-cart -->
-                            <div class="header__cart-list">
-                                <img src="../img/nocard.png" alt="No card" class="header__cart-no-cart-img">
-
-                                <h4 class="header__cart-heading">Sản phẩm đã thêm</h4>
-                                <ul class="header__cart-group">
-                                    <!-- Cart items -->
-                                    <li class="header__cart-item">
-                                        <img src="https://cf.shopee.vn/file/f9864891a8ba04e463d2dd446e745c49" alt="Bàn Phím Cơ EDRA EK387" class="header__cart-img">
-                                        <div class="header__cart-item-info">
-                                            <div class="header__cart-item-head">
-                                                <h5 class="header__cart-item-name">Bàn Phím Cơ EDRA EK387 Bàn Phím Cơ EDRA EK387Bàn Phím Cơ EDRA EK387Bàn Phím Cơ EDRA EK387Bàn Phím Cơ EDRA EK387</h5>
-                                                <div class="header__cart-price-wrap">
-                                                    <span class="header__cart-item-price">640.000đ</span>
-                                                    <span class="header__cart-item-delect">x</span>
-                                                    <span class="header__cart-item-qnt">2</span>
-                                                </div>
-                                            </div>
-                                            <div class="header__cart-item-body">
-                                                <span class="header__cart-item-desc">Phân loại hàng: Red Switch</span>
-                                                <span class="header__cart-item-remove">Xóa</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="header__cart-item">
-                                        <img src="https://cf.shopee.vn/file/c64ddf57f14037d07edc37f88c364641_tn" alt="Ghế Chơi Game E-DRA Jupiter" class="header__cart-img">
-                                        <div class="header__cart-item-info">
-                                            <div class="header__cart-item-head">
-                                                <h5 class="header__cart-item-name">Ghế Chơi Game E-DRA Jupiter</h5>
-                                                <div class="header__cart-price-wrap">
-                                                    <span class="header__cart-item-price">2.000.000đ</span>
-                                                    <span class="header__cart-item-delect">x</span>
-                                                    <span class="header__cart-item-qnt">1</span>
-                                                </div>
-                                            </div>
-                                            <div class="header__cart-item-body">
-                                                <span class="header__cart-item-desc">Phân loại hàng: Red Switch</span>
-                                                <span class="header__cart-item-remove">Xóa</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="header__cart-item">
-                                        <img src="https://cf.shopee.vn/file/2a4a9a695ba8e32e84d5c14da4fe785e_tn" alt="Giá đỡ màn hình máy tính" class="header__cart-img">
-                                        <div class="header__cart-item-info">
-                                            <div class="header__cart-item-head">
-                                                <h5 class="header__cart-item-name">Giá đỡ màn hình máy tính</h5>
-                                                <div class="header__cart-price-wrap">
-                                                    <span class="header__cart-item-price">699.000đ</span>
-                                                    <span class="header__cart-item-delect">x</span>
-                                                    <span class="header__cart-item-qnt">1</span>
-                                                </div>
-                                            </div>
-                                            <div class="header__cart-item-body">
-                                                <span class="header__cart-item-desc">Phân loại hàng: Red Switch</span>
-                                                <span class="header__cart-item-remove">Xóa</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <a style="display: flex;font-size: 1.2rem;" class="header__cart-view btn btn--primary">Xem giỏ hàng</a>
-                            </div>
-                        </div>
+                    <div class="header__cart" id="headerData">
+                       
                     </div>
-
                 </div>
                 <!-- End: Search -->
             </div>
@@ -496,6 +436,8 @@ $conn->close();
 
     </div>
 
+    
+    <script src="../js/loadMainPage.js"></script>
     <script src="../js/app.js"></script>
     <script src="../js/scrift.js"></script>
 </body>

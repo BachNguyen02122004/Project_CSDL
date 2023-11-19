@@ -36,18 +36,25 @@ $insertQuery = "INSERT INTO `order` (id, user_id, order_date, shipping_address, 
                 VALUES ('$newId', 
                         '$id',
                         NOW(), 
-                        (SELECT address.id from (address inner join user_address) WHERE address_line1 = '$addressLine' and user_id = '$id'), 
+                        (SELECT id from (address inner join user_address on user_address.address_id = address.id) WHERE user_id = $id and is_default = 1), 
                         (SELECT COUNT(*) FROM cart_detail WHERE cart_id = '$cart_id' AND is_selected = 1), 
                         0)";
 
 
 // Execute the insert query
 if ($conn->query($insertQuery) === true) {
-    $newInsert = "INSERT INTO `order_details` (product_id, order_id, quantity, option_id)
+    $newInsert = "INSERT INTO order_details (product_id, order_id, quantity, option_id)
               SELECT product_id, $newId, quantity, option_id
               FROM cart_detail
               WHERE cart_id = $cart_id AND is_selected = 1";
     if ($conn->query($newInsert) === true) {
+        $updateQuery = "UPDATE product p
+                            INNER JOIN cart_detail cd ON p.id = cd.product_id
+                            SET p.quantity_in_stock = p.quantity_in_stock - cd.quantity
+                            WHERE cd.cart_id = '$cart_id'";
+    if($conn->query($updateQuery) === true){
+        $response = array('success' => 'User added successfully');
+    }
         $deleteQuery = "DELETE FROM cart_detail WHERE cart_id = '$cart_id' AND is_selected = 1";
         if ($conn->query($deleteQuery) === true) {
             $response = array('success' => 'User added successfully');

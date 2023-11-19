@@ -35,6 +35,8 @@ $price = number_format($row['prices'], 0, ',', '.');
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/link.css">
     <link rel="stylesheet" href="../css/cart.css">
+    <link rel="stylesheet" href="../css/form.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -44,6 +46,7 @@ $price = number_format($row['prices'], 0, ',', '.');
 
 <body>
     <div id="main">
+    <div id="toast"></div>
         <header id="header">
 
             <div class="nav">
