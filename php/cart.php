@@ -261,9 +261,9 @@ $price = number_format($row['prices'], 0, ',', '.');
         
         
         
-        <div id="productId" >' . $productID . '</div> 
+        <div id="productId" style="display : none";>' . $productID . '</div> 
         <div id="TypeProduct" style="display: none">' . $TypeProduct . '</div> 
-        <label class="check-box">
+        <label class="check-box '. ($selected == 1 ? "check-box-checked" : "") .'">
             <input class="item-check-box" type="checkbox" aria-checked="false" aria-disabled="false" tabindex="1" role="checkbox" '. ($selected == 1 ? 'checked = "true"' : '') .'aria-label="Click here to select a product">
             <div class="check-before"></div>
         </label>

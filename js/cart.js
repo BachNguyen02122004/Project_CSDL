@@ -18,7 +18,7 @@ const typeProduct = document.querySelectorAll('#TypeProduct');
 document.addEventListener('DOMContentLoaded', function () {
   // console.log(total_coin);
   // console.log(coins);
-
+ 
   handleDelete();
   changePage();
 
@@ -45,8 +45,15 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   chooseSingleItem.forEach(function (button, index) {
-    button.addEventListener('click', function () {
+    button.addEventListener('click', function (e) {
+      
       state[index] = (this.checked ? 1 : 0);
+      if(state[index] === 1){
+        button.parentNode.classList.add('check-box-checked');
+      }
+      else {
+        button.parentNode.classList.remove('check-box-checked');
+      }
       coins[index] = parseInt(real_coins[index].replace(/\D/g, "")) * inputElements[index].value;
       console.log(state[index]);
       console.log(coins[index]);
@@ -213,4 +220,22 @@ function deleteProduct(id) {
     })
 
 
+}
+
+function changeInput(){
+  const checkboxes = document.querySelectorAll('.check-box');
+  console.log(checkboxes);
+  // Lặp qua từng ô đánh dấu và thêm bộ lắng nghe sự kiện
+  checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('click', function(event) {
+      
+      if (!this.classList.contains('check-box-checked')) {
+        // Nếu ô đánh dấu đã được chọn, thêm class 'check-box-check'
+        this.classList.add('check-box-checked');
+      } else {
+        // Nếu ô đánh dấu không được chọn, loại bỏ class 'check-box-check'
+        this.classList.remove('check-box-checked');
+      }
+    });
+  });
 }

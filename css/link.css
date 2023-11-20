@@ -364,7 +364,10 @@
     height: 48px;
     color : var(--white-color)
 }
+
 .buy {
+    border: 0;
+    border-radius: 2px;
     background-color: #EE4D2D;
 }
 .buy-fake {

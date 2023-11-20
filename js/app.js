@@ -1,17 +1,18 @@
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+  changPage();
 
   const decreaseButtons = document.querySelectorAll('.item-down-up[aria-label="Decrease"]');
   const increaseButtons = document.querySelectorAll('.item-down-up:not([aria-label="Decrease"])');
   const inputElements = document.querySelectorAll('.text-number');
   handleDelete();
-  
-  
+
+
   // Thiết lập sự kiện khi nhấn nút giảm
   decreaseButtons.forEach(function (button, index) {
     button.addEventListener('click', function () {
       let value = parseInt(inputElements[index].value);
-  
+
       if (value > 1) {
         value--;
         inputElements[index].value = value;
@@ -19,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-  
+
   // Thiết lập sự kiện khi nhấn nút tăng
   increaseButtons.forEach(function (button, index) {
     button.addEventListener('click', function () {
@@ -29,60 +30,93 @@ document.addEventListener('DOMContentLoaded', function() {
       inputElements[index].value = value;
     });
   });
-  
-var images = document.querySelectorAll('.item-small');
-const mainImage = document.getElementById('product-image');
-const imageMain = mainImage.getAttribute('src');
-console.log(imageMain);
-console.log(mainImage);
-images.forEach(function (image) {
-  image.addEventListener('mouseover', function(e) {
-    console.log(e);
-    var url = image.getAttribute('src');
-    mainImage.setAttribute('src', url);
-  })
-  image.addEventListener('mouseout', function(e) {
-    mainImage.setAttribute('src', imageMain); 
+
+  var images = document.querySelectorAll('.item-small');
+  const mainImage = document.getElementById('product-image');
+  const imageMain = mainImage.getAttribute('src');
+  console.log(imageMain);
+  console.log(mainImage);
+  images.forEach(function (image) {
+    image.addEventListener('mouseover', function (e) {
+      console.log(e);
+      var url = image.getAttribute('src');
+      mainImage.setAttribute('src', url);
+    })
+    image.addEventListener('mouseout', function (e) {
+      mainImage.setAttribute('src', imageMain);
+    });
+
   });
 
+
+
 });
 
+function handleDelete() {
 
+  const eraseProduct = document.querySelectorAll('.erase-product');
 
-});
-  
-  function handleDelete() {
-    
-    const eraseProduct = document.querySelectorAll('.erase-product');
-  
-    eraseProduct.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const productId = btn.closest('.product-info').querySelector('#productId').textContent;
-        console.log(productId);
-        const formProduct = {
-          productId: productId
-        };
-        deleteProduct(formProduct);
-        
-      });
+  eraseProduct.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const productId = btn.closest('.product-info').querySelector('#productId').textContent;
+      console.log(productId);
+      const formProduct = {
+        productId: productId
+      };
+      deleteProduct(formProduct);
+
     });
-  };
-  
-    // xóa product id dùng call api
-    function deleteProduct(id) {
-      fetch('../php/delete_product.php', {
-        method: 'DELETE',
-        body: JSON.stringify(id),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then(response => response.json())
-        .then(data => {
-          // Xử lý phản hồi từ server (nếu cần)
-          console.log(data);
-          window.location.href = '../php/cart.php';
-        })
-        
-      
-    }
+  });
+};
+
+// xóa product id dùng call api
+function deleteProduct(id) {
+  fetch('../php/delete_product.php', {
+    method: 'DELETE',
+    body: JSON.stringify(id),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(response => response.json())
+    .then(data => {
+      // Xử lý phản hồi từ server (nếu cần)
+      console.log(data);
+      window.location.href = '../php/cart.php';
+    })
+
+
+}
+
+function changPage() {
+  const page = document.querySelectorAll('.category-item__link');
+  console.log(page);
+  page.forEach((product, index) => {
+    product.addEventListener('click', (e) => {
+      e.preventDefault();
+      let url = `../php/changdata.php?index=${index}`;
+      fetchData(url);
+    })
+  })
+};
+
+function fetchData(url) {
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.text();
+    })
+    .then(htmlResponse => {
+      document.getElementById('main_page').innerHTML = htmlResponse;
+    })
+    .catch(error => {
+      console.error('There has been a problem with your fetch operation:', error);
+    });
+}
