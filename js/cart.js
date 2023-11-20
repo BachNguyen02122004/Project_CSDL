@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   chooseSingleItem.forEach(function (button, index) {
     button.addEventListener('click', function (e) {
-      
+      // e.stopPropagation();
       state[index] = (this.checked ? 1 : 0);
       if(state[index] === 1){
         button.parentNode.classList.add('check-box-checked');

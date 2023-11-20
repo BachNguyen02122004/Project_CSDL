@@ -443,7 +443,7 @@ $price = number_format($row['prices'], 0, ',', '.');
 
 </body>
 <script src="../js/checkout.js"></script>
-<script src="../js/loadHeader.js"></script>
+<!-- <script src="../js/loadHeader.js"></script> -->
 <script src="../js/logOut.js"></script>
 
 </html>

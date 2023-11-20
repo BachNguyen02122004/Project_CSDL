@@ -3,6 +3,10 @@ const address = document.querySelector('.info-item-1');
 const info = document.querySelector('.infomation-item');
 console.log(info.innerHTML);
 
+var addressID;
+var theID;
+var changeAdd;
+
 async function handleAddChangeAddress() {
   const btn = document.querySelector('.change-item');
   console.log(btn);
@@ -17,6 +21,7 @@ async function handleAddChangeAddress() {
       try {
         const response = await fetch('../php/getAddress.php');
         const data = await response.json();
+        var cnt = 0;
 
         let addressHTML = `<div class="PLRlNg">
                             <div class="_3Vkt1z">
@@ -38,6 +43,8 @@ async function handleAddChangeAddress() {
 
         data.forEach(row => {
           // Access each attribute in the row
+          cnt++;
+          const addID = row.id;
           const fullname = row.username;
           const sdt = row.phone_number;
           const addressLine1 = row.address_line1;
@@ -45,12 +52,13 @@ async function handleAddChangeAddress() {
           const is_default = row.is_default;
 
           addressHTML += `<div class="_79Pezb -wWYCG">
+                            <div class="address_id${cnt}" style="display:none">${addID}</div>
                             <div class="oMEsz4">
-                                <div class="stardust-radio stardust-radio--checked" tabindex="0" role="radio" aria-checked="true"
+                                <div class="stardust-radio stardust-radio--checked" tabindex="0" role="radio" aria-checked="false"
                                     aria-disabled="false"
                                     aria-labelledby="address-card_9f8036a7-b0ac-4266-ab42-9e12c3d2a202_header address-card_9f8036a7-b0ac-4266-ab42-9e12c3d2a202_content address-card_9f8036a7-b0ac-4266-ab42-9e12c3d2a202_badge address-card_9f8036a7-b0ac-4266-ab42-9e12c3d2a202_invalid-flag">
-                                    <div class="stardust-radio-button stardust-radio-button--checked">
-                                        <div class="stardust-radio-button__outer-circle">
+                                    <div class="stardust-radio-button${cnt === 1 ? ' stardust-radio-button--checked' : ''}"> 
+                                      <div class="stardust-radio-button__outer-circle">
                                             <div class="stardust-radio-button__inner-circle"></div>
                                         </div>
                                     </div>
@@ -111,6 +119,10 @@ async function handleAddChangeAddress() {
         checkboxes.forEach((checkbox, index) => {
           console.log(checkboxes);
           checkbox.addEventListener('click', () => {
+            addressID = '.address_id' + (index + 1);
+            theID = document.querySelector(addressID).innerHTML;
+            changeAdd = "../php/changeAddress.php?id=" + encodeURIComponent(theID);
+
             console.log(checkboxes[index]);
             checkboxes.forEach((cb, innerIndex) => {
               console.log(innerIndex);
@@ -146,26 +158,6 @@ document.addEventListener('DOMContentLoaded', function () {
   // loadAddressFromLocalStorage();
 });
 
-function saveAddressToLocalStorage() {
-  const address = document.querySelector('.info-item-1');
-  if (address) {
-    const addressHTML = address.innerHTML;
-    const storedAddress = localStorage.getItem('address');
-    if (addressHTML !== storedAddress) {
-      localStorage.setItem('address', addressHTML);
-    }
-  }
-}
-
-function loadAddressFromLocalStorage() {
-  const addressHTML = localStorage.getItem('address');
-  if (addressHTML) {
-    const address = document.querySelector('.info-item-1');
-    if (address) {
-      address.innerHTML = addressHTML;
-    }
-  }
-}
 
 function changeAddress(index) {
   const button = document.querySelector('.RZP5QG');
@@ -182,6 +174,22 @@ function changeAddress(index) {
       saveAddressToLocalStorage();
       updateDisplayedAddress(address.innerHTML, index);
     }
+
+    fetch(changeAdd, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Xử lý kết quả trả về từ server
+        console.log(data);
+      })
+      .catch(error => {
+        // Xử lý lỗi nếu có
+        console.error(error);
+      });
   });
 }
 
@@ -303,8 +311,8 @@ document.addEventListener('DOMContentLoaded', function () {
     })
       .then(response => {
         console.log(response);
-       
-        setTimeout(function(){
+
+        setTimeout(function () {
           window.location.href = "../html/index.html";
           toast({
             title: "Thành công!",
@@ -313,7 +321,7 @@ document.addEventListener('DOMContentLoaded', function () {
             duration: 2500
           });
 
-       }, 1000);
+        }, 1000);
 
         return response;
       })
@@ -328,7 +336,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-  
+
 function toast({ title = "", message = "", type = "info", duration = 3000 }) {
   const main = document.querySelector('#toast');
   if (main) {

@@ -31,6 +31,10 @@ if ($resultUser->num_rows === 0) {
         $_SESSION['username'] = $usernameInput;
         $_SESSION['id'] = $row['uID'];
         $_SESSION['cart_id'] = $row['cID'];
+
+        $checking = "UPDATE `order` SET order_status = 1 WHERE TIMESTAMPDIFF(HOUR, order_date, NOW()) > 23 AND id > 0";
+        $mysqli->query($checking);
+        
         echo json_encode($response);
     } else {
         $response = array('error' => 'Wrong password');

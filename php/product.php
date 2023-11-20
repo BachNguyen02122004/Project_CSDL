@@ -98,25 +98,26 @@ $conn->close();
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             const buttons = document.querySelectorAll('.color-1');
-            let checking; // Declare checking outside the loop
+            if (buttons.length > 0) {
 
-            buttons.forEach((button, index) => {
-                button.addEventListener('click', () => {
-                    // Remove 'selected' class from all buttons
-                    buttons.forEach(btn => {
-                        btn.classList.remove('selected');
+                buttons.forEach((button, index) => {
+                    button.addEventListener('click', () => {
+                        // Remove 'selected' class from all buttons
+                        buttons.forEach(btn => {
+                            btn.classList.remove('selected');
+                        });
+
+                        // Add 'selected' class to the clicked button
+                        button.classList.add('selected');
+
                     });
 
-                    // Add 'selected' class to the clicked button
-                    button.classList.add('selected');
-
+                    // Automatically select the first button
+                    if (index === 0) {
+                        button.click();
+                    }
                 });
-
-                // Automatically select the first button
-                if (index === 0) {
-                    button.click();
-                }
-            });
+            }
         });
     </script>
 
@@ -214,10 +215,10 @@ $conn->close();
                             </a>
                         </li>
                         <!-- Login -->
-                        
+
 
                         <li class="navbar__item navbar__user">
-                            <img id="user_image" class="navbar__user-avt" src="../img/admin.jpg"/>
+                            <img id="user_image" class="navbar__user-avt" src="../img/admin.jpg" />
                             <span class="navbar__user-name"><?php echo $Username; ?></span>
 
                             <ul class="navbar__user-menu">
@@ -278,7 +279,7 @@ $conn->close();
 
                     <!-- Cart layout -->
                     <div class="header__cart" id="headerData">
-                       
+
                     </div>
                 </div>
                 <!-- End: Search -->
@@ -436,7 +437,7 @@ $conn->close();
 
     </div>
 
-    
+
     <script src="../js/loadMainPage.js"></script>
     <script src="../js/app.js"></script>
     <script src="../js/scrift.js"></script>
