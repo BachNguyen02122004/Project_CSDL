@@ -26,7 +26,7 @@ if ($resultUser->num_rows === 0) {
     $storedPassword = $row['password'];
 
     if (password_verify($userpasswordInput, $storedPassword)) {
-        $response = array('success' => 'Right password');
+        $response = array('success' => 'Correct password');
         session_start();
         $_SESSION['username'] = $row['username'];
         $_SESSION['id'] = $row['uID'];
@@ -36,7 +36,7 @@ if ($resultUser->num_rows === 0) {
         CASE
         WHEN TIMESTAMPDIFF(HOUR, order_date, NOW()) < 23 then 0
             WHEN TIMESTAMPDIFF(HOUR, order_date, NOW()) BETWEEN 23 AND 47 THEN 1
-            WHEN TIMESTAMPDIFF(HOUR, order_date, NOW()) >= 47 THEN 2
+            WHEN TIMESTAMPDIFF(HOUR, order_date, NOW()) > 47 THEN 2
             
         END
     WHERE id > 0";
@@ -46,9 +46,6 @@ if ($resultUser->num_rows === 0) {
     } else {
         $response = array('error' => 'Wrong password');
         echo json_encode($response);
-
-        // Hiển thị thông báo sai mật khẩu bằng JavaScript
-        
     }
 } 
 

@@ -25,14 +25,10 @@ if ($result->num_rows > 0) {
     $maxId = 0;
 }
 
-
-// Tăng giá trị id lớn nhất lên 1 để sử dụng cho sản phẩm mới
 $newId = $maxId + 1;
 
-// Lấy dữ liệu từ request
 $data = json_decode(file_get_contents("php://input"));
 
-//changed
 $check = "SELECT variation_option.id as voID FROM 
         (cart_detail inner join variation_option on cart_detail.option_id = variation_option.id) 
         WHERE product_id = '$data->productId' 
@@ -40,11 +36,7 @@ $check = "SELECT variation_option.id as voID FROM
         AND cart_detail.cart_id = '$cart_id'";
 $result = mysqli_query($conn, $check);
 
-// Thêm vào giỏ hàng
-
-//changed
 if ($result->num_rows == 0 and $cart_id != null) {
-    // Fetching $row1 inside the if block
 
     $sql = "INSERT INTO cart_detail
     VALUES ('$newId', $cart_id, '$data->productId', '$data->quantity', 0,
@@ -59,7 +51,6 @@ if ($result->num_rows == 0 and $cart_id != null) {
     }
 
 } else {
-    //changed
     $row1 = $result->fetch_assoc();
     $sql = "UPDATE cart_detail SET quantity = (quantity + $data->quantity) WHERE product_id = '$data->productId' AND cart_id = '$cart_id' AND option_id = {$row1['voID']}";
 
@@ -69,9 +60,7 @@ if ($result->num_rows == 0 and $cart_id != null) {
         $response = "Lỗi khi lưu dữ liệu vào cơ sở dữ liệu: " . $conn->error;
     }
 }
-
+echo json_encode($response);
 
 $conn->close();
-
-echo json_encode($response);
 ?>

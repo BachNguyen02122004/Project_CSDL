@@ -19,32 +19,37 @@ $newPassword = password_hash($data->passwordInput, PASSWORD_DEFAULT);
 $id;
 $cartID = 0;
 
-// Create a new SQL query to insert the data
-$checkUser = "Select id from user";
-$result = mysqli_query($conn, $checkUser);
-$id = $result->num_rows + 1;
+$checkForDuplicate = "SELECT id FROM `user` WHERE username = '$newUsername'";
+if ($conn->query($checkForDuplicate) === false) {
 
-$insertQuery = "INSERT INTO user(id, username, email_address, password) VALUES ('$id','$user','$newUsername', '$newPassword')";
+    // Create a new SQL query to insert the data
+    $checkUser = "Select id from user";
+    $result = mysqli_query($conn, $checkUser);
+    $id = $result->num_rows + 1;
 
-// Execute the insert query
-if ($conn->query($insertQuery) === true) {
-    //$response = array('success' => 'User added successfully');
-    $checkCart = "SELECT id from cart";
-    $result = $conn->query($checkCart);
-    $cartID = $result->num_rows + 1;
+    $insertQuery = "INSERT INTO user(id, username, email_address, password) VALUES ('$id','$user','$newUsername', '$newPassword')";
 
-    $createCart = "insert into cart values ('$cartID', '$id')";
-    if ($conn->query($createCart) === true) {
-        $response = array('success' => 'added cart');
+    // Execute the insert query
+    if ($conn->query($insertQuery) === true) {
+        $checkCart = "SELECT id from cart";
+        $result = $conn->query($checkCart);
+        $cartID = $result->num_rows + 1;
+
+        $createCart = "insert into cart values ('$cartID', '$id')";
+        if ($conn->query($createCart) === true) {
+            $response = array('success' => 'added cart');
+        } else {
+            $response = array('error' => 'adding cart failed');
+        }
+
+        echo json_encode($response);
     } else {
-        $response = array('error' => 'adding cart failed');
+        $response = array('error' => 'Error adding user: ' . $conn->error);
+        echo json_encode($response);
     }
-    
-    echo json_encode($response);
 } else {
-    $response = array('error' => 'Error adding user: ' . $conn->error);
+    $response = array('error' => 'Username has been used');
     echo json_encode($response);
 }
 
 $conn->close();
-?>
