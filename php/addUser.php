@@ -24,7 +24,7 @@ $checkUser = "Select id from user";
 $result = mysqli_query($conn, $checkUser);
 $id = $result->num_rows + 1;
 
-$insertQuery = "INSERT INTO user(id, username, email_address, password) VALUES ('$id','$newUsername','$user', '$newPassword')";
+$insertQuery = "INSERT INTO user(id, username, email_address, password) VALUES ('$id','$user','$newUsername', '$newPassword')";
 
 // Execute the insert query
 if ($conn->query($insertQuery) === true) {

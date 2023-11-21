@@ -117,7 +117,7 @@
                     </li>
                         <!-- Login -->
                         <li class="navbar__item navbar__user">
-                            <img id="user_image" class="navbar__user-avt" src='../img/admin.jpg'/>Admin
+                            <img id="user_image" class="navbar__user-avt" src='../img/admin.jpg'/>
                             <span class="navbar__user-name"></span>
 
                             <ul class="navbar__user-menu">
@@ -169,73 +169,10 @@
                     </div>
 
                     <!-- Cart layout -->
-                    <div class="header__cart">
-                        <div class="header__cart-wrap">
-                            <i class="header__cart-icon fas fa-shopping-cart"></i>
-                            <span class="header__cart-notice">0</span>
-                            <!-- No cart: header__cart-list--no-cart -->
-                            <div class="header__cart-list">
-                                <img src="./asset/img/nocard.png" alt="No card" class="header__cart-no-cart-img">
-
-                                <h4 class="header__cart-heading">Sản phẩm đã thêm</h4>
-                                <ul class="header__cart-group">
-                                    <!-- Cart items -->
-                                    <li class="header__cart-item">
-                                        <img src="https://cf.shopee.vn/file/f9864891a8ba04e463d2dd446e745c49" alt="Bàn Phím Cơ EDRA EK387" class="header__cart-img">
-                                        <div class="header__cart-item-info">
-                                            <div class="header__cart-item-head">
-                                                <h5 class="header__cart-item-name">Bàn Phím Cơ EDRA EK387 Bàn Phím Cơ EDRA EK387Bàn Phím Cơ EDRA EK387Bàn Phím Cơ EDRA EK387Bàn Phím Cơ EDRA EK387</h5>
-                                                <div class="header__cart-price-wrap">
-                                                    <span class="header__cart-item-price">640.000đ</span>
-                                                    <span class="header__cart-item-delect">x</span>
-                                                    <span class="header__cart-item-qnt">2</span>
-                                                </div>
-                                            </div>
-                                            <div class="header__cart-item-body">
-                                                <span class="header__cart-item-desc">Phân loại hàng: Red Switch</span>
-                                                <span class="header__cart-item-remove">Xóa</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="header__cart-item">
-                                        <img src="https://cf.shopee.vn/file/c64ddf57f14037d07edc37f88c364641_tn" alt="Ghế Chơi Game E-DRA Jupiter" class="header__cart-img">
-                                        <div class="header__cart-item-info">
-                                            <div class="header__cart-item-head">
-                                                <h5 class="header__cart-item-name">Ghế Chơi Game E-DRA Jupiter</h5>
-                                                <div class="header__cart-price-wrap">
-                                                    <span class="header__cart-item-price">2.000.000đ</span>
-                                                    <span class="header__cart-item-delect">x</span>
-                                                    <span class="header__cart-item-qnt">1</span>
-                                                </div>
-                                            </div>
-                                            <div class="header__cart-item-body">
-                                                <span class="header__cart-item-desc">Phân loại hàng: Red Switch</span>
-                                                <span class="header__cart-item-remove">Xóa</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="header__cart-item">
-                                        <img src="https://cf.shopee.vn/file/2a4a9a695ba8e32e84d5c14da4fe785e_tn" alt="Giá đỡ màn hình máy tính" class="header__cart-img">
-                                        <div class="header__cart-item-info">
-                                            <div class="header__cart-item-head">
-                                                <h5 class="header__cart-item-name">Giá đỡ màn hình máy tính</h5>
-                                                <div class="header__cart-price-wrap">
-                                                    <span class="header__cart-item-price">699.000đ</span>
-                                                    <span class="header__cart-item-delect">x</span>
-                                                    <span class="header__cart-item-qnt">1</span>
-                                                </div>
-                                            </div>
-                                            <div class="header__cart-item-body">
-                                                <span class="header__cart-item-desc">Phân loại hàng: Red Switch</span>
-                                                <span class="header__cart-item-remove">Xóa</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <a style="display: flex;font-size: 1.2rem;" class="header__cart-view btn btn--primary">Xem giỏ hàng</a>
-                            </div>
-                        </div>
+                    <div class="header__cart" id="headerData">
+                       
                     </div>
+
                 </div>
                 <!-- End: Search -->
             </div>
@@ -463,3 +400,6 @@
         </footer>
 
 </div>
+</body>
+<script src="../js/loadHeader.js"></script>
+</html>

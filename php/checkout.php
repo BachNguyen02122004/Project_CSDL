@@ -140,7 +140,7 @@ $price = number_format($row['prices'], 0, ',', '.');
                         <!-- Login -->
                         <li class="navbar__item navbar__user">
                             <img src="../img/admin.jpg" alt="avt" class="navbar__user-avt">
-                            <span class="navbar__user-name">Admin</span>
+                            <span class="navbar__user-name"><?php echo $Username?></span>
 
                             <ul class="navbar__user-menu">
                                 <li class="navbar__user-item"><a href="">Tài khoản của tôi</a></li>
@@ -195,12 +195,12 @@ $price = number_format($row['prices'], 0, ',', '.');
                     </div>
 
                     <?php
-                    $queryAddress = "select u.username, u.phone_number, a.address_line1, a.address_line2 from (user as u inner join user_address as ua on u.id = ua.user_id inner join address as a on a.id = ua.address_id) where u.id = '$id' and ua.is_default = 1";
+                    $queryAddress = "select a.name, a.phone_number, a.address_line1, a.address_line2 from (user as u inner join user_address as ua on u.id = ua.user_id inner join address as a on a.id = ua.address_id) where u.id = '$id' and ua.is_default = 1";
                     $result = mysqli_query($mysqli, $queryAddress);
 
                     if ($result->num_rows > 0) {
                         $row = mysqli_fetch_assoc($result);
-                        $row['username'] != null ? $fullname = $row['username'] : $fullname = "";
+                        $row['name'] != null ? $fullname = $row['name'] : $fullname = "";
                         $row['phone_number'] != null ? $sdt = $row['phone_number'] : $sdt = "";
                         $row['address_line1'] != null ? $addressLine = $row['address_line1'] : $addressLine = "";
                     } else {
@@ -209,6 +209,8 @@ $price = number_format($row['prices'], 0, ',', '.');
                         $addressLine = "";
                     }
                     ?>
+
+                    
 
                     <div class="info-user">
                         <div class="infomation-item"> <?php echo $fullname ?> (+84)<?php echo $sdt ?> </div>

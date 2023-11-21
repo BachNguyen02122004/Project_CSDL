@@ -16,7 +16,7 @@ session_start();
 $id = $_SESSION['id'];
 $username = $_SESSION['username'];
 
-$queryAddress = "SELECT a.id, username, a.phone_number, address_line1, address_line2, is_default FROM (user AS u INNER JOIN user_address as ua ON u.id = ua.user_id INNER JOIN address as a ON a.id = ua.address_id) WHERE u.id = '$id'";
+$queryAddress = "SELECT a.id, a.name, a.phone_number, address_line1, is_default FROM (user AS u INNER JOIN user_address as ua ON u.id = ua.user_id INNER JOIN address as a ON a.id = ua.address_id) WHERE u.id = '$id'";
 $result = $mysqli->query($queryAddress);
 
 if ($result) {

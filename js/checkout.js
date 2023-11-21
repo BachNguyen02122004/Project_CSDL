@@ -45,7 +45,7 @@ async function handleAddChangeAddress() {
           // Access each attribute in the row
           cnt++;
           const addID = row.id;
-          const fullname = row.username;
+          const fullname = row.name;
           const sdt = row.phone_number;
           const addressLine1 = row.address_line1;
           const addressLine2 = row.address_line2;
@@ -153,6 +153,17 @@ async function handleAddChangeAddress() {
 }
 
 
+function saveAddressToLocalStorage() {
+  const address = document.querySelector('.info-item-1');
+  if (address) {
+    const addressHTML = address.innerHTML;
+    const storedAddress = localStorage.getItem('address');
+    if (addressHTML !== storedAddress) {
+      localStorage.setItem('address', addressHTML);
+    }
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   handleAddChangeAddress();
   // loadAddressFromLocalStorage();
@@ -190,6 +201,7 @@ function changeAddress(index) {
         // Xử lý lỗi nếu có
         console.error(error);
       });
+      window.location.reload();
   });
 }
 

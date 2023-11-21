@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function(){
         if (data.success) {
           toast({
             title: "Thành công!",
-            message: "Đăg ký thành công",
+            message: "Đăng ký thành công",
             type: "success",
             duration: 2500
           });
